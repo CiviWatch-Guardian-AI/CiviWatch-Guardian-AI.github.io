@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiviWatch Guardian AI - Report Content</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f1f5f9; font-family: system-ui, -apple-system, sans-serif; transition: all 0.3s ease; }
+        .glass-panel { background: linear-gradient(145deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); border: 1px solid rgba(59, 130, 246, 0.2); }
+        
+        body.lang-en .he { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+        body.lang-en { text-align: left; }
+        body:not(.lang-en) { text-align: right; }
+        body.lang-en input, body.lang-en textarea, body.lang-en select { text-align: left; direction: ltr; }
+        
+        .force-ltr { direction: ltr; text-align: left; }
+        
+        input[type="radio"]:checked + div { border-color: #3b82f6; background-color: rgba(59, 130, 246, 0.1); }
+        .toggle-checkbox:checked { right: 0; border-color: #ef4444; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #ef4444; }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .error-shake { animation: shake 0.3s ease-in-out 2; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 sm:p-6 relative pb-20">
+
+    <div class="fixed top-0 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-[100px] -mr-20 -mt-20 pointer-events-none"></div>
+
+    <nav class="w-full max-w-2xl flex justify-between items-center mb-8 relative z-10 glass-panel px-6 py-4 rounded-full shadow-lg">
+        <div class="flex items-center gap-3">
+            <img src="logo.png" alt="CiviWatch Logo" class="h-8 w-auto" onerror="this.style.display='none'"> 
+            <span class="text-lg font-bold tracking-tight text-white">CiviWatch <span class="text-blue-500">Guardian AI</span></span>
+        </div>
+        <button onclick="toggleLanguage()" class="flex items-center gap-2 text-slate-300 hover:text-white px-3 py-1.5 border border-slate-700 rounded-full text-xs font-bold transition-all bg-slate-800/50 hover:bg-slate-700">
+            <span class="he flex items-center gap-2"><img src="https://flagcdn.com/w20/us.png" alt="US" class="w-4 rounded-sm"> EN</span>
+            <span class="en flex items-center gap-2"><img src="https://flagcdn.com/w20/il.png" alt="IL" class="w-4 rounded-sm"> עברית</span>
+        </button>
+    </nav>
+
+    <div class="max-w-2xl w-full glass-panel p-8 sm:p-10 rounded-3xl shadow-2xl relative z-10">
+        
+        <div>
+            <h2 class="text-3xl font-bold text-white mb-3 flex items-center gap-3">
+                <span class="he">דיווח על תוכן פוגעני</span>
+                <span class="en">Report Abusive Content</span>
+            </h2>
+            <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                <span class="he">עזרתכם קריטית. המידע יועבר לניתוח אוטומטי או לבדיקת מנהל כדי להגן על הקהילה ולשמור על מרחב נקי משנאה.</span>
+                <span class="en">Your help is critical. Information will be routed to AI analysis or human review to protect the community.</span>
+            </p>
+
+            <form id="report-form" class="space-y-6" novalidate>
+                
+                <div id="routing-container" class="rounded-xl border border-transparent transition-colors p-1 -m-1">
+                    <label class="block text-sm font-semibold text-slate-300 mb-3 px-1">
+                        <span class="he">ניתוב הדיווח (חובה)</span><span class="en">Report Routing (Required)</span>
+                    </label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="cursor-pointer relative">
+                            <input type="radio" name="routing" value="ai" class="sr-only" onchange="clearRoutingError()">
+                            <div class="border border-slate-700 bg-slate-900/50 rounded-xl p-4 hover:border-blue-500 transition-all h-full">
+                                <div class="text-blue-400 text-xl mb-2">⚡</div>
+                                <h3 class="text-white font-bold text-sm mb-1">
+                                    <span class="he">ניתוח AI אוטומטי</span><span class="en">Automatic AI Analysis</span>
+                                </h3>
+                                <p class="text-xs text-slate-400">
+                                    <span class="he">סריקה מיידית וסיווג. מומלץ למקרי שנאה ופייק ניוז.</span>
+                                    <span class="en">Instant scanning. Recommended for hate speech.</span>
+                                </p>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer relative">
+                            <input type="radio" name="routing" value="human" class="sr-only" onchange="clearRoutingError()">
+                            <div class="border border-slate-700 bg-slate-900/50 rounded-xl p-4 hover:border-blue-500 transition-all h-full">
+                                <div class="text-green-400 text-xl mb-2">🧑‍💻</div>
+                                <h3 class="text-white font-bold text-sm mb-1">
+                                    <span class="he">בדיקת מנהל קהילה</span><span class="en">Human Manager Review</span>
+                                </h3>
+                                <p class="text-xs text-slate-400">
+                                    <span class="he">העברה לבדיקה אנושית. מומלץ למקרים מורכבים.</span>
+                                    <span class="en">Routing to human review. For complex cases.</span>
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                    <p id="routing-error" class="hidden text-red-500 text-xs font-bold mt-2 px-1"></p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                    <div class="md:col-span-1">
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">
+                            <span class="he">פלטפורמה</span><span class="en">Platform</span>
+                        </label>
+                        <select required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-slate-300">
+                            <option value="x">X (Twitter)</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="telegram">Telegram</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">
+                            <span class="he">קישור (אופציונלי)</span><span class="en">Link (Optional)</span>
+                        </label>
+                        <input type="url" placeholder="https://..." class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-white force-ltr">
+                    </div>
+                    <div class="md:col-span-1">
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">
+                            <span class="he">שפת התוכן</span><span class="en">Language</span>
+                        </label>
+                        <select required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-slate-300">
+                            <option value="he" class="he">עברית</option>
+                            <option value="he" class="en">Hebrew</option>
+                            <option value="en" class="he">אנגלית</option>
+                            <option value="en" class="en">English</option>
+                            <option value="ar" class="he">ערבית</option>
+                            <option value="ar" class="en">Arabic</option>
+                            <option value="ru" class="he">רוסית</option>
+                            <option value="ru" class="en">Russian</option>
+                            <option value="other" class="he">אחר</option>
+                            <option value="other" class="en">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center p-4 bg-red-900/10 border border-red-500/20 rounded-xl">
+                    <div class="relative inline-block w-10 mr-4 align-middle select-none transition duration-200 ease-in ml-4">
+                        <input type="checkbox" name="urgent" id="urgent-toggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out"/>
+                        <label for="urgent-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-600 cursor-pointer"></label>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-red-400">
+                            <span class="he">סכנה מיידית / דחיפות גבוהה</span><span class="en">Immediate Threat / High Priority</span>
+                        </h4>
+                        <p class="text-xs text-slate-400">
+                            <span class="he">סמן רק במקרה של קריאה מפורשת לאלימות פיזית או סכנת חיים.</span>
+                            <span class="en">Check only in cases of explicit calls for physical violence.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <span class="he">סיווג הבעיה (תגיות)</span><span class="en">Issue Category (Tags)</span>
+                    </label>
+                    <div id="hashtag-wrapper" class="flex flex-wrap items-center gap-2 w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl focus-within:border-blue-500 transition-colors cursor-text" onclick="document.getElementById('hashtag-input').focus()">
+                        <span id="hashtag-pills" class="flex flex-wrap gap-2 empty:hidden"></span>
+                        <input type="text" id="hashtag-input" class="bg-transparent border-none outline-none text-white flex-1 min-w-[150px]" placeholder="הקלד והקש Enter">
+                        <input type="hidden" name="hashtags" id="hidden-hashtags">
+                    </div>
+                    
+                    <div class="mt-3 flex flex-wrap items-center gap-2">
+                        <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Antisemitism' : 'אנטישמיות')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400">
+                            <span class="he">+ אנטישמיות</span><span class="en">+ Antisemitism</span>
+                        </button>
+                        <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'HateSpeech' : 'שנאה')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400">
+                            <span class="he">+ שנאה</span><span class="en">+ Hate Speech</span>
+                        </button>
+                        <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Harassment' : 'הטרדה')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400">
+                            <span class="he">+ הטרדה</span><span class="en">+ Harassment</span>
+                        </button>
+                        <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Troll' : 'טרול')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400">
+                            <span class="he">+ טרול</span><span class="en">+ Troll</span>
+                        </button>
+                        <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'FakeNews' : 'פייק_ניוז')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400">
+                            <span class="he">+ פייק_ניוז</span><span class="en">+ Fake News</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <textarea rows="3" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-white resize-none" 
+                        placeholder="פרטים נוספים או הקשר (אופציונלי)" id="context-text"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2 flex justify-between items-end">
+                        <span><span class="he">צילום מסך (חובה)</span><span class="en">Screenshot (Required)</span></span>
+                        <span class="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded">Ctrl+V</span>
+                    </label>
+                    
+                    <div id="drop-zone" class="border-2 border-dashed border-slate-600 rounded-xl bg-slate-900/50 p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-900/80 transition-all relative h-48">
+                        <input type="file" id="file-input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
+                        
+                        <div id="upload-prompt" class="flex flex-col items-center z-10 pointer-events-none">
+                            <span class="text-4xl mb-3 text-slate-400">📸</span>
+                            <span class="text-sm text-slate-300 font-medium mb-1 text-center">
+                                <span class="he">לחץ, גרור תמונה, או הדבק לכאן</span>
+                                <span class="en">Click, drag, or paste image here</span>
+                            </span>
+                        </div>
+
+                        <div id="preview-container" class="hidden absolute inset-0 z-10 w-full h-full bg-slate-900 flex items-center justify-center rounded-xl overflow-hidden">
+                            <img id="image-preview" class="max-h-full max-w-full object-contain p-2" src="">
+                            <button type="button" class="absolute top-3 right-3 bg-slate-800/90 hover:bg-red-500 text-white text-xs px-3 py-1.5 rounded-lg z-30" onclick="removeImage(event)">
+                                <span class="he">הסר תמונה</span><span class="en">Remove</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p id="image-error" class="hidden text-red-500 text-xs font-bold mt-2"></p>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all text-lg mb-4">
+                        <span class="he">שליחת דיווח</span><span class="en">Submit Report</span>
+                    </button>
+                    <p class="text-center text-xs text-slate-500 flex items-center justify-center gap-1.5">
+                        <span>🔒</span>
+                        <span class="he">הדיווח מאובטח ואנונימי לחלוטין. פרטיך האישיים לא יישמרו.</span>
+                        <span class="en">Report is secure and fully anonymous. No personal data is saved.</span>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('lang-en');
+            const isEn = document.body.classList.contains('lang-en');
+            document.documentElement.dir = isEn ? 'ltr' : 'rtl';
+            
+            const contextText = document.getElementById('context-text');
+            if(contextText.value === '') {
+                contextText.placeholder = isEn ? 'Additional context (Optional)' : 'פרטים נוספים או הקשר (אופציונלי)';
+            }
+            document.getElementById('hashtag-input').placeholder = isEn ? 'Type and press Enter' : 'הקלד והקש Enter';
+            
+            if (!document.getElementById('image-error').classList.contains('hidden')) {
+                document.getElementById('image-error').textContent = isEn ? 'Screenshot is required.' : 'חובה לצרף צילום מסך להוכחה.';
+            }
+            if (!document.getElementById('routing-error').classList.contains('hidden')) {
+                document.getElementById('routing-error').textContent = isEn ? 'Please select a routing option.' : 'חובה לבחור את יעד הדיווח (AI או מנהל קהילה).';
+            }
+        }
+
+        const hashtagInput = document.getElementById('hashtag-input');
+        const hashtagPills = document.getElementById('hashtag-pills');
+        const hiddenHashtags = document.getElementById('hidden-hashtags');
+        let tags = [];
+
+        function renderTags() {
+            hashtagPills.innerHTML = '';
+            tags.forEach((tag, index) => {
+                const pill = document.createElement('span');
+                pill.className = 'flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2.5 py-1 rounded-md text-sm font-medium';
+                pill.innerHTML = `
+                    <span>#${tag}</span> 
+                    <button type="button" class="text-blue-400 hover:text-white" onclick="removeTag(${index})">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                `;
+                hashtagPills.appendChild(pill);
+            });
+            hiddenHashtags.value = tags.join(', ');
+        }
+
+        function addTag(value) {
+            const cleanValue = value.trim().replace(/^#/, '');
+            if (cleanValue && !tags.includes(cleanValue)) {
+                tags.push(cleanValue);
+                renderTags();
+            }
+        }
+
+        function removeTag(index) {
+            tags.splice(index, 1);
+            renderTags();
+        }
+
+        hashtagInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === ',') {
+                e.preventDefault();
+                addTag(this.value);
+                this.value = '';
+            }
+        });
+
+        document.getElementById('report-form').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+
+        const fileInput = document.getElementById('file-input');
+        const uploadPrompt = document.getElementById('upload-prompt');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const dropZone = document.getElementById('drop-zone');
+        const imageError = document.getElementById('image-error');
+
+        function clearImageError() {
+            dropZone.classList.remove('border-red-500');
+            dropZone.classList.add('border-slate-600');
+            imageError.classList.add('hidden');
+        }
+
+        function clearRoutingError() {
+            const routingContainer = document.getElementById('routing-container');
+            routingContainer.classList.remove('border-red-500', 'bg-red-900/10');
+            routingContainer.classList.add('border-transparent');
+            document.getElementById('routing-error').classList.add('hidden');
+        }
+
+        function displayImage(file) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagePreview.src = event.target.result;
+                    uploadPrompt.classList.add('hidden');
+                    previewContainer.classList.remove('hidden');
+                    clearImageError();
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        fileInput.addEventListener('change', function(e) {
+            displayImage(e.target.files[0]);
+        });
+
+        document.addEventListener('paste', function(e) {
+            const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+            for (let index in items) {
+                const item = items[index];
+                if (item.kind === 'file' && item.type.startsWith('image/')) {
+                    const file = item.getAsFile();
+                    displayImage(file);
+                    
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    fileInput.files = dataTransfer.files;
+                }
+            }
+        });
+
+        function removeImage(e) {
+            e.preventDefault();
+            e.stopPropagation(); 
+            fileInput.value = '';
+            imagePreview.src = '';
+            previewContainer.classList.add('hidden');
+            uploadPrompt.classList.remove('hidden');
+        }
+
+        document.getElementById('report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            const isEn = document.body.classList.contains('lang-en');
+            
+            const routingOptions = document.getElementsByName('routing');
+            let routingSelected = false;
+            let selectedValue = "";
+            for (const option of routingOptions) {
+                if (option.checked) {
+                    routingSelected = true;
+                    selectedValue = option.value;
+                    break;
+                }
+            }
+            
+            if (!routingSelected) {
+                isValid = false;
+                const routingContainer = document.getElementById('routing-container');
+                const routingError = document.getElementById('routing-error');
+                routingContainer.classList.add('border-red-500', 'bg-red-900/10');
+                routingContainer.classList.remove('border-transparent');
+                routingContainer.classList.remove('error-shake');
+                void routingContainer.offsetWidth; 
+                routingContainer.classList.add('error-shake');
+                routingError.textContent = isEn ? 'Please select a routing option.' : 'חובה לבחור את יעד הדיווח (AI או מנהל קהילה).';
+                routingError.classList.remove('hidden');
+            }
+
+            if (fileInput.files.length === 0) {
+                isValid = false;
+                dropZone.classList.add('border-red-500');
+                dropZone.classList.remove('border-slate-600');
+                dropZone.classList.remove('error-shake');
+                void dropZone.offsetWidth;
+                dropZone.classList.add('error-shake');
+                
+                imageError.textContent = isEn ? 'Screenshot is required.' : 'חובה לצרף צילום מסך להוכחה.';
+                imageError.classList.remove('hidden');
+            }
+            
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                return;
+            }
+
+            if (!isValid) return;
+
+            let targetMsg = selectedValue === 'ai' 
+                ? (isEn ? 'Routed to AI Engine.' : 'הועבר למנוע ה-AI.') 
+                : (isEn ? 'Routed to Human Manager Queue.' : 'הועבר לתור מנהל הקהילה.');
+            
+            const msg = isEn 
+                ? `Report successfully submitted.\n${targetMsg}\nThank you!` 
+                : `הדיווח נקלט בהצלחה.\n${targetMsg}\nתודה!`;
+                
+            alert(msg);
+            
+            this.reset();
+            tags = [];
+            renderTags();
+            removeImage(e);
+            
+            for (const option of routingOptions) {
+                option.checked = false;
+            }
+        });
+        
+        document.getElementById('context-text').placeholder = 'פרטים נוספים או הקשר (אופציונלי)';
+        document.getElementById('hashtag-input').placeholder = 'הקלד והקש Enter';
+    </script>
+</body>
+</html>
