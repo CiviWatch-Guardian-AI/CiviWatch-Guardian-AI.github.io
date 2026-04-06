@@ -4,7 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CiviWatch Guardian AI | Proactive Digital Safety</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg-color: #0d1117; --text-color: #c9d1d9; 
+            --primary: #1f6feb; --primary-hover: #388bfd;
+            --secondary-bg: #161b22; --border-color: #30363d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: var(--bg-color); color: var(--text-color); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none;}
+        .bg-logo-watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05; width: 50vw; max-width: 500px; z-index: -1; pointer-events: none; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(13,17,23,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; z-index: 1000; flex-wrap: wrap; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; }
+        .logo span { color: var(--primary); }
+        
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; }
+        .nav-links a:hover { color: #fff; }
+        
+        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 150px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+        [dir="rtl"] .dropdown-content { left: auto; right: 0; }
+        .dropdown:hover .dropdown-content { display: flex; }
+        .dropdown-content a { padding: 10px 15px; border-bottom: 1px solid var(--border-color); }
+        .dropdown-content a:hover { background: #30363d; color: #fff; }
+
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .lang-toggle { display: flex; align-items: center; gap: 5px; color: #8b949e; font-weight: bold; cursor: pointer; }
+        .lang-toggle svg { width: 20px; height: 20px; fill: currentColor; }
+        .btn-secondary { border: 1px solid #8b949e; padding: 8px 15px; border-radius: 6px; transition: 0.3s; text-align: center; }
+        .btn-secondary:hover { border-color: #fff; color: #fff; }
+        .btn-primary { background: var(--primary); padding: 8px 15px; border-radius: 6px; color: #fff; font-weight: bold; transition: 0.3s; text-align: center; }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
+
+        .hero { padding: 120px 5% 50px; min-height: 80vh; display: flex; align-items: center; }
+        .hero-inner { display: flex; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .hero-text { flex: 1; }
+        .hero-video { flex: 1; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; }
+        .hero-video iframe { width: 100%; height: 100%; border: none; }
+        
+        .iso-badge { display: inline-block; padding: 10px 20px; background: rgba(31,111,235,0.15); border: 2px solid var(--primary); color: #58a6ff; border-radius: 50px; margin-bottom: 20px; font-weight: bold; text-decoration: underline; transition: all 0.3s ease; }
+        .iso-badge:hover { background: rgba(31,111,235,0.3); transform: scale(1.05); color: #fff; }
+
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: #fff; }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p { font-size: 1.1rem; color: #8b949e; margin-bottom: 30px; line-height: 1.6; }
+
+        .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; text-align: center; flex: 1; width: 100%; }
+        .section-title { font-size: 2rem; color: #fff; margin-bottom: 10px; }
+        .section-subtitle { color: #8b949e; margin-bottom: 30px; font-size: 1.1rem; }
+        .media-container { width: 100%; aspect-ratio: 16/9; max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; margin-bottom: 40px;}
+        .media-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* Global Footer Styles */
+        .site-footer {
+            background: rgba(13, 17, 23, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 20px 5%;
+            text-align: center;
+            margin-top: auto; 
+            font-size: 0.85rem;
+            color: #8b949e;
+            z-index: 10;
+        }
+        .footer-links a { color: #8b949e; text-decoration: none; transition: 0.3s; margin: 0 4px; }
+        .footer-links a:hover { color: #fff; text-decoration: underline; }
+        .footer-links span { margin: 0 4px; }
+
+        @media (max-width: 992px) {
+            .hero-inner { flex-direction: column; }
+            .hero-text { text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text div { justify-content: center; flex-wrap: wrap; }
+            
+            .mobile-toggle { display: block; order: 2; }
+            .logo { order: 1; }
+            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; padding: 10px 0; order: 3; }
+            nav.active .nav-links, nav.active .nav-actions { display: flex; gap: 15px;}
+            
+            .dropdown-content { position: static; box-shadow: none; border: none; background: transparent; display: none; }
+            .dropdown:hover .dropdown-content { display: flex; align-items: center; }
+            
+            .media-container { height: auto !important; aspect-ratio: 16/9; }
+            .footer-links { line-height: 2; }
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
@@ -12,8 +101,9 @@
     <img src="your-logo-file.png" alt="" class="bg-logo-watermark">
     <div id="particles-js"></div>
 
-    <nav>
+    <nav id="navbar">
         <div class="logo">CiviWatch <span>AI</span></div>
+        <div class="mobile-toggle" id="mobile-toggle">☰</div>
         <ul class="nav-links">
             <li class="dropdown">
                 <a href="#" data-en="Solutions ▾" data-he="פתרונות ▾">Solutions ▾</a>
@@ -39,8 +129,8 @@
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-text">
-                <a href="civiWatchISO.html" class="iso-badge" data-en="Setting the ISO Standard for Digital Safety" data-he="קביעת תקן ISO לבטיחות דיגיטלית">
-                    Setting the ISO Standard for Digital Safety
+                <a href="civiWatchISO.html" class="iso-badge" data-en="🔗 Explore the ISO Standard for Digital Safety" data-he="🔗 חקרו את תקן ה-ISO לבטיחות דיגיטלית">
+                    🔗 Explore the ISO Standard for Digital Safety
                 </a>
                 <h1><span data-en="Proactive" data-he="בטיחות">Proactive</span><br><span data-en="Digital Safety." data-he="דיגיטלית אקטיבית.">Digital Safety.</span></h1>
                 <p data-en="CiviWatch Guardian AI detects, classifies, and manages abusive content across social networks in real-time. Protecting communities with advanced NLP and human-in-the-loop workflows." data-he="מערכת CiviWatch Guardian AI מאתרת, מסווגת ומנהלת תוכן פוגעני ברשתות החברתיות בזמן אמת. הגנה על קהילות באמצעות טכנולוגיית NLP מתקדמת ושילוב גורם אנושי.">
@@ -70,43 +160,62 @@
         <h2 class="section-title" data-en="Investment & Vision" data-he="חזון והשקעה">Investment & Vision</h2>
         <p class="section-subtitle" data-en="Review our strategic roadmap and technological infrastructure." data-he="סקירת מפת הדרכים האסטרטגית והתשתית הטכנולוגית שלנו.">Review our strategic roadmap and technological infrastructure.</p>
         
-        <div class="media-container" style="height: 600px;">
+        <div class="media-container">
              <iframe src="https://drive.google.com/file/d/1YcPoHyCsAcPVLTFZMyrjv3hH2tUXMj1B/preview" style="border:none;"></iframe>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="ccpa-policy.html">CCPA Policy</a> |
+            <a href="security-policy.html">Security Policy</a> |
+            <a href="data-policy.html">Data Policy</a> |
+            <a href="terms-of-use.html">Terms of Use</a> |
+            <a href="sla.html">Service Level Agreement</a> |
+            <span>Copyright CiviWatch Guardian AI 2026. All Right Reserved.</span> |
+            <span>By Benjamin Michaeli</span>
+        </div>
+    </footer>
 
     <script>
         const langText = document.getElementById('lang-text');
         const root = document.getElementById('html-root');
         const langBtn = document.getElementById('lang-toggle-btn');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbar = document.getElementById('navbar');
 
-        // Core Translation Function
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
         function applyLanguage(lang) {
             localStorage.setItem('civi_lang', lang);
             langText.innerText = lang;
-            root.setAttribute('dir', lang === 'HE' ? 'rtl' : 'ltr');
             
-            // Apply text replacements
+            const isEn = lang === 'EN';
+            root.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+            if (isEn) {
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+            }
+            
             document.querySelectorAll('[data-en]').forEach(el => {
                 const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
-                if (translation) {
-                    el.innerText = translation;
-                }
+                if (translation) { el.innerText = translation; }
             });
         }
 
-        // Initialize language on page load
         let currentLang = localStorage.getItem('civi_lang') || 'EN';
         applyLanguage(currentLang);
 
-        // Click listener for the toggle button
         langBtn.addEventListener('click', function(e) {
             e.preventDefault();
             currentLang = currentLang === 'EN' ? 'HE' : 'EN';
             applyLanguage(currentLang);
         });
 
-        // Initialize Background Particles
         particlesJS("particles-js", {
             "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
             "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } },
