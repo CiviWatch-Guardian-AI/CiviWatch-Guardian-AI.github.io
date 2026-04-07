@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviWatch Guardian AI | Proactive Digital Safety</title>
+    <title>CiviWatch Guardian AI | The Global Digital Safety Benchmark</title>
     <style>
         :root {
             --bg-color: #0d1117; --text-color: #c9d1d9; 
@@ -26,7 +26,7 @@
         .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; }
         .nav-links a:hover { color: #fff; }
         
-        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 150px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 180px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
         [dir="rtl"] .dropdown-content { left: auto; right: 0; }
         .dropdown:hover .dropdown-content { display: flex; }
         .dropdown-content a { padding: 10px 15px; border-bottom: 1px solid var(--border-color); }
@@ -42,7 +42,7 @@
 
         .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
 
-        .hero { padding: 120px 5% 50px; min-height: 80vh; display: flex; align-items: center; }
+        .hero { padding: 140px 5% 50px; min-height: 70vh; display: flex; align-items: center; }
         .hero-inner { display: flex; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
         .hero-text { flex: 1; }
         .hero-video { flex: 1; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; }
@@ -51,66 +51,81 @@
         .iso-badge { display: inline-block; padding: 10px 20px; background: rgba(31,111,235,0.15); border: 2px solid var(--primary); color: #58a6ff; border-radius: 50px; margin-bottom: 20px; font-weight: bold; text-decoration: underline; transition: all 0.3s ease; }
         .iso-badge:hover { background: rgba(31,111,235,0.3); transform: scale(1.05); color: #fff; }
 
-        .hero-text h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: #fff; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; color: #fff; }
         .hero-text h1 span { color: var(--primary); }
         .hero-text p { font-size: 1.1rem; color: #8b949e; margin-bottom: 30px; line-height: 1.6; }
 
-        .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; text-align: center; flex: 1; width: 100%; }
-        .section-title { font-size: 2rem; color: #fff; margin-bottom: 10px; }
-        .section-subtitle { color: #8b949e; margin-bottom: 30px; font-size: 1.1rem; }
+        .section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; text-align: center; flex: 1; width: 100%; }
+        .section-title { font-size: 2.2rem; color: #fff; margin-bottom: 15px; }
+        .section-subtitle { color: #8b949e; margin-bottom: 40px; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        /* Tech Cards Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .card { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px 25px; transition: transform 0.3s ease, border-color 0.3s ease; text-align: center; }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); }
+        .card .icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+        .card h3 { color: #fff; margin-bottom: 12px; font-size: 1.4rem; }
+        .card p { color: #8b949e; line-height: 1.5; font-size: 0.95rem; }
+
+        /* Media */
         .media-container { width: 100%; aspect-ratio: 16/9; max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; margin-bottom: 40px;}
         .media-container iframe { width: 100%; height: 100%; border: none; }
 
-        /* Global Footer Styles */
-        .site-footer {
-            background: rgba(13, 17, 23, 0.95);
-            border-top: 1px solid var(--border-color);
-            padding: 20px 5%;
-            text-align: center;
-            margin-top: auto; 
-            font-size: 0.85rem;
-            color: #8b949e;
-            z-index: 10;
-        }
-        .footer-links a { color: #8b949e; text-decoration: none; transition: 0.3s; margin: 0 4px; }
+        /* Footer & Newsletter */
+        .newsletter-section { background: rgba(22, 27, 34, 0.85); border-top: 1px solid var(--border-color); padding: 40px 5%; margin-top: auto; width: 100%; }
+        .newsletter-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 40px; }
+        .newsletter-left { flex: 1; min-width: 300px; }
+        .newsletter-left h2 { color: #fff; font-size: 1.4rem; margin-bottom: 8px; font-weight: normal;}
+        .gradient-line { height: 2px; width: 100%; max-width: 250px; background: linear-gradient(90deg, var(--primary-hover), var(--primary)); margin-bottom: 20px; }
+        .subscribe-form { display: flex; gap: 15px; flex-wrap: wrap; }
+        .subscribe-form input { background: transparent; border: 1px solid #8b949e; border-radius: 25px; padding: 10px 20px; color: #fff; min-width: 280px; outline: none; }
+        .subscribe-form button { background: var(--primary); color: #fff; border: none; border-radius: 25px; padding: 10px 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .subscribe-form button:hover { background: var(--primary-hover); }
+        .newsletter-right { display: flex; align-items: center; gap: 20px; }
+        .social-icons { display: flex; gap: 12px; }
+        .social-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary); color: #fff; border-radius: 50%; transition: 0.3s; }
+        .social-icons a:hover { transform: translateY(-3px); background: var(--primary-hover); }
+        .social-icons svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; font-size: 0.85rem; color: #8b949e; }
+        .footer-links a { color: #8b949e; text-decoration: none; margin: 0 4px; }
         .footer-links a:hover { color: #fff; text-decoration: underline; }
-        .footer-links span { margin: 0 4px; }
+
+        body.lang-en .he { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+        html[dir="rtl"] .subscribe-form input { text-align: right; direction: rtl; }
 
         @media (max-width: 992px) {
-            .hero-inner { flex-direction: column; }
-            .hero-text { text-align: center; }
+            .hero-inner { flex-direction: column; text-align: center; }
             .hero-text h1 { font-size: 2.5rem; }
-            .hero-text div { justify-content: center; flex-wrap: wrap; }
-            
             .mobile-toggle { display: block; order: 2; }
             .logo { order: 1; }
             .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; padding: 10px 0; order: 3; }
             nav.active .nav-links, nav.active .nav-actions { display: flex; gap: 15px;}
-            
             .dropdown-content { position: static; box-shadow: none; border: none; background: transparent; display: none; }
             .dropdown:hover .dropdown-content { display: flex; align-items: center; }
-            
-            .media-container { height: auto !important; aspect-ratio: 16/9; }
-            .footer-links { line-height: 2; }
+            .newsletter-container { flex-direction: column; text-align: center; }
+            .gradient-line { margin: 0 auto 20px; }
+            .subscribe-form { justify-content: center; }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
-<body>
+<body class="lang-en">
 
     <img src="your-logo-file.png" alt="" class="bg-logo-watermark">
     <div id="particles-js"></div>
 
     <nav id="navbar">
-        <div class="logo">CiviWatch <span>AI</span></div>
+        <div class="logo">CiviWatch <span>Guardian AI</span></div>
         <div class="mobile-toggle" id="mobile-toggle">☰</div>
         <ul class="nav-links">
             <li class="dropdown">
                 <a href="#" data-en="Solutions ▾" data-he="פתרונות ▾">Solutions ▾</a>
                 <div class="dropdown-content">
                     <a href="social-networks.html" data-en="Social Networks" data-he="רשתות חברתיות">Social Networks</a>
-                    <a href="governments.html" data-en="Governments" data-he="ממשלות">Governments</a>
-                    <a href="ngos.html" data-en="NGOs" data-he="עמותות">NGOs</a>
+                    <a href="generative-ai.html" data-en="Generative AI" data-he="בינה מלאכותית יוצרת">Generative AI</a>
+                    <a href="virtual-reality.html" data-en="Virtual Reality" data-he="מציאות מדומה">Virtual Reality</a>
                 </div>
             </li>
             <li><a href="company.html" data-en="Company" data-he="החברה">Company</a></li>
@@ -122,25 +137,24 @@
                 <span id="lang-text">EN</span>
             </a>
             <a href="AnonymousRepotScreen.html" class="btn-secondary" data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</a>
-            <a href="#" class="btn-primary" data-en="Platform Login" data-he="כניסה למערכת">Platform Login</a>
+            <a href="partners.html" class="btn-primary" data-en="Platform Login" data-he="כניסה למערכת">Platform Login</a>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-text">
-                <a href="civiWatchISO.html" class="iso-badge" data-en="🔗 Explore the ISO Standard for Digital Safety" data-he="🔗 חקרו את תקן ה-ISO לבטיחות דיגיטלית">
-                    🔗 Explore the ISO Standard for Digital Safety
+                <a href="civiWatchISO.html" class="iso-badge" data-en="The Global Benchmark for Digital Safety →" data-he="הבנצ'מרק העולמי לבטיחות דיגיטלית ←">
+                    The Global Benchmark for Digital Safety →
                 </a>
-                <h1><span data-en="Proactive" data-he="בטיחות">Proactive</span><br><span data-en="Digital Safety." data-he="דיגיטלית אקטיבית.">Digital Safety.</span></h1>
-                <p data-en="CiviWatch Guardian AI detects, classifies, and manages abusive content across social networks in real-time. Protecting communities with advanced NLP and human-in-the-loop workflows." data-he="מערכת CiviWatch Guardian AI מאתרת, מסווגת ומנהלת תוכן פוגעני ברשתות החברתיות בזמן אמת. הגנה על קהילות באמצעות טכנולוגיית NLP מתקדמת ושילוב גורם אנושי.">
-                    CiviWatch Guardian AI detects, classifies, and manages abusive content across social networks in real-time. Protecting communities with advanced NLP and human-in-the-loop workflows.
+                <h1><span data-en="Setting the" data-he="קובעים את">Setting the</span><br><span data-en="ISO Standard." data-he="תו התקן הדיגיטלי.">ISO Standard.</span></h1>
+                <p data-en="CiviWatch Guardian AI provides human-in-the-loop validation and AI technology orchestration to verify safety across social networks, LLMs, and VR environments." data-he="אנחנו מספקים אימות אנושי (Human-in-the-loop) ואורקסטרציה של טכנולוגיות AI כדי להבטיח בטיחות וצייות ברשתות חברתיות, מודלי שפה וסביבות מציאות מדומה.">
+                    CiviWatch Guardian AI provides human-in-the-loop validation and AI technology orchestration to verify safety across social networks, LLMs, and VR environments.
                 </p>
                 <div style="display: flex; gap: 15px;">
-                    <a href="#" class="btn-primary" data-en="Access Dashboard" data-he="כניסה לדאשבורד">Access Dashboard</a>
+                    <a href="partners.html" class="btn-primary" data-en="Access Dashboard" data-he="כניסה לדאשבורד">Access Dashboard</a>
                 </div>
             </div>
-            
             <div class="hero-video">
                 <iframe src="https://drive.google.com/file/d/1y8nJz7XUP7WXkl0AwS197KkrOGbMW6gS/preview" allow="autoplay; fullscreen"></iframe>
             </div>
@@ -148,20 +162,84 @@
     </header>
 
     <section class="section">
+        <h2 class="section-title" data-en="The Validation Ecosystem" data-he="אקוסיסטם האימות שלנו">The Validation Ecosystem</h2>
+        <p class="section-subtitle" data-en="Our hybrid model combines proprietary technology with leading 3rd-party AI suppliers to deliver a robust safety benchmark." data-he="המודל ההיברידי שלנו משלב טכנולוגיה עצמית יחד עם ספקי ה-AI המובילים בעולם כדי לספק מדד בטיחות חסין ובלתי מתפשר.">Our hybrid model combines proprietary technology with leading 3rd-party AI suppliers to deliver a robust safety benchmark.</p>
+        <div class="grid">
+            <div class="card">
+                <span class="icon">⚖️</span>
+                <h3 data-en="ISO Standard" data-he="תו תקן ISO">ISO Standard</h3>
+                <p data-en="A localized legal and cultural framework adapted for each country's specific regulation." data-he="מסגרת עבודה משפטית ותרבותית המותאמת לרגולציה הספציפית של כל מדינה.">A localized legal and cultural framework adapted for each country's specific regulation.</p>
+            </div>
+            <div class="card">
+                <span class="icon">🧑‍💻</span>
+                <h3 data-en="Human-in-the-Loop" data-he="מומחיות אנושית">Human-in-the-Loop</h3>
+                <p data-en="Expert human validation that saves resources and provides the final 'Seal of Approval'." data-he="שכבת אימות אנושית שחוסכת משאבים ומספקת את 'חותמת האישור' הסופית לתוכן מורכב.">Expert human validation that saves resources and provides the final 'Seal of Approval'.</p>
+            </div>
+            <div class="card">
+                <span class="icon">🔌</span>
+                <h3 data-en="AI Marketplace" data-he="מרכז טכנולוגי">AI Marketplace</h3>
+                <p data-en="Orchestrating best-in-class AI tools for rapid text and video analysis." data-he="ניהול ואינטגרציה של כלי ה-AI הטובים בעולם לניתוח מהיר של טקסט ווידאו.">Orchestrating best-in-class AI tools for rapid text and video analysis.</p>
+            </div>
+            <div class="card">
+                <span class="icon">🔍</span>
+                <h3 data-en="Strategic Auditing" data-he="מבדקי ציות">Strategic Auditing</h3>
+                <p data-en="Compliance audits for platforms to ensure alignment with global safety laws." data-he="מבדקי ציות לפלטפורמות כדי לוודא עמידה בחוקי הבטיחות הדיגיטליים העולמיים.">Compliance audits for platforms to ensure alignment with global safety laws.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-en="The 3 Frontiers of Safety" data-he="שלושת חזיתות הבטיחות">The 3 Frontiers of Safety</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 data-en="📱 Social Networks" data-he="📱 רשתות חברתיות">📱 Social Networks</h3>
+                <p data-en="Real-time monitoring and benchmarking for user-generated content." data-he="ניטור ובנצ'מרק בזמן אמת לתוכן גולשים בכל הפלטפורמות.">Real-time monitoring and benchmarking for user-generated content.</p>
+            </div>
+            <div class="card">
+                <h3 data-en="🤖 Generative AI" data-he="🤖 בינה מלאכותית">🤖 Generative AI</h3>
+                <p data-en="Safety audits for LLMs and image generators to prevent bias and fake news." data-he="מבדקי בטיחות למודלי שפה ותמונות למניעת הטיות ופייק ניוז.">Safety audits for LLMs and image generators to prevent bias and fake news.</p>
+            </div>
+            <div class="card">
+                <h3 data-en="👓 Virtual Reality" data-he="👓 מציאות מדומה">👓 Virtual Reality</h3>
+                <p data-en="Behavioral benchmarks for spatial computing and safe VR interaction." data-he="מדדי התנהגות למרחבים דיגיטליים ואינטראקציה בטוחה ב-VR.">Behavioral benchmarks for spatial computing and safe VR interaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
         <h2 class="section-title" data-en="Strategic Overview" data-he="סקירה אסטרטגית">Strategic Overview</h2>
-        <p class="section-subtitle" data-en="Watch our elevator pitch to understand the growing complexities of digital moderation and how CiviWatch delivers a comprehensive, proactive solution." data-he="צפו בפיץ' שלנו כדי להבין את המורכבות הגוברת בניטור דיגיטלי וכיצד CiviWatch מספקת פתרון מקיף ופרואקטיבי.">Watch our elevator pitch to understand the growing complexities of digital moderation and how CiviWatch delivers a comprehensive, proactive solution.</p>
-        
         <div class="media-container">
             <iframe src="https://drive.google.com/file/d/1r6ciRUC3dSEN51g-7bSACCkyj7DruMVd/preview" allow="autoplay; fullscreen"></iframe>
         </div>
     </section>
 
     <section class="section">
-        <h2 class="section-title" data-en="Investment & Vision" data-he="חזון והשקעה">Investment & Vision</h2>
-        <p class="section-subtitle" data-en="Review our strategic roadmap and technological infrastructure." data-he="סקירת מפת הדרכים האסטרטגית והתשתית הטכנולוגית שלנו.">Review our strategic roadmap and technological infrastructure.</p>
-        
-        <div class="media-container">
+        <h2 class="section-title" data-en="Investor Pitch Deck" data-he="מצגת משקיעים">Investor Pitch Deck</h2>
+        <div class="media-container" style="height: 600px;">
              <iframe src="https://drive.google.com/file/d/1YcPoHyCsAcPVLTFZMyrjv3hH2tUXMj1B/preview" style="border:none;"></iframe>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-left">
+                <h2 data-en="Sign up for news & updates" data-he="הרשמו לחדשות ועדכונים">Sign up for news & updates</h2>
+                <div class="gradient-line"></div>
+                <form id="newsletter-form" class="subscribe-form" action="https://formspree.io/f/xgopojny" method="POST">
+                    <input type="email" name="email" placeholder="yourmail@domain.com" required>
+                    <button type="submit" data-en="Subscribe" data-he="הרשמה">Subscribe</button>
+                </form>
+                <p id="newsletter-status" style="margin-top:10px; font-size:0.9rem; color:#8b949e;"></p>
+            </div>
+            <div class="newsletter-right">
+                <span data-en="Connect with us" data-he="התחברו אלינו" style="color:var(--primary); font-weight:bold;">Connect with us</span>
+                <div class="social-icons">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z M2 9h4v12H2z M4 2a2 2 0 110 4 2 2 0 010-4z"></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -192,19 +270,15 @@
         function applyLanguage(lang) {
             localStorage.setItem('civi_lang', lang);
             langText.innerText = lang;
-            
             const isEn = lang === 'EN';
             root.setAttribute('dir', isEn ? 'ltr' : 'rtl');
-            if (isEn) {
-                document.body.classList.add('lang-en');
-            } else {
-                document.body.classList.remove('lang-en');
-            }
-            
+            if (isEn) { document.body.classList.add('lang-en'); } else { document.body.classList.remove('lang-en'); }
             document.querySelectorAll('[data-en]').forEach(el => {
                 const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
-                if (translation) { el.innerText = translation; }
+                if (translation) el.innerText = translation;
             });
+            const emailInput = document.querySelector('.subscribe-form input');
+            if(emailInput) emailInput.placeholder = isEn ? 'yourmail@domain.com' : 'דוא"ל@domain.com';
         }
 
         let currentLang = localStorage.getItem('civi_lang') || 'EN';
@@ -215,6 +289,27 @@
             currentLang = currentLang === 'EN' ? 'HE' : 'EN';
             applyLanguage(currentLang);
         });
+
+        var newsletterForm = document.getElementById("newsletter-form");
+        async function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("newsletter-status");
+            var data = new FormData(event.target);
+            var isEn = document.body.classList.contains('lang-en');
+            status.innerHTML = isEn ? "Processing..." : "מעבד...";
+            fetch(event.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+            .then(response => {
+                if (response.ok) {
+                    status.innerHTML = isEn ? "Thank you for subscribing!" : "תודה על הרשמתך!";
+                    status.style.color = "#3fb950";
+                    newsletterForm.reset();
+                } else {
+                    status.innerHTML = isEn ? "Oops! Problem occurred." : "אופס! אירעה שגיאה.";
+                    status.style.color = "#ff7b72";
+                }
+            });
+        }
+        newsletterForm.addEventListener("submit", handleNewsletterSubmit);
 
         particlesJS("particles-js", {
             "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
