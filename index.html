@@ -117,7 +117,7 @@
     <div id="particles-js"></div>
 
     <nav id="navbar">
-        <div class="logo">CiviWatch <span>Guardian AI</span></div>
+        <a href="index.html" class="logo">CiviWatch <span>Guardian AI</span></a>
         <div class="mobile-toggle" id="mobile-toggle">☰</div>
         <ul class="nav-links">
             <li class="dropdown">
@@ -132,6 +132,7 @@
             </li>
             <li><a href="company.html" data-en="Company" data-he="החברה">Company</a></li>
             <li><a href="partners.html" data-en="Partners" data-he="שותפים">Partners</a></li>
+            <li><a href="market-strategy.html" data-en="Strategy" data-he="אסטרטגיה">Strategy</a></li>
         </ul>
         <div class="nav-actions">
             <a href="#" id="lang-toggle-btn" class="lang-toggle">
@@ -215,6 +216,23 @@
         </div>
     </section>
 
+    <section class="section">
+        <h2 class="section-title" data-en="Investor Pitch Deck" data-he="מצגת משקיעים">Investor Pitch Deck</h2>
+        <div class="media-container" style="height: 600px;">
+             <iframe src="https://drive.google.com/file/d/1YcPoHyCsAcPVLTFZMyrjv3hH2tUXMj1B/preview" style="border:none;"></iframe>
+        </div>
+    </section>
+
+    <section class="section" style="margin-bottom: 40px;">
+        <div style="background: rgba(31, 111, 235, 0.1); border: 1px solid var(--primary); padding: 50px 30px; border-radius: 16px; text-align: center;">
+            <h2 style="font-size: 2.2rem; color: #fff; margin-bottom: 15px;" data-en="Investment & Market Strategy" data-he="אסטרטגיית חדירה והשקעה">Investment & Market Strategy</h2>
+            <p style="color: #8b949e; font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px auto;" data-en="Explore our detailed 2-Phase rollout strategy and lighthouse partnerships." data-he="גלו את התוכנית האסטרטגית הדו-שלבית שלנו ושותפויות עוגן (Lighthouse).">
+                Explore our detailed 2-Phase rollout strategy and lighthouse partnerships.
+            </p>
+            <a href="market-strategy.html" class="btn-primary" style="font-size: 1.2rem; padding: 12px 30px;" data-en="View Market Strategy" data-he="צפייה באסטרטגיה החדירה לשוק">View Market Strategy</a>
+        </div>
+    </section>
+
     <section class="newsletter-section">
         <div class="newsletter-container">
             <div class="newsletter-left">
@@ -268,6 +286,7 @@
             const isEn = lang === 'EN';
             root.setAttribute('dir', isEn ? 'ltr' : 'rtl');
             if (isEn) { document.body.classList.add('lang-en'); } else { document.body.classList.remove('lang-en'); }
+            
             document.querySelectorAll('[data-en]').forEach(el => {
                 const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
                 if (translation) el.innerText = translation;
@@ -303,11 +322,11 @@
                     status.style.color = "#ff7b72";
                 }
             }).catch(error => {
-                status.innerHTML = isEn ? "Oops! Connection error." : "אופס! שגיאת חיבור.";
+                status.innerHTML = isEn ? "Connection error." : "שגיאת חיבור.";
                 status.style.color = "#ff7b72";
             });
         }
-        newsletterForm.addEventListener("submit", handleNewsletterSubmit);
+        if(newsletterForm) newsletterForm.addEventListener("submit", handleNewsletterSubmit);
 
         particlesJS("particles-js", {
             "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
