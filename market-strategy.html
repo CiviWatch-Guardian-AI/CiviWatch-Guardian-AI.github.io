@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Strategy | CiviWatch Guardian AI</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        :root { --primary: #1f6feb; --primary-hover: #388bfd; --secondary-bg: #161b22; --border-color: #30363d; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+        
+        /* Navbar Styles */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(13,17,23,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; z-index: 1000; flex-wrap: wrap; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-decoration: none;}
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin:0; padding:0;}
+        .nav-links li { position: relative; }
+        .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; text-decoration: none;}
+        .nav-links a:hover { color: #fff; }
+        
+        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 180px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+        html[dir="rtl"] .dropdown-content { left: auto; right: 0; }
+        .dropdown:hover .dropdown-content { display: flex; }
+        .dropdown-content a { padding: 10px 15px; border-bottom: 1px solid var(--border-color); }
+        .dropdown-content a:hover { background: #30363d; color: #fff; }
+
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .lang-toggle { display: flex; align-items: center; gap: 5px; color: #8b949e; font-weight: bold; cursor: pointer; text-decoration: none; }
+        .lang-toggle svg { width: 20px; height: 20px; fill: currentColor; }
+        
+        .btn-primary { background: var(--primary); padding: 8px 15px; border-radius: 6px; color: #fff; font-weight: bold; transition: 0.3s; text-align: center; text-decoration: none; cursor:pointer;}
+        .btn-primary:hover { background: var(--primary-hover); }
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
+
+        @media (max-width: 992px) {
+            .mobile-toggle { display: block; order: 2; }
+            .logo { order: 1; }
+            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; padding: 10px 0; order: 3; }
+            nav.active .nav-links, nav.active .nav-actions { display: flex; gap: 15px; }
+            .dropdown-content { position: static; box-shadow: none; border: none; background: transparent; display: none; }
+            .dropdown:hover .dropdown-content { display: flex; flex-direction: column; align-items: center; }
+        }
+
+        /* Language Toggle Logic */
+        body.lang-en .he { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+
+        /* Custom Strategy Page Content Styles */
+        .glass-panel { background: #161b22; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        .phase-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .phase-1 { background: rgba(59, 130, 246, 0.1); color: #58a6ff; border: 1px solid #1f6feb; }
+        .phase-2 { background: rgba(46, 213, 115, 0.1); color: #2ed573; border: 1px solid #2ed573; }
+
+        /* Global Footer Styles */
+        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; margin-top: auto; font-size: 0.85rem; color: #8b949e; z-index: 10; }
+        .footer-links a { color: #8b949e; text-decoration: none; transition: 0.3s; margin: 0 4px; }
+        .footer-links a:hover { color: #fff; text-decoration: underline; }
+        .footer-links span { margin: 0 4px; }
+        @media (max-width: 768px) { .footer-links { line-height: 2; } }
+    </style>
+</head>
+<body class="lang-en pb-10">
+
+    <div id="particles-js"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">CiviWatch <span>Guardian AI</span></a>
+        <div class="mobile-toggle" id="mobile-toggle">☰</div>
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#" data-en="Solutions ▾" data-he="פתרונות ▾">Solutions ▾</a>
+                <div class="dropdown-content">
+                    <a href="social-networks.html" data-en="Social Networks" data-he="רשתות חברתיות">Social Networks</a>
+                    <a href="generative-ai.html" data-en="Generative AI" data-he="בינה מלאכותית יוצרת">Generative AI</a>
+                    <a href="virtual-reality.html" data-en="Virtual Reality" data-he="מציאות מדומה">Virtual Reality</a>
+                    <a href="governments.html" data-en="Governments" data-he="ממשלות">Governments</a>
+                    <a href="ngos.html" data-en="NGOs" data-he="עמותות">NGOs</a>
+                </div>
+            </li>
+            <li><a href="company.html" data-en="Company" data-he="החברה">Company</a></li>
+            <li><a href="partners.html" data-en="Partners" data-he="שותפים">Partners</a></li>
+            <li><a href="market-strategy.html" data-en="Strategy" data-he="אסטרטגיה" style="color:#fff;">Strategy</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" id="lang-toggle-btn" class="lang-toggle">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+                <span id="lang-text">EN</span>
+            </a>
+            <a href="AnonymousRepotScreen.html" class="btn-secondary" data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</a>
+            <a href="partners.html" class="btn-primary" data-en="Platform Login" data-he="כניסה למערכת">Platform Login</a>
+        </div>
+    </nav>
+
+    <div class="flex-1 flex flex-col justify-start items-center pt-32 px-4 sm:px-6 w-full max-w-6xl mx-auto z-10 relative">
+        
+        <div class="text-center mb-16 max-w-4xl">
+            <h1 class="text-5xl font-bold text-white mb-6 leading-tight">
+                <span data-en="Go-To-Market" data-he="אסטרטגיית חדירה">Go-To-Market</span> <br>
+                <span class="text-blue-500" data-en="Strategy & Rollout" data-he="ומודל פעולה">Strategy & Rollout</span>
+            </h1>
+            <p class="text-lg text-slate-400 leading-relaxed" data-en="CiviWatch Guardian AI operates on a lean, scalable hybrid model. We do not burn capital building redundant AI engines; instead, we orchestrate existing, world-class 3rd-party AI and provide the essential layer of Human-in-the-Loop validation to establish the definitive safety benchmark." data-he="CiviWatch Guardian AI פועלת במודל היברידי, רזה וסקלבילי. איננו 'שורפים' הון על בניית מנועי AI מיותרים; במקום זאת, אנו מבצעים אורקסטרציה לטכנולוגיות AI קיימות ומובילות, ומספקים את שכבת האימות האנושית החיונית (HITL) כדי לבסס את תקן הבטיחות המוחלט.">
+                CiviWatch Guardian AI operates on a lean, scalable hybrid model. We do not burn capital building redundant AI engines; instead, we orchestrate existing, world-class 3rd-party AI and provide the essential layer of Human-in-the-Loop validation to establish the definitive safety benchmark.
+            </p>
+        </div>
+
+        <div class="w-full mb-20">
+            <h2 class="text-3xl font-bold text-white text-center mb-10" data-en="The Two-Phase Rollout" data-he="מודל חדירה דו-שלבי">The Two-Phase Rollout</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-panel p-10 rounded-3xl border-t-4 border-t-blue-500 hover:border-t-blue-400 transition-colors">
+                    <span class="phase-badge phase-1" data-en="Phase 1: The 'Lighthouse' Strategy" data-he="שלב 1: אסטרטגיית מגדלור">Phase 1: The 'Lighthouse' Strategy</span>
+                    <h3 class="text-2xl font-bold text-white mb-4" data-en="NGOs & Civil Society" data-he="עמותות, ממשלות ומחוקקים">NGOs & Civil Society</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6" data-en="We establish market authority by providing our platform to NGOs and advocacy groups (often free or subsidized). By empowering them to identify and flag systemic hate speech, we generate undeniable, data-backed reports on platform toxicity." data-he="אנו מבססים סמכות שוק על ידי אספקת הפלטפורמה שלנו לעמותות וארגוני הסברה (לרוב בחינם או בסבסוד). על ידי העצמתם לזהות ולדווח על שיח שנאה מערכתי, אנו מייצרים דוחות חותכים ומגובים בנתונים על רעילות הפלטפורמות.">
+                        We establish market authority by providing our platform to NGOs and advocacy groups (often free or subsidized). By empowering them to identify and flag systemic hate speech, we generate undeniable, data-backed reports on platform toxicity.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex items-center gap-2"><span class="text-blue-500">▹</span> <span data-en="Establishes CiviWatch as an objective authority." data-he="מבסס את CiviWatch כסמכות אובייקטיבית ובלתי תלויה.">Establishes CiviWatch as an objective authority.</span></li>
+                        <li class="flex items-center gap-2"><span class="text-blue-500">▹</span> <span data-en="Creates regulatory pressure on social networks." data-he="מייצר לחץ רגולטורי וציבורי על הרשתות החברתיות.">Creates regulatory pressure on social networks.</span></li>
+                        <li class="flex items-center gap-2"><span class="text-blue-500">▹</span> <span data-en="Perfects the Human-in-the-loop (HITL) workflows." data-he="משכלל את תהליכי העבודה של האימות האנושי (HITL).">Perfects the Human-in-the-loop (HITL) workflows.</span></li>
+                    </ul>
+                </div>
+
+                <div class="glass-panel p-10 rounded-3xl border-t-4 border-t-green-500 hover:border-t-green-400 transition-colors">
+                    <span class="phase-badge phase-2" data-en="Phase 2: B2B Integration" data-he="שלב 2: אינטגרציית B2B">Phase 2: B2B Integration</span>
+                    <h3 class="text-2xl font-bold text-white mb-4" data-en="Social Networks & Platforms" data-he="רשתות חברתיות ופלטפורמות">Social Networks & Platforms</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6" data-en="Facing mounting regulatory fines (e.g., EU DSA, UK Ofcom) and public pressure generated in Phase 1, platforms are offered CiviWatch as the ultimate B2B solution. We act as the outsourced benchmark, saving them massive internal development costs." data-he="כשהן עומדות בפני קנסות רגולטוריים הולכים וגדלים ולחץ ציבורי שנוצר בשלב 1, מוצעת לפלטפורמות מערכת CiviWatch כפתרון ה-B2B האולטימטיבי. אנו משמשים כבנצ'מרק חיצוני, ומונעים מהן עלויות פיתוח פנימיות עצומות.">
+                        Facing mounting regulatory fines (e.g., EU DSA, UK Ofcom) and public pressure generated in Phase 1, platforms are offered CiviWatch as the ultimate B2B solution. We act as the outsourced benchmark, saving them massive internal development costs.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex items-center gap-2"><span class="text-green-500">▹</span> <span data-en="Direct API integration for automated orchestration." data-he="אינטגרציית API ישירה לאורקסטרציה אוטומטית.">Direct API integration for automated orchestration.</span></li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">▹</span> <span data-en="Saves networks internal AI and moderation OPEX." data-he="חוסך לרשתות הוצאות תפעול (OPEX) על AI וניטור פנימי.">Saves networks internal AI and moderation OPEX.</span></li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">▹</span> <span data-en="Grants platforms the 'ISO Digital Safety' mark." data-he="מעניק לפלטפורמות את תו התקן 'ISO Digital Safety'.">Grants platforms the 'ISO Digital Safety' mark.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full mb-20">
+            <h2 class="text-3xl font-bold text-white text-center mb-4" data-en="Future Expansion Pivots" data-he="אפיקי התרחבות עתידיים">Future Expansion Pivots</h2>
+            <p class="text-center text-slate-400 mb-10 max-w-2xl mx-auto" data-en="The ISO Standard model is highly adaptable. Beyond traditional social media, CiviWatch is positioned to regulate the next frontiers of digital interaction." data-he="מודל תו התקן (ISO) הוא גמיש וניתן להתאמה. מעבר למדיה החברתית המסורתית, CiviWatch ממוצבת להסדיר ולנטר את החזיתות הבאות של האינטראקציה הדיגיטלית.">The ISO Standard model is highly adaptable. Beyond traditional social media, CiviWatch is positioned to regulate the next frontiers of digital interaction.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-panel p-8 rounded-2xl flex items-start gap-5">
+                    <div class="text-4xl">🤖</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2" data-en="Generative AI Auditing" data-he="בקרת איכות לבינה מלאכותית (GenAI)">Generative AI Auditing</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed" data-en="Providing safety benchmarks and bias testing for LLMs and image generation models to ensure EU AI Act compliance." data-he="אספקת מדדי בטיחות ומבדקי הטיות למודלי שפה (LLMs) ומחוללי תמונות כדי להבטיח עמידה בחוק ה-AI האירופי.">Providing safety benchmarks and bias testing for LLMs and image generation models to ensure EU AI Act compliance.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl flex items-start gap-5">
+                    <div class="text-4xl">👓</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2" data-en="Virtual Reality (VR) Safety" data-he="בטיחות במציאות מדומה (VR)">Virtual Reality (VR) Safety</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed" data-en="Creating behavioral benchmarks and spatial harassment detection protocols for the Metaverse and spatial computing platforms." data-he="יצירת מדדי התנהגות ופרוטוקולים לזיהוי הטרדות במרחב עבור פלטפורמות המטאברס ומחשוב מרחבי.">Creating behavioral benchmarks and spatial harassment detection protocols for the Metaverse and spatial computing platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center w-full mb-10 p-10 bg-blue-600/10 border border-blue-500/30 rounded-3xl">
+            <h3 class="text-2xl font-bold text-white mb-4" data-en="Ready to explore the financial model?" data-he="מוכנים לצלול למודל הפיננסי?">Ready to explore the financial model?</h3>
+            <p class="text-slate-300 mb-8" data-en="Contact us to review the detailed Go-To-Market execution plan and ROI projections." data-he="צרו קשר לבחינת תוכנית הביצוע המפורטת ותחזיות ההחזר על ההשקעה (ROI).">Contact us to review the detailed Go-To-Market execution plan and ROI projections.</p>
+            <a href="partners.html#investment-form" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-colors" data-en="Schedule a Meeting" data-he="תיאום פגישה">Schedule a Meeting</a>
+        </div>
+
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="ccpa-policy.html">CCPA Policy</a> |
+            <a href="security-policy.html">Security Policy</a> |
+            <a href="data-policy.html">Data Policy</a> |
+            <a href="terms-of-use.html">Terms of Use</a> |
+            <a href="sla.html">Service Level Agreement</a> |
+            <span>Copyright CiviWatch Guardian AI 2026. All Right Reserved.</span> |
+            <span>By Benjamin Michaeli</span>
+        </div>
+    </footer>
+
+    <script>
+        const langText = document.getElementById('lang-text');
+        const root = document.getElementById('html-root');
+        const langBtn = document.getElementById('lang-toggle-btn');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbar = document.getElementById('navbar');
+
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        function applyLanguage(lang) {
+            localStorage.setItem('civi_lang', lang);
+            langText.innerText = lang;
+            
+            const isEn = lang === 'EN';
+            root.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+            if (isEn) {
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+            }
+            
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
+                if (translation) { el.innerText = translation; }
+            });
+        }
+
+        let currentLang = localStorage.getItem('civi_lang') || 'EN';
+        applyLanguage(currentLang);
+
+        langBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentLang = currentLang === 'EN' ? 'HE' : 'EN';
+            applyLanguage(currentLang);
+        });
+
+        particlesJS("particles-js", {
+            "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
