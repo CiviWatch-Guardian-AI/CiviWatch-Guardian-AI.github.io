@@ -3,71 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report Content | CiviWatch Guardian AI</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Submit Anonymous Report | CiviWatch Guardian AI</title>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
     <style>
-        :root { --primary: #1f6feb; --primary-hover: #388bfd; --secondary-bg: #161b22; --border-color: #30363d; }
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
-        
-        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
-        
-        /* Navbar Styles */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(13,17,23,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; z-index: 1000; flex-wrap: wrap; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-decoration: none;}
+        :root { --bg-color: #0d1117; --text-color: #c9d1d9; --primary: #1f6feb; --primary-hover: #388bfd; --secondary-bg: #161b22; --border-color: #30363d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: var(--bg-color); color: var(--text-color); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none;}
+        .bg-logo-watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05; width: 50vw; max-width: 500px; z-index: -1; pointer-events: none; }
+
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(13,17,23,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; z-index: 1000; flex-wrap: wrap; box-sizing: border-box;}
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; }
         .logo span { color: var(--primary); }
+        
         .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin:0; padding:0;}
         .nav-links li { position: relative; }
-        .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; text-decoration: none;}
+        .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; }
         .nav-links a:hover { color: #fff; }
-        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 150px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
-        html[dir="rtl"] .dropdown-content { left: auto; right: 0; }
+        
+        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 180px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+        [dir="rtl"] .dropdown-content { left: auto; right: 0; }
         .dropdown:hover .dropdown-content { display: flex; }
         .dropdown-content a { padding: 10px 15px; border-bottom: 1px solid var(--border-color); }
         .dropdown-content a:hover { background: #30363d; color: #fff; }
-        .nav-actions { display: flex; gap: 15px; align-items: center; }
-        .lang-toggle { display: flex; align-items: center; gap: 5px; color: #8b949e; font-weight: bold; cursor: pointer; text-decoration: none; }
-        .lang-toggle svg { width: 20px; height: 20px; fill: currentColor; }
-        .btn-primary { background: var(--primary); padding: 8px 15px; border-radius: 6px; color: #fff; font-weight: bold; transition: 0.3s; text-align: center; text-decoration: none; cursor:pointer;}
-        .btn-primary:hover { background: var(--primary-hover); }
-        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
 
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .lang-toggle { display: flex; align-items: center; gap: 5px; color: #8b949e; font-weight: bold; cursor: pointer; }
+        .lang-toggle svg { width: 20px; height: 20px; fill: currentColor; }
+        .btn-secondary { border: 1px solid #8b949e; padding: 8px 15px; border-radius: 6px; transition: 0.3s; text-align: center; }
+        .btn-secondary:hover { border-color: #fff; color: #fff; }
+        .btn-primary { background: var(--primary); padding: 8px 15px; border-radius: 6px; color: #fff; font-weight: bold; transition: 0.3s; text-align: center; border: none; cursor: pointer;}
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .mobile-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
+        
         @media (max-width: 992px) {
             .mobile-toggle { display: block; order: 2; }
             .logo { order: 1; }
-            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; padding: 10px 0; order: 3; }
+            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; order: 3; padding-top: 15px; }
             nav.active .nav-links, nav.active .nav-actions { display: flex; gap: 15px; }
-            .dropdown-content { position: static; box-shadow: none; border: none; background: transparent; display: none; }
-            .dropdown:hover .dropdown-content { display: flex; flex-direction: column; align-items: center; }
+            .dropdown-content { position: static; display: none; background: transparent; box-shadow: none; }
+            .dropdown:hover .dropdown-content { display: flex; flex-direction: column; align-items: center;}
         }
 
-        /* Form Specific Styles */
-        .glass-panel { background: #161b22; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        
-        body.lang-en .he { display: none !important; }
-        body:not(.lang-en) .en { display: none !important; }
-        body.lang-en input, body.lang-en textarea, body.lang-en select { text-align: left; direction: ltr; }
-        body:not(.lang-en) input, body:not(.lang-en) textarea, body:not(.lang-en) select { text-align: right; direction: rtl; }
-        .force-ltr { direction: ltr !important; text-align: left !important; }
-        
-        input[type="radio"]:checked + div { border-color: #1f6feb; background-color: rgba(31, 111, 235, 0.1); }
-        .toggle-checkbox:checked { right: 0; border-color: #ef4444; }
-        .toggle-checkbox:checked + .toggle-label { background-color: #ef4444; }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-        .error-shake { animation: shake 0.3s ease-in-out 2; }
+        /* Page Content */
+        .page-header { padding: 120px 5% 40px; text-align: center; }
+        .page-header h1 { font-size: 2.8rem; color: #fff; margin-bottom: 15px; }
+        .page-header p { font-size: 1.1rem; color: #8b949e; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .secure-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 15px; background: rgba(46, 213, 115, 0.1); border: 1px solid #2ed573; color: #2ed573; border-radius: 50px; margin-bottom: 20px; font-weight: bold; font-size: 0.9rem;}
 
-        /* Global Footer Styles */
-        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; margin-top: auto; font-size: 0.85rem; color: #8b949e; z-index: 10; }
+        .form-section { padding: 0 5% 80px; flex: 1; display: flex; justify-content: center; }
+        .report-form-container { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; width: 100%; max-width: 700px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
+        
+        .form-group { margin-bottom: 25px; }
+        .form-label { display: block; margin-bottom: 8px; color: #c9d1d9; font-weight: bold; }
+        .form-control { width: 100%; padding: 15px; background: rgba(13,17,23,0.8); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; transition: border-color 0.3s; font-family: inherit;}
+        .form-control:focus { border-color: var(--primary); }
+        .form-select { appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\"%238b949e\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\"/></svg>'); background-repeat: no-repeat; background-position: right 15px center; cursor: pointer;}
+        
+        .form-submit-btn { width: 100%; padding: 15px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px;}
+        .form-submit-btn:hover { background: var(--primary-hover); }
+
+        .disclaimer { font-size: 0.85rem; color: #8b949e; margin-top: 20px; text-align: center; line-height: 1.5; }
+
+        /* Global Footer */
+        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; font-size: 0.85rem; color: #8b949e; z-index: 10;}
         .footer-links a { color: #8b949e; text-decoration: none; transition: 0.3s; margin: 0 4px; }
         .footer-links a:hover { color: #fff; text-decoration: underline; }
         .footer-links span { margin: 0 4px; }
         @media (max-width: 768px) { .footer-links { line-height: 2; } }
+
+        /* Help Icon System CSS with RTL Fix */
+        .cw-help-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .cw-help-trigger { width: 60px; height: 60px; border-radius: 50%; background-color: var(--secondary-bg); border: 2px solid var(--primary); box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0; outline: none; overflow: hidden; }
+        .cw-help-trigger svg { stroke: var(--primary); transition: stroke 0.3s ease; }
+        .cw-help-trigger:hover { transform: translateY(-5px); background-color: var(--primary); box-shadow: 0 12px 28px rgba(31, 111, 235, 0.4); border-color: var(--primary); }
+        .cw-help-trigger:hover svg { stroke: #ffffff; }
+        .cw-help-menu { display: none; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; width: 250px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 20px; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; visibility: hidden; }
+        .cw-help-menu.active { display: block; opacity: 1; transform: translateY(0); visibility: visible; }
+        .cw-help-menu-header { padding: 15px 20px; background: #1c2128; border-bottom: 1px solid var(--border-color); color: #ffffff; font-weight: bold; font-size: 0.95rem; }
+        .cw-help-menu-list { list-style: none; padding: 0; margin: 0; }
+        .cw-help-menu-item { border-bottom: 1px solid var(--border-color); }
+        .cw-help-menu-item:last-child { border-bottom: none; }
+        .cw-help-menu-link { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #c9d1d9; text-decoration: none; transition: background 0.2s; font-size: 0.9rem; }
+        .cw-help-menu-link:hover { background: #30363d; color: #ffffff; }
+        .cw-help-menu-link-icon { color: var(--primary); font-size: 1.1rem; }
+        
+        /* The RTL Fix */
+        html[dir="rtl"] .cw-help-wrapper { right: auto; left: 30px; align-items: flex-start; }
+        
+        @media (max-width: 768px) { 
+            .cw-help-wrapper { bottom: 20px; right: 20px; } 
+            .cw-help-trigger { width: 50px; height: 50px; } 
+            .cw-help-trigger svg { width: 24px; height: 24px; } 
+            html[dir="rtl"] .cw-help-wrapper { right: auto; left: 20px; }
+        }
+
+        body.lang-en .he { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+        html[dir="rtl"] .form-control { text-align: right; direction: rtl; }
     </style>
 </head>
 <body class="lang-en">
 
+    <img src="your-logo-file.png" alt="" class="bg-logo-watermark">
     <div id="particles-js"></div>
 
     <nav id="navbar">
@@ -86,200 +128,83 @@
             </li>
             <li><a href="company.html" data-en="Company" data-he="החברה">Company</a></li>
             <li><a href="partners.html" data-en="Partners" data-he="שותפים">Partners</a></li>
+            <li><a href="market-strategy.html" data-en="Strategy" data-he="אסטרטגיה">Strategy</a></li>
         </ul>
         <div class="nav-actions">
             <a href="#" id="lang-toggle-btn" class="lang-toggle">
                 <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
                 <span id="lang-text">EN</span>
             </a>
+            <a href="AnonymousRepotScreen.html" class="btn-secondary" style="border-color:#fff; color:#fff;" data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</a>
             <a href="partners.html" class="btn-primary" data-en="Platform Login" data-he="כניסה למערכת">Platform Login</a>
         </div>
     </nav>
 
-    <div class="flex-1 flex justify-center items-start pt-32 pb-16 px-4 sm:px-6">
-        <div class="max-w-2xl w-full glass-panel p-8 sm:p-10 rounded-3xl relative z-10">
-            <div>
-                <h2 class="text-3xl font-bold text-white mb-3 flex items-center gap-3">
-                    <span class="he">דיווח על תוכן פוגעני</span>
-                    <span class="en">Report Abusive Content</span>
-                </h2>
-                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
-                    <span class="he">עזרתכם קריטית. המידע יועבר לניתוח אוטומטי או לבדיקת מנהל כדי להגן על הקהילה ולשמור על מרחב נקי משנאה.</span>
-                    <span class="en">Your help is critical. Information will be routed to AI analysis or human review to protect the community.</span>
-                </p>
+    <header class="page-header">
+        <span class="secure-badge" data-en="🔒 256-bit Encrypted Connection" data-he="🔒 חיבור מוצפן ומאובטח">
+            🔒 256-bit Encrypted Connection
+        </span>
+        <h1 data-en="Submit an Anonymous Report" data-he="הגשת דיווח אנונימי">Submit an Anonymous Report</h1>
+        <p data-en="Help us maintain a safe digital environment. Your identity is strictly protected. Our AI will analyze the reported content against the global safety benchmark." data-he="עזרו לנו לשמור על סביבה דיגיטלית בטוחה. זהותכם מוגנת לחלוטין. מערכות ה-AI שלנו ינתחו את התוכן שדווח אל מול תו התקן העולמי.">
+            Help us maintain a safe digital environment. Your identity is strictly protected. Our AI will analyze the reported content against the global safety benchmark.
+        </p>
+    </header>
 
-                <form id="report-form" class="space-y-6" novalidate>
-                    <div id="routing-container" class="rounded-xl border border-transparent transition-colors p-1 -m-1">
-                        <label class="block text-sm font-semibold text-slate-300 mb-3 px-1">
-                            <span class="he">ניתוב הדיווח (חובה)</span><span class="en">Report Routing (Required)</span>
-                        </label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <label class="cursor-pointer relative">
-                                <input type="radio" name="routing" value="ai" class="sr-only" onchange="clearRoutingError()">
-                                <div class="border border-slate-700 bg-slate-800 rounded-xl p-4 hover:border-blue-500 transition-all h-full">
-                                    <div class="text-blue-400 text-xl mb-2">⚡</div>
-                                    <h3 class="text-white font-bold text-sm mb-1">
-                                        <span class="he">ניתוח AI אוטומטי</span><span class="en">Automatic AI Analysis</span>
-                                    </h3>
-                                    <p class="text-xs text-slate-400">
-                                        <span class="he">סריקה מיידית וסיווג. מומלץ למקרי שנאה ופייק ניוז.</span>
-                                        <span class="en">Instant scanning. Recommended for hate speech.</span>
-                                    </p>
-                                </div>
-                            </label>
-                            <label class="cursor-pointer relative">
-                                <input type="radio" name="routing" value="human" class="sr-only" onchange="clearRoutingError()">
-                                <div class="border border-slate-700 bg-slate-800 rounded-xl p-4 hover:border-blue-500 transition-all h-full">
-                                    <div class="text-green-400 text-xl mb-2">🧑‍💻</div>
-                                    <h3 class="text-white font-bold text-sm mb-1">
-                                        <span class="he">בדיקת מנהל קהילה</span><span class="en">Human Manager Review</span>
-                                    </h3>
-                                    <p class="text-xs text-slate-400">
-                                        <span class="he">העברה לבדיקה אנושית. מומלץ למקרים מורכבים.</span>
-                                        <span class="en">Routing to human review. For complex cases.</span>
-                                    </p>
-                                </div>
-                            </label>
-                        </div>
-                        <p id="routing-error" class="hidden text-red-500 text-xs font-bold mt-2 px-1"></p>
-                    </div>
+    <section class="form-section">
+        <div class="report-form-container">
+            <form id="report-form" action="https://formspree.io/f/xgopojny" method="POST">
+                
+                <div class="form-group">
+                    <label class="form-label" data-en="Target Platform" data-he="פלטפורמה">Target Platform</label>
+                    <select name="platform" class="form-control form-select" required dir="auto">
+                        <option value="" disabled selected>Select Platform / בחר פלטפורמה</option>
+                        <option value="X (Twitter)">X (Twitter)</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Generative AI Tool">Generative AI Tool (LLM/Image)</option>
+                        <option value="VR / Metaverse">VR / Metaverse Space</option>
+                        <option value="Other">Other / אחר</option>
+                    </select>
+                </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
-                        <div class="md:col-span-1">
-                            <label class="block text-sm font-semibold text-slate-300 mb-2">
-                                <span class="he">פלטפורמה</span><span class="en">Platform</span>
-                            </label>
-                            <select required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-slate-300">
-                                <option value="x">X (Twitter)</option>
-                                <option value="facebook">Facebook</option>
-                                <option value="instagram">Instagram</option>
-                                <option value="tiktok">TikTok</option>
-                                <option value="telegram">Telegram</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-semibold text-slate-300 mb-2">
-                                <span class="he">קישור (אופציונלי)</span><span class="en">Link (Optional)</span>
-                            </label>
-                            <input type="url" placeholder="https://..." class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-white force-ltr">
-                        </div>
-                        <div class="md:col-span-1">
-                            <label class="block text-sm font-semibold text-slate-300 mb-2">
-                                <span class="he">שפת התוכן</span><span class="en">Language</span>
-                            </label>
-                            <select required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-slate-300">
-                                <option value="he" class="he">עברית</option>
-                                <option value="he" class="en">Hebrew</option>
-                                <option value="en" class="he">אנגלית</option>
-                                <option value="en" class="en">English</option>
-                                <option value="ar" class="he">ערבית</option>
-                                <option value="ar" class="en">Arabic</option>
-                                <option value="ru" class="he">רוסית</option>
-                                <option value="ru" class="en">Russian</option>
-                                <option value="other" class="he">אחר</option>
-                                <option value="other" class="en">Other</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label" data-en="Content URL (If applicable)" data-he="קישור לתוכן (אם רלוונטי)">Content URL (If applicable)</label>
+                    <input type="url" name="url" class="form-control" placeholder="https://" dir="ltr">
+                </div>
 
-                    <div class="flex items-center p-4 bg-red-900/10 border border-red-500/20 rounded-xl">
-                        <div class="relative inline-block w-10 mr-4 align-middle select-none transition duration-200 ease-in ml-4">
-                            <input type="checkbox" name="urgent" id="urgent-toggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out"/>
-                            <label for="urgent-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-600 cursor-pointer"></label>
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-bold text-red-400">
-                                <span class="he">סכנה מיידית / דחיפות גבוהה</span><span class="en">Immediate Threat / High Priority</span>
-                            </h4>
-                            <p class="text-xs text-slate-400">
-                                <span class="he">סמן רק במקרה של קריאה מפורשת לאלימות פיזית או סכנת חיים.</span>
-                                <span class="en">Check only in cases of explicit calls for physical violence.</span>
-                            </p>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label" data-en="Violation Type" data-he="סוג ההפרה">Violation Type</label>
+                    <select name="violation_type" class="form-control form-select" required dir="auto">
+                        <option value="" disabled selected>Select Violation / בחר סוג הפרה</option>
+                        <option value="Hate Speech">Hate Speech & Antisemitism / שיח שנאה ואנטישמיות</option>
+                        <option value="Deepfake">Deepfake / AI Disinformation / פייק ניוז מבוסס AI</option>
+                        <option value="Harassment">Harassment & Bullying / הטרדה ובריונות</option>
+                        <option value="Violence">Incitement to Violence / הסתה לאלימות</option>
+                        <option value="Other">Other / אחר</option>
+                    </select>
+                </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-300 mb-2">
-                            <span class="he">סיווג הבעיה (תגיות)</span><span class="en">Issue Category (Tags)</span>
-                        </label>
-                        <div id="hashtag-wrapper" class="flex flex-wrap items-center gap-2 w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl focus-within:border-blue-500 transition-colors cursor-text" onclick="document.getElementById('hashtag-input').focus()">
-                            <span id="hashtag-pills" class="flex flex-wrap gap-2 empty:hidden"></span>
-                            <input type="text" id="hashtag-input" class="bg-transparent border-none outline-none text-white flex-1 min-w-[150px]" placeholder="הקלד והקש Enter">
-                            <input type="hidden" name="hashtags" id="hidden-hashtags">
-                        </div>
-                        
-                        <div class="mt-3 flex flex-wrap items-center gap-2">
-                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Antisemitism' : 'אנטישמיות')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
-                                <span class="he">+ אנטישמיות</span><span class="en">+ Antisemitism</span>
-                            </button>
-                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'HateSpeech' : 'שנאה')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
-                                <span class="he">+ שנאה</span><span class="en">+ Hate Speech</span>
-                            </button>
-                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Harassment' : 'הטרדה')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
-                                <span class="he">+ הטרדה</span><span class="en">+ Harassment</span>
-                            </button>
-                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Troll' : 'טרול')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
-                                <span class="he">+ טרול</span><span class="en">+ Troll</span>
-                            </button>
-                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'FakeNews' : 'פייק_ניוז')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
-                                <span class="he">+ פייק_ניוז</span><span class="en">+ Fake News</span>
-                            </button>
-                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Other' : 'אחר')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
-                                <span class="he">+ אחר</span><span class="en">+ Other</span>
-                            </button>
-                            <button type="button" onclick="document.getElementById('hashtag-input').focus()" class="text-xs bg-slate-900 hover:bg-slate-800 text-blue-400 px-3 py-1.5 rounded-full border border-slate-600 border-dashed hover:border-blue-400 transition-colors">
-                                <span class="he">+ תגית אישית...</span><span class="en">+ Custom Tag...</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <textarea rows="3" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-white resize-none" 
-                            placeholder="פרטים נוספים או הקשר (אופציונלי)" id="context-text"></textarea>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label" data-en="Description of the Incident" data-he="תיאור המקרה">Description of the Incident</label>
+                    <textarea name="description" class="form-control" rows="5" placeholder="Provide any additional context here... / פרט את ההקשר או המידע הנוסף כאן..." required dir="auto"></textarea>
+                </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-300 mb-2 flex justify-between items-end">
-                            <span><span class="he">צילום מסך (חובה)</span><span class="en">Screenshot (Required)</span></span>
-                            <span class="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded">Ctrl+V</span>
-                        </label>
-                        
-                        <div id="drop-zone" class="border-2 border-dashed border-slate-600 rounded-xl bg-slate-900 p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-800 transition-all relative h-48">
-                            <input type="file" id="file-input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
-                            
-                            <div id="upload-prompt" class="flex flex-col items-center z-10 pointer-events-none">
-                                <span class="text-4xl mb-3 text-slate-400">📸</span>
-                                <span class="text-sm text-slate-300 font-medium mb-1 text-center">
-                                    <span class="he">לחץ, גרור תמונה, או הדבק לכאן</span>
-                                    <span class="en">Click, drag, or paste image here</span>
-                                </span>
-                            </div>
+                <input type="hidden" name="_subject" value="New Anonymous Safety Report Submitted">
 
-                            <div id="preview-container" class="hidden absolute inset-0 z-10 w-full h-full bg-slate-900 flex items-center justify-center rounded-xl overflow-hidden">
-                                <img id="image-preview" class="max-h-full max-w-full object-contain p-2" src="">
-                                <button type="button" class="absolute top-3 right-3 bg-slate-800/90 hover:bg-red-500 text-white text-xs px-3 py-1.5 rounded-lg z-30 transition-colors" onclick="removeImage(event)">
-                                    <span class="he">הסר תמונה</span><span class="en">Remove</span>
-                                </button>
-                            </div>
-                        </div>
-                        <p id="image-error" class="hidden text-red-500 text-xs font-bold mt-2"></p>
-                    </div>
+                <button type="submit" class="form-submit-btn">
+                    <span data-en="Securely Submit Report" data-he="שליחת הדיווח באופן מאובטח">Securely Submit Report</span>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </form>
+            
+            <p id="report-status" style="margin-top:20px; font-size:1rem; text-align:center; font-weight:bold;"></p>
 
-                    <div class="pt-4">
-                        <button type="submit" class="w-full bg-[#1f6feb] hover:bg-[#388bfd] text-white font-bold py-4 rounded-xl shadow-lg transition-all text-lg mb-4 cursor-pointer border-none">
-                            <span class="he">שליחת דיווח</span><span class="en">Submit Report</span>
-                        </button>
-                        <p class="text-center text-xs text-slate-500 flex items-center justify-center gap-1.5">
-                            <span>🔒</span>
-                            <span class="he">הדיווח מאובטח ואנונימי לחלוטין. פרטיך האישיים לא יישמרו.</span>
-                            <span class="en">Report is secure and fully anonymous. No personal data is saved.</span>
-                        </p>
-                    </div>
-                </form>
-            </div>
+            <p class="disclaimer" data-en="CiviWatch Guardian AI does not track IP addresses for anonymous submissions. If this is an immediate emergency involving physical danger, please contact local law enforcement." data-he="מערכת CiviWatch Guardian AI אינה שומרת כתובות IP בדיווחים אנונימיים. אם מדובר במצב חירום המערב סכנה פיזית מיידית, אנא פנו לרשויות אכיפת החוק המקומיות.">
+                CiviWatch Guardian AI does not track IP addresses for anonymous submissions. If this is an immediate emergency involving physical danger, please contact local law enforcement.
+            </p>
         </div>
-    </div>
+    </section>
 
     <footer class="site-footer">
         <div class="footer-links">
@@ -294,7 +219,43 @@
         </div>
     </footer>
 
+    <div class="cw-help-wrapper" id="cwHelpWrapper">
+        <div class="cw-help-menu" id="cwHelpMenu">
+            <div class="cw-help-menu-header" data-en="Help & Support" data-he="תמיכה ועזרה">Help & Support</div>
+            <ul class="cw-help-menu-list">
+                
+                <li class="cw-help-menu-item">
+                    <a href="https://www.loom.com/share/49254e6a6b0a4d7ea2380df72211fb3c" target="_blank" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">🎥</span>
+                        <span data-en="Watch Video Guide" data-he="צפו במדריך וידאו">Watch Video Guide</span>
+                    </a>
+                </li>
+
+                <li class="cw-help-menu-item">
+                    <a href="partners.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">🤝</span>
+                        <span data-en="Contact Partnerships" data-he="יצירת קשר לשותפות">Contact Partnerships</span>
+                    </a>
+                </li>
+                <li class="cw-help-menu-item">
+                    <a href="company.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">ℹ️</span>
+                        <span data-en="CiviWatch FAQ" data-he="שאלות נפוצות (FAQ)">CiviWatch FAQ</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="cw-help-trigger" id="cwHelpTrigger" aria-label="Open Help Menu" aria-haspopup="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <circle cx="12" cy="17" r="0.5" stroke="none" fill="currentColor"/>
+            </svg>
+        </button>
+    </div>
+
     <script>
+        // Language & Navbar Logic
         const langText = document.getElementById('lang-text');
         const root = document.getElementById('html-root');
         const langBtn = document.getElementById('lang-toggle-btn');
@@ -311,23 +272,22 @@
             
             const isEn = lang === 'EN';
             root.setAttribute('dir', isEn ? 'ltr' : 'rtl');
-            if (isEn) { document.body.classList.add('lang-en'); } else { document.body.classList.remove('lang-en'); }
+            if (isEn) {
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+            }
             
             document.querySelectorAll('[data-en]').forEach(el => {
                 const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
-                if (translation) el.innerText = translation;
+                if (translation) { el.innerText = translation; }
             });
-            const contextText = document.getElementById('context-text');
-            if(contextText.value === '') {
-                contextText.placeholder = isEn ? 'Additional context (Optional)' : 'פרטים נוספים או הקשר (אופציונלי)';
-            }
-            document.getElementById('hashtag-input').placeholder = isEn ? 'Type and press Enter' : 'הקלד והקש Enter';
-            if (!document.getElementById('image-error').classList.contains('hidden')) {
-                document.getElementById('image-error').textContent = isEn ? 'Screenshot is required.' : 'חובה לצרף צילום מסך להוכחה.';
-            }
-            if (!document.getElementById('routing-error').classList.contains('hidden')) {
-                document.getElementById('routing-error').textContent = isEn ? 'Please select a routing option.' : 'חובה לבחור את יעד הדיווח (AI או מנהל קהילה).';
-            }
+            
+            // Adjust dropdown background arrows for RTL/LTR
+            const selectEls = document.querySelectorAll('.form-select');
+            selectEls.forEach(el => {
+                el.style.backgroundPosition = isEn ? 'right 15px center' : 'left 15px center';
+            });
         }
 
         let currentLang = localStorage.getItem('civi_lang') || 'EN';
@@ -339,185 +299,63 @@
             applyLanguage(currentLang);
         });
 
-        // Form Logic
-        const hashtagInput = document.getElementById('hashtag-input');
-        const hashtagPills = document.getElementById('hashtag-pills');
-        const hiddenHashtags = document.getElementById('hidden-hashtags');
-        let tags = [];
-
-        function renderTags() {
-            hashtagPills.innerHTML = '';
-            tags.forEach((tag, index) => {
-                const pill = document.createElement('span');
-                pill.className = 'flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2.5 py-1 rounded-md text-sm font-medium';
-                pill.innerHTML = `
-                    <span>#${tag}</span> 
-                    <button type="button" class="text-blue-400 hover:text-white cursor-pointer border-none bg-transparent" onclick="removeTag(${index})">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
-                `;
-                hashtagPills.appendChild(pill);
+        // Formspree Report Submission Logic
+        var reportForm = document.getElementById("report-form");
+        async function handleReportSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("report-status");
+            var data = new FormData(event.target);
+            var isEn = document.body.classList.contains('lang-en');
+            status.innerHTML = isEn ? "Encrypting and submitting..." : "מצפין ושולח דיווח...";
+            status.style.color = "#1f6feb";
+            
+            fetch(event.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+            .then(response => {
+                if (response.ok) {
+                    status.innerHTML = isEn ? "Report Securely Submitted. Thank you." : "הדיווח נשלח באופן מאובטח. תודה רבה.";
+                    status.style.color = "#3fb950";
+                    reportForm.reset();
+                } else {
+                    status.innerHTML = isEn ? "Oops! There was a problem." : "אופס! אירעה שגיאה.";
+                    status.style.color = "#ff7b72";
+                }
+            }).catch(error => {
+                status.innerHTML = isEn ? "Connection error." : "שגיאת חיבור.";
+                status.style.color = "#ff7b72";
             });
-            hiddenHashtags.value = tags.join(', ');
         }
+        if(reportForm) reportForm.addEventListener("submit", handleReportSubmit);
 
-        function addTag(value) {
-            const cleanValue = value.trim().replace(/^#/, '');
-            if (cleanValue && !tags.includes(cleanValue)) {
-                tags.push(cleanValue);
-                renderTags();
-            }
-        }
-
-        function removeTag(index) {
-            tags.splice(index, 1);
-            renderTags();
-        }
-
-        hashtagInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ' || e.key === ',') {
-                e.preventDefault();
-                addTag(this.value);
-                this.value = '';
-            }
+        // Particles JS Init
+        particlesJS("particles-js", {
+            "particles": { "number": { "value": 60 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.4 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 1.5 } },
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } },
+            "retina_detect": true
         });
 
-        document.getElementById('report-form').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-                e.preventDefault();
+        // Help Icon System Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const trigger = document.getElementById('cwHelpTrigger');
+            const menu = document.getElementById('cwHelpMenu');
+            const wrapper = document.getElementById('cwHelpWrapper');
+
+            function toggleMenu(e) {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+                trigger.setAttribute('aria-expanded', menu.classList.contains('active'));
             }
-        });
 
-        const fileInput = document.getElementById('file-input');
-        const uploadPrompt = document.getElementById('upload-prompt');
-        const previewContainer = document.getElementById('preview-container');
-        const imagePreview = document.getElementById('image-preview');
-        const dropZone = document.getElementById('drop-zone');
-        const imageError = document.getElementById('image-error');
-
-        function clearImageError() {
-            dropZone.classList.remove('border-red-500');
-            dropZone.classList.add('border-slate-600');
-            imageError.classList.add('hidden');
-        }
-
-        function clearRoutingError() {
-            const routingContainer = document.getElementById('routing-container');
-            routingContainer.classList.remove('border-red-500', 'bg-red-900/10');
-            routingContainer.classList.add('border-transparent');
-            document.getElementById('routing-error').classList.add('hidden');
-        }
-
-        function displayImage(file) {
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    imagePreview.src = event.target.result;
-                    uploadPrompt.classList.add('hidden');
-                    previewContainer.classList.remove('hidden');
-                    clearImageError();
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        fileInput.addEventListener('change', function(e) {
-            displayImage(e.target.files[0]);
-        });
-
-        document.addEventListener('paste', function(e) {
-            const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-            for (let index in items) {
-                const item = items[index];
-                if (item.kind === 'file' && item.type.startsWith('image/')) {
-                    const file = item.getAsFile();
-                    displayImage(file);
-                    
-                    const dataTransfer = new DataTransfer();
-                    dataTransfer.items.add(file);
-                    fileInput.files = dataTransfer.files;
+            function closeMenu() {
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    trigger.setAttribute('aria-expanded', 'false');
                 }
             }
+
+            trigger.addEventListener('click', toggleMenu);
+            document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) closeMenu(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
         });
-
-        function removeImage(e) {
-            e.preventDefault();
-            e.stopPropagation(); 
-            fileInput.value = '';
-            imagePreview.src = '';
-            previewContainer.classList.add('hidden');
-            uploadPrompt.classList.remove('hidden');
-        }
-
-        document.getElementById('report-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            let isValid = true;
-            const isEn = document.body.classList.contains('lang-en');
-            
-            const routingOptions = document.getElementsByName('routing');
-            let routingSelected = false;
-            let selectedValue = "";
-            for (const option of routingOptions) {
-                if (option.checked) {
-                    routingSelected = true;
-                    selectedValue = option.value;
-                    break;
-                }
-            }
-            
-            if (!routingSelected) {
-                isValid = false;
-                const routingContainer = document.getElementById('routing-container');
-                const routingError = document.getElementById('routing-error');
-                routingContainer.classList.add('border-red-500', 'bg-red-900/10');
-                routingContainer.classList.remove('border-transparent');
-                routingContainer.classList.remove('error-shake');
-                void routingContainer.offsetWidth; 
-                routingContainer.classList.add('error-shake');
-                routingError.textContent = isEn ? 'Please select a routing option.' : 'חובה לבחור את יעד הדיווח (AI או מנהל קהילה).';
-                routingError.classList.remove('hidden');
-            }
-
-            if (fileInput.files.length === 0) {
-                isValid = false;
-                dropZone.classList.add('border-red-500');
-                dropZone.classList.remove('border-slate-600');
-                dropZone.classList.remove('error-shake');
-                void dropZone.offsetWidth;
-                dropZone.classList.add('error-shake');
-                
-                imageError.textContent = isEn ? 'Screenshot is required.' : 'חובה לצרף צילום מסך להוכחה.';
-                imageError.classList.remove('hidden');
-            }
-            
-            if (!this.checkValidity()) {
-                this.reportValidity();
-                return;
-            }
-
-            if (!isValid) return;
-
-            let targetMsg = selectedValue === 'ai' 
-                ? (isEn ? 'Routed to AI Engine.' : 'הועבר למנוע ה-AI.') 
-                : (isEn ? 'Routed to Human Manager Queue.' : 'הועבר לתור מנהל הקהילה.');
-            
-            const msg = isEn 
-                ? `Report successfully submitted.\n${targetMsg}\nThank you!` 
-                : `הדיווח נקלט בהצלחה.\n${targetMsg}\nתודה!`;
-                
-            alert(msg);
-            
-            this.reset();
-            tags = [];
-            renderTags();
-            removeImage(e);
-            
-            for (const option of routingOptions) {
-                option.checked = false;
-            }
-        });
-
-        particlesJS("particles-js", { "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } }, "retina_detect": true });
     </script>
 </body>
 </html>
