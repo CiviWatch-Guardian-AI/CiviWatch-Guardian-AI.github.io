@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partners & Investors | CiviWatch Guardian AI</title>
+    <title>Partners & Ecosystem | CiviWatch Guardian AI</title>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root { --bg-color: #0d1117; --text-color: #c9d1d9; --primary: #1f6feb; --primary-hover: #388bfd; --secondary-bg: #161b22; --border-color: #30363d; }
@@ -50,46 +50,36 @@
         }
 
         /* Hero */
-        .hero { padding: 120px 5% 50px; display: flex; align-items: center; }
-        .hero-inner { display: flex; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; flex-wrap: wrap;}
-        .hero-text { flex: 1; min-width: 300px;}
-        .hero-video { flex: 1; min-width: 300px; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; }
-        .hero-video iframe { width: 100%; height: 100%; border: none; }
-        
-        .iso-badge { display: inline-block; padding: 6px 15px; background: rgba(31,111,235,0.1); border: 1px solid var(--primary); color: #58a6ff; border-radius: 50px; margin-bottom: 20px; font-weight: bold; font-size: 0.9rem;}
-
-        .hero-text h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 20px; color: #fff; }
-        .hero-text h1 span:last-child { color: var(--primary); }
-        .hero-text p { font-size: 1.1rem; color: #8b949e; margin-bottom: 30px; line-height: 1.6; }
+        .hero { padding: 140px 5% 60px; text-align: center; max-width: 900px; margin: 0 auto;}
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: #fff; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; color: #8b949e; margin-bottom: 30px; line-height: 1.6; }
 
         /* Sections */
-        .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; flex: 1; width: 100%; }
-        .section-title { font-size: 2rem; color: #fff; margin-bottom: 10px; text-align: center; }
-        .section-subtitle { color: #8b949e; margin-bottom: 30px; font-size: 1.1rem; text-align: center; }
+        .section { padding: 40px 5%; max-width: 1200px; margin: 0 auto; flex: 1; width: 100%; }
+        .section-title { font-size: 2.2rem; color: #fff; margin-bottom: 10px; text-align: center; }
+        .section-subtitle { color: #8b949e; margin-bottom: 40px; font-size: 1.1rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;}
         .media-container { width: 100%; aspect-ratio: 16/9; max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; margin-bottom: 40px;}
         .media-container iframe { width: 100%; height: 100%; border: none; }
 
-        /* Grids & Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; transition: transform 0.3s ease; }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card h3 { color: #fff; margin-bottom: 15px; font-size: 1.3rem; }
-        .card p { color: #8b949e; line-height: 1.6; }
-
-        /* Table */
-        .civi-table { width: 100%; border-collapse: collapse; background: var(--secondary-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
-        .civi-table th, .civi-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); color: #c9d1d9;}
-        .civi-table th { background: #1f242c; color: #fff; }
-        [dir="rtl"] .civi-table th, [dir="rtl"] .civi-table td { text-align: right; }
-
-        /* Team */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .team-member { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 40px 30px; text-align: center; transition: transform 0.3s ease; }
-        .team-member:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .team-member img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--border-color); }
-        .team-member h3 { color: #fff; margin-bottom: 5px; font-size: 1.5rem; }
-        .team-member .role { color: var(--primary); font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;}
-        .team-member p:not(.role) { color: #8b949e; line-height: 1.6; }
+        /* Partner Tiers - Custom Layout */
+        .partner-tiers { display: flex; flex-direction: column; gap: 30px; margin-bottom: 60px; }
+        .tier-card { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; display: flex; gap: 30px; align-items: flex-start; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .tier-card:hover { transform: translateX(10px); border-color: var(--primary); }
+        [dir="rtl"] .tier-card:hover { transform: translateX(-10px); }
+        
+        .tier-icon { font-size: 3.5rem; background: rgba(31, 111, 235, 0.1); width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 20px; border: 1px solid rgba(31, 111, 235, 0.3); flex-shrink: 0;}
+        .tier-content h3 { color: #fff; font-size: 1.8rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px;}
+        .tier-priority { font-size: 0.8rem; background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;}
+        .tier-priority.secondary { background: #30363d; color: #8b949e; border: 1px solid #8b949e; }
+        .tier-content p { color: #8b949e; font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px;}
+        
+        @media (max-width: 768px) {
+            .tier-card { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px;}
+            .tier-content h3 { flex-direction: column; gap: 10px; justify-content: center;}
+            .tier-card:hover { transform: translateY(-5px); }
+            [dir="rtl"] .tier-card:hover { transform: translateY(-5px); }
+        }
 
         /* Form */
         .form-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;}
@@ -98,10 +88,6 @@
         .form-control:focus { border-color: var(--primary); }
         .form-submit-btn { width: 100%; padding: 15px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
         .form-submit-btn:hover { background: var(--primary-hover); }
-
-        .stat-block { text-align: center; margin: 40px 0; }
-        .stat-block h2 { font-size: 4rem; color: var(--primary); margin-bottom: 10px; }
-        .stat-block p { font-size: 1.2rem; color: #8b949e; max-width: 600px; margin: 0 auto; }
 
         /* Newsletter */
         .newsletter-section { background: rgba(22, 27, 34, 0.85); border-top: 1px solid var(--border-color); padding: 40px 5%; margin-top: auto; width: 100%; }
@@ -145,7 +131,7 @@
 
         body.lang-en .he { display: none !important; }
         body:not(.lang-en) .en { display: none !important; }
-        html[dir="rtl"] .subscribe-form input { text-align: right; direction: rtl; }
+        html[dir="rtl"] .subscribe-form input, html[dir="rtl"] .investment-form input, html[dir="rtl"] .investment-form textarea, html[dir="rtl"] .investment-form select { text-align: right; direction: rtl; }
     </style>
 </head>
 <body class="lang-en">
@@ -177,152 +163,64 @@
                 <span id="lang-text">EN</span>
             </a>
             <a href="AnonymousRepotScreen.html" class="btn-secondary" data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</a>
-            <a href="partners.html" class="btn-primary" data-en="Platform Login" data-he="כניסה למערכת">Platform Login</a>
+            <a href="#investment-form" class="btn-primary" data-en="Partner With Us" data-he="יצירת קשר לשותפות">Partner With Us</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-inner">
-            <div class="hero-text">
-                <span class="iso-badge" data-en="2026 Funding & Partnership Round" data-he="סבב גיוס ושותפויות 2026">
-                    2026 Funding & Partnership Round
-                </span>
-                <h1><span data-en="Restoring Trust to the" data-he="מחזירים את הביטחון">Restoring Trust to the</span><br><span data-en="Digital Space." data-he="למרחב הדיגיטלי.">Digital Space.</span></h1>
-                <p data-en="Advanced AI technology for autonomous monitoring and creating a Digital Safety Standard. We are raising capital and resources to make the public space hate-free." data-he="טכנולוגיית AI מתקדמת לניטור אוטונומי ויצירת תו תקן לבטיחות דיגיטלית. אנו מגייסים כעת הון ומשאבים כדי להפוך את המרחב הציבורי לנקי משנאה.">
-                    Advanced AI technology for autonomous monitoring and creating a Digital Safety Standard. We are raising capital and resources to make the public space hate-free.
-                </p>
-                <div style="display: flex; gap: 15px;">
-                    <a href="#investment-form" class="btn-primary" data-en="Schedule Investment Meeting" data-he="תיאום פגישת השקעה">Schedule Investment Meeting</a>
-                </div>
-            </div>
-            
-            <div class="hero-video">
-                <iframe src="https://drive.google.com/file/d/1y8nJz7XUP7WXkl0AwS197KkrOGbMW6gS/preview" allow="autoplay; fullscreen"></iframe>
-            </div>
-        </div>
+        <h1 data-en="Join the CiviWatch Ecosystem" data-he="הצטרפו לאקוסיסטם של CiviWatch">Join the CiviWatch <br><span>Ecosystem</span></h1>
+        <p data-en="We don't just build technology; we build the standard. Partner with us to deploy, distribute, or integrate the definitive global benchmark for digital safety." data-he="אנחנו לא רק בונים טכנולוגיה, אנחנו בונים את תו התקן. שתפו איתנו פעולה כדי להטמיע, להפיץ או להשתלב בבנצ'מרק העולמי המוחלט לבטיחות דיגיטלית.">
+            We don't just build technology; we build the standard. Partner with us to deploy, distribute, or integrate the definitive global benchmark for digital safety.
+        </p>
     </header>
 
     <section class="section">
-        <h2 class="section-title" data-en="Our Core Technology Architecture" data-he="ארכיטקטורת הליבה הטכנולוגית שלנו">Our Core Technology Architecture</h2>
-        <div class="grid" style="margin-top: 40px;">
-            <div class="card" style="text-align: center;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">👁️</h2>
-                <h3 data-en="Visual AI" data-he="AI חזותי">Visual AI</h3>
-                <p data-en="Computer Vision Analysis for images and video." data-he="ניתוח תמונות ווידאו (Computer Vision).">Computer Vision Analysis for images and video.</p>
+        <div class="partner-tiers">
+            
+            <div class="tier-card" style="border-left: 4px solid var(--primary);">
+                <div class="tier-icon">🕊️</div>
+                <div class="tier-content">
+                    <h3 data-en="NGOs & Civil Society <span class='tier-priority'>Vanguard Partners</span>" data-he="עמותות וחברה אזרחית <span class='tier-priority'>שותפי עוגן</span>">NGOs & Civil Society <span class="tier-priority">Vanguard Partners</span></h3>
+                    <p data-en="Our vital 'Foot in the Door' partners. We equip advocacy groups, human rights organizations, and civic institutions with enterprise-grade moderation tech. Use our platform to track systemic hate speech, protect vulnerable communities, and generate undeniable reports to push for local standard adoption." data-he="שותפי העוגן (Foot in the Door) החיוניים שלנו. אנו מציידים קבוצות הסברה, ארגוני זכויות אדם ומוסדות אזרחיים בטכנולוגיית ניטור ברמת אנטרפרייז. השתמשו בפלטפורמה שלנו כדי לעקוב אחר שפת שטנה מערכתית, להגן על קהילות פגיעות ולייצר דוחות חותכים לקידום אימוץ תקן הבטיחות ברמה המקומית.">
+                        Our vital 'Foot in the Door' partners. We equip advocacy groups, human rights organizations, and civic institutions with enterprise-grade moderation tech. Use our platform to track systemic hate speech, protect vulnerable communities, and generate undeniable reports to push for local standard adoption.
+                    </p>
+                    <a href="#investment-form" style="color: var(--primary); font-weight: bold; text-decoration: underline;" data-en="Discuss NGO Subsidized Access →" data-he="לפרטים על גישה מסובסדת לעמותות ←">Discuss NGO Subsidized Access →</a>
+                </div>
             </div>
-            <div class="card" style="text-align: center;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">📝</h2>
-                <h3 data-en="Textual AI" data-he="AI טקסטואלי">Textual AI</h3>
-                <p data-en="Natural Language Processing (NLP) and contextual analysis." data-he="הבנת שפה טבעית (NLP) והקשרים.">Natural Language Processing (NLP) and contextual analysis.</p>
+
+            <div class="tier-card" style="border-left: 4px solid #2ed573;">
+                <div class="tier-icon" style="background: rgba(46, 213, 115, 0.1); border-color: rgba(46, 213, 115, 0.3);">📈</div>
+                <div class="tier-content">
+                    <h3 data-en="Channel & Distribution Partners <span class='tier-priority' style='background:#2ed573;'>Revenue-Share Model</span>" data-he="שותפי הפצה וערוצי מכירה <span class='tier-priority' style='background:#2ed573;'>מודל חלוקת הכנסות</span>">Channel & Distribution Partners <span class="tier-priority" style="background:#2ed573;">Revenue-Share Model</span></h3>
+                    <p data-en="Unlock lucrative new revenue streams by offering the CiviWatch Guardian AI platform to your existing client base. Ideal for cyber-security firms, risk management consultancies, and enterprise software providers looking to offer their government and corporate clients an immediate, out-of-the-box solution for brand safety and regulatory compliance." data-he="פתחו אפיקי הכנסה חדשים ורווחיים על ידי הצעת פלטפורמת CiviWatch Guardian AI לבסיס הלקוחות הקיים שלכם. אידיאלי לחברות אבטחת מידע, חברות ייעוץ סיכונים וספקי תוכנה ארגונית המחפשים להציע ללקוחותיהם הממשלתיים והתאגידיים פתרון מיידי ומוכן מראש לבטיחות המותג ולעמידה ברגולציה.">
+                        Unlock lucrative new revenue streams by offering the CiviWatch Guardian AI platform to your existing client base. Ideal for cyber-security firms, risk management consultancies, and enterprise software providers looking to offer their government and corporate clients an immediate, out-of-the-box solution for brand safety and regulatory compliance.
+                    </p>
+                    <a href="#investment-form" style="color: #2ed573; font-weight: bold; text-decoration: underline;" data-en="Explore the Reseller Program →" data-he="גלו את תוכנית המפיצים שלנו ←">Explore the Reseller Program →</a>
+                </div>
             </div>
-            <div class="card" style="text-align: center;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">⚡</h2>
-                <h3 data-en="Cloud Infra" data-he="תשתית ענן">Cloud Infra</h3>
-                <p data-en="AWS & Serverless Architecture." data-he="ארכיטקטורת AWS & Serverless.">AWS & Serverless Architecture.</p>
+
+            <div class="tier-card" style="border-left: 4px solid #8b949e;">
+                <div class="tier-icon" style="background: rgba(139, 148, 158, 0.1); border-color: rgba(139, 148, 158, 0.3);">🔌</div>
+                <div class="tier-content">
+                    <h3 data-en="AI Technology Suppliers <span class='tier-priority secondary'>Marketplace Integrations</span>" data-he="ספקי טכנולוגיות AI <span class='tier-priority secondary'>אינטגרציה למרכז הטכנולוגי</span>">AI Technology Suppliers <span class="tier-priority secondary">Marketplace Integrations</span></h3>
+                    <p data-en="Have a world-class specialized AI model for NLP, deepfake detection, or spatial audio analysis? Plug your technology directly into our marketplace. CiviWatch provides the high-level orchestration and the essential Human-in-the-Loop validation, turning your raw technical capabilities into a certified component of the global safety standard." data-he="פיתחתם מודל AI ייעודי ברמה עולמית עבור NLP, זיהוי דיפ-פייק או ניתוח שמע מרחבי? חברו את הטכנולוגיה שלכם ישירות למרכז שלנו. CiviWatch מספקת את האורקסטרציה הכוללת ואת אימות ה-Human-in-the-Loop ההכרחי, והופכת את היכולות הטכניות הגולמיות שלכם לרכיב מוסמך בתקן הבטיחות העולמי.">
+                        Have a world-class specialized AI model for NLP, deepfake detection, or spatial audio analysis? Plug your technology directly into our marketplace. CiviWatch provides the high-level orchestration and the essential Human-in-the-Loop validation, turning your raw technical capabilities into a certified component of the global safety standard.
+                    </p>
+                    <a href="#investment-form" style="color: #8b949e; font-weight: bold; text-decoration: underline;" data-en="Submit API Specs for Review →" data-he="הגשת מפרט טכני (API) לבחינה ←">Submit API Specs for Review →</a>
+                </div>
             </div>
-            <div class="card" style="text-align: center;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">🧠</h2>
-                <h3 data-en="Machine Learning" data-he="Machine Learning">Machine Learning</h3>
-                <p data-en="TensorFlow / OpenAI Models." data-he="מודלים מבוססי TensorFlow / OpenAI.">TensorFlow / OpenAI Models.</p>
-            </div>
+
         </div>
     </section>
 
-    <section class="section">
-        <h2 class="section-title" data-en="The Core Goal: A Digital Safety Standard" data-he="היעד המרכזי: תו תקן לבטיחות דיגיטלית">The Core Goal: A Digital Safety Standard</h2>
-        <p class="section-subtitle" data-en="A critical part of our solution is introducing an Official Safety Standard. This mark will serve as a quality stamp for platforms, indicating active monitoring and a protected environment. This initiative was established with the clear goal of raising the capital and resources needed to implement this standard globally." data-he="החלק הקריטי בפתרון של CiviWatch Guardian AI הוא הוספת תו תקן רשמי ומוכר. תקן זה יהווה חותמת איכות עבור פלטפורמות ורשתות, המעידה על ניטור אקטיבי וסביבה מוגנת למשתמשים. האתר והמיזם הוקמו במטרה מובהקת לגייס את המשאבים וההון הדרושים להטמעת התקן הזה בשוק הגלובלי.">
-            A critical part of our solution is introducing an Official Safety Standard. This mark will serve as a quality stamp for platforms, indicating active monitoring and a protected environment. This initiative was established with the clear goal of raising the capital and resources needed to implement this standard globally.
-        </p>
-
-        <div class="grid" style="max-width: 1000px; margin: 0 auto;">
-            <div class="card" style="border-top: 4px solid #ff4757;">
-                <h3>⚠️ <span data-en="The Problem" data-he="הבעיה">The Problem</span></h3>
-                <ul style="margin-left: 20px; color: #8b949e; line-height: 1.8;">
-                    <li data-en="Massive operational costs and slow response times." data-he="עלויות תפעול אדירות ואיטיות בתגובה מול כמות התוכן.">Massive operational costs and slow response times.</li>
-                    <li data-en="Flood of hate speech and antisemitism damaging brands." data-he="הצפת שיח שנאה ואנטישמיות הפוגעת במוניטין מותגים.">Flood of hate speech and antisemitism damaging brands.</li>
-                </ul>
-            </div>
-            <div class="card" style="border-top: 4px solid #2ed573;">
-                <h3>🛡️ <span data-en="The Solution" data-he="הפתרון">The Solution</span></h3>
-                <ul style="margin-left: 20px; color: #8b949e; line-height: 1.8;">
-                    <li data-en="Real-time threat detection using combined AI engines (Text & Visual)." data-he="זיהוי ונטרול איומים בזמן אמת באמצעות שילוב מנועי AI (טקסט וחזותי).">Real-time threat detection using combined AI engines (Text & Visual).</li>
-                    <li data-en="Applying a digital safety standard ensuring a protected space." data-he="החלת תו תקן בטיחות דיגיטלית המבטיח למשתמשים מרחב מוגן.">Applying a digital safety standard ensuring a protected space.</li>
-                </ul>
-            </div>
+    <section class="section" style="padding-top: 0;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="market-strategy.html" class="btn-primary" style="display: inline-block; padding: 12px 30px; font-size: 1.1rem; background: transparent; border: 2px solid var(--primary); color: #fff;" data-en="View Full Go-To-Market Strategy Document" data-he="לצפייה במסמך אסטרטגיית החדירה המלא">View Full Go-To-Market Strategy Document</a>
         </div>
-    </section>
-
-    <section class="section">
-        <div class="stat-block">
-            <h2>50%</h2>
-            <p data-en="of consumers will limit social media activity due to toxic content (Gartner, 2026)" data-he="מהצרכנים יצמצמו פעילות ברשתות עקב חשיפה לתוכן רעיל (תחזית Gartner, 2026)">
-                of consumers will limit social media activity due to toxic content (Gartner, 2026)
-            </p>
-        </div>
-
-        <h2 class="section-title" data-en="2026 Market Research: Validating the Need" data-he="גיבוי מחקרי 2026: הצורך השוקי בפתרון">2026 Market Research: Validating the Need</h2>
         
-        <div style="max-width: 900px; margin: 30px auto 0 auto; overflow-x: auto;">
-            <table class="civi-table">
-                <thead>
-                    <tr>
-                        <th data-en="Research Body" data-he="גוף מחקר">Research Body</th>
-                        <th data-en="Key Finding Validating the Need" data-he="ממצא מרכזי שמבסס את הצורך בתו תקן">Key Finding Validating the Need</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight: bold;">Edelman Trust Barometer</td>
-                        <td data-en="70% of users avoid interaction due to a lack of trust and safety on platforms." data-he="70% מהמשתמשים נמנעים מאינטראקציה עקב חוסר אמון ובטיחות בפלטפורמות.">70% of users avoid interaction due to a lack of trust and safety on platforms.</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">WEF Global Risks Report</td>
-                        <td data-en="AI-based fake news ranked as the leading short-term risk to global stability." data-he="פייק ניוז ותוכן פוגעני מבוסס AI דורג כסיכון המוביל ליציבות העולם בטווח הקצר.">AI-based fake news ranked as the leading short-term risk to global stability.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title" data-en="Strategic Overview" data-he="סקירה אסטרטגית">Strategic Overview</h2>
-        <p class="section-subtitle" data-en="Watch our elevator pitch to understand the growing complexities of digital moderation and how CiviWatch delivers a comprehensive, proactive solution." data-he="צפו בפיץ' שלנו כדי להבין את המורכבות הגוברת בניטור דיגיטלי וכיצד CiviWatch מספקת פתרון מקיף ופרואקטיבי.">Watch our elevator pitch to understand the growing complexities of digital moderation and how CiviWatch delivers a comprehensive, proactive solution.</p>
-        <div class="media-container">
-            <iframe src="https://drive.google.com/file/d/1r6ciRUC3dSEN51g-7bSACCkyj7DruMVd/preview" allow="autoplay; fullscreen"></iframe>
-        </div>
-    </section>
-
-    <section class="section">
         <h2 class="section-title" data-en="Investor Pitch Deck" data-he="מצגת משקיעים">Investor Pitch Deck</h2>
         <div class="media-container" style="height: 600px;">
              <iframe src="https://drive.google.com/file/d/1YcPoHyCsAcPVLTFZMyrjv3hH2tUXMj1B/preview" style="border:none;"></iframe>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title" data-en="Leadership Team" data-he="צוות הנהלה">Leadership Team</h2>
-        
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="benjamin.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Benjamin+Michaeli&background=141e3c&color=00a8ff&size=150'" alt="Benjamin Michaeli">
-                <h3 data-en="Benjamin Michaeli" data-he="בנימין מיכאלי">Benjamin Michaeli</h3>
-                <p class="role" data-en="Chief Executive Officer" data-he="מנכ״ל">Chief Executive Officer</p>
-                <p data-en="Driving the strategic vision and capital realization of CiviWatch." data-he="מוביל את החזון האסטרטגי וההון למימוש החזון של CiviWatch.">Driving the strategic vision and capital realization of CiviWatch.</p>
-            </div>
-            
-            <div class="team-member">
-                <img src="daniel.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Daniel+Siman+Tov&background=141e3c&color=00a8ff&size=150'" alt="Daniel Siman Tov">
-                <h3 data-en="Daniel Siman Tov" data-he="דניאל סימן טוב">Daniel Siman Tov</h3>
-                <p class="role" data-en="Chief Product Officer" data-he="CPO">Chief Product Officer</p>
-                <p data-en="Leads the product vision, ensuring perfect market fit. Brings extensive experience in taking projects from ideation to launch." data-he="מוביל את חזון המוצר ומבטיח שהפלטפורמה תענה במדויק על צרכי השוק. בעל ניסיון עשיר בהובלת פרויקטים משלב הרעיון ועד ל-Market Fit.">Leads the product vision, ensuring perfect market fit. Brings extensive experience in taking projects from ideation to launch.</p>
-            </div>
-
-            <div class="team-member">
-                <img src="evgeny.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Evgeny+Hahammer&background=141e3c&color=00a8ff&size=150'" alt="Evgeny Hahammer">
-                <h3 data-en="Evgeny Hahammer" data-he="יבגני חמרמר">Evgeny Hahammer</h3>
-                <p class="role" data-en="Chief Technology Officer" data-he="CTO">Chief Technology Officer</p>
-                <p data-en="The technological mind and chief architect. An expert in AI and Machine Learning development." data-he="המוח הטכנולוגי והארכיטקט הראשי של המערכת. מומחה בפיתוח מודלים של בינה מלאכותית ולמידת מכונה.">The technological mind and chief architect. An expert in AI and Machine Learning development.</p>
-            </div>
         </div>
     </section>
 
@@ -331,7 +229,7 @@
             
             <div style="text-align: center; margin-bottom: 30px;">
                 <h2 style="font-size: 2.2rem; margin-bottom: 10px; color: #fff;" data-en="Contact for Partnership & Investment" data-he="יצירת קשר לשותפות והשקעה">Contact for Partnership & Investment</h2>
-                <p style="color: #8b949e; font-size: 1.05rem;" data-en="We are open to dialogue with funds and strategic partners. Leave details to schedule a meeting." data-he="אנו פתוחים לדיאלוג עם קרנות ושותפים אסטרטגיים. השאירו פרטים לתיאום פגישה.">We are open to dialogue with funds and strategic partners. Leave details to schedule a meeting.</p>
+                <p style="color: #8b949e; font-size: 1.05rem;" data-en="We are open to dialogue with funds, NGOs, distributors, and strategic partners." data-he="אנו פתוחים לדיאלוג עם קרנות, עמותות, מפיצים ושותפים אסטרטגיים.">We are open to dialogue with funds, NGOs, distributors, and strategic partners.</p>
             </div>
 
             <form id="contact-form" class="investment-form" action="https://formspree.io/f/xgopojny" method="POST">
@@ -341,21 +239,22 @@
                         <input type="text" name="name" class="form-control" placeholder="שם מלא / Full Name" required dir="auto">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="company" class="form-control" placeholder="חברה / Company" dir="auto">
+                        <input type="text" name="company" class="form-control" placeholder="ארגון או חברה / Organization or Company" dir="auto">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="אימייל עסקי / Business Email" required dir="auto">
+                    <input type="email" name="email" class="form-control" placeholder="אימייל / Email" required dir="auto">
                 </div>
 
                 <div class="form-group">
-                    <select name="type" class="form-control" dir="auto" style="appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\"white\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\"/></svg>'); background-repeat: no-repeat; background-position: right 15px center;">
+                    <select name="type" class="form-control" required dir="auto" style="appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\"white\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\"/></svg>'); background-repeat: no-repeat; background-position: right 15px center;">
                         <option value="" disabled selected>סוג פנייה / Inquiry Type</option>
+                        <option value="ngo">עמותה / NGO Access</option>
+                        <option value="channel">שותפות הפצה / Channel Distribution</option>
+                        <option value="tech">ספק טכנולוגיה / Tech Integrator</option>
                         <option value="investor">משקיע / Investor</option>
-                        <option value="partnership">שותפות אסטרטגית / Strategic Partnership</option>
                         <option value="join">הצטרפות לצוות / Join the team</option>
-                        <option value="client">לקוח יעד / Target Client</option>
                         <option value="other">אחר / Other</option>
                     </select>
                 </div>
@@ -364,7 +263,7 @@
                     <textarea name="message" class="form-control" rows="4" placeholder="הודעה קצרה (אופציונלי) / Message" dir="auto"></textarea>
                 </div>
 
-                <button type="submit" class="form-submit-btn" data-en="Submit & Schedule Meeting" data-he="שליחה ותיאום פגישה">Submit & Schedule Meeting</button>
+                <button type="submit" class="form-submit-btn" data-en="Submit Inquiry" data-he="שליחת פנייה">Submit Inquiry</button>
             </form>
             <p id="contact-status" style="margin-top:15px; font-size:0.95rem; text-align:center;"></p>
         </div>
@@ -426,12 +325,6 @@
                     <a href="company.html" class="cw-help-menu-link">
                         <span class="cw-help-menu-link-icon">ℹ️</span>
                         <span data-en="CiviWatch FAQ" data-he="שאלות נפוצות (FAQ)">CiviWatch FAQ</span>
-                    </a>
-                </li>
-                 <li class="cw-help-menu-item">
-                    <a href="#" class="cw-help-menu-link">
-                        <span class="cw-help-menu-link-icon">🔧</span>
-                        <span data-en="API Documentation" data-he="תיעוד API">API Documentation</span>
                     </a>
                 </li>
             </ul>
