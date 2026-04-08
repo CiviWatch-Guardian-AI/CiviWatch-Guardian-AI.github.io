@@ -65,4 +65,512 @@
         /* Sections */
         .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; flex: 1; width: 100%; }
         .section-title { font-size: 2rem; color: #fff; margin-bottom: 10px; text-align: center; }
-        .section-subtitle { color: #8b949e; margin-bottom:
+        .section-subtitle { color: #8b949e; margin-bottom: 30px; font-size: 1.1rem; text-align: center; }
+        .media-container { width: 100%; aspect-ratio: 16/9; max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; margin-bottom: 40px;}
+        .media-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* Grids & Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card h3 { color: #fff; margin-bottom: 15px; font-size: 1.3rem; }
+        .card p { color: #8b949e; line-height: 1.6; }
+
+        /* Table */
+        .civi-table { width: 100%; border-collapse: collapse; background: var(--secondary-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+        .civi-table th, .civi-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); color: #c9d1d9;}
+        .civi-table th { background: #1f242c; color: #fff; }
+        [dir="rtl"] .civi-table th, [dir="rtl"] .civi-table td { text-align: right; }
+
+        /* Team */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .team-member { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 40px 30px; text-align: center; transition: transform 0.3s ease; }
+        .team-member:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .team-member img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--border-color); }
+        .team-member h3 { color: #fff; margin-bottom: 5px; font-size: 1.5rem; }
+        .team-member .role { color: var(--primary); font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;}
+        .team-member p:not(.role) { color: #8b949e; line-height: 1.6; }
+
+        /* Form */
+        .form-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;}
+        .form-group { flex: 1; min-width: 250px; margin-bottom: 20px;}
+        .form-control { width: 100%; padding: 15px; background: rgba(13,17,23,0.8); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; transition: border-color 0.3s; font-family: inherit;}
+        .form-control:focus { border-color: var(--primary); }
+        .form-submit-btn { width: 100%; padding: 15px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        .form-submit-btn:hover { background: var(--primary-hover); }
+
+        .stat-block { text-align: center; margin: 40px 0; }
+        .stat-block h2 { font-size: 4rem; color: var(--primary); margin-bottom: 10px; }
+        .stat-block p { font-size: 1.2rem; color: #8b949e; max-width: 600px; margin: 0 auto; }
+
+        /* Newsletter */
+        .newsletter-section { background: rgba(22, 27, 34, 0.85); border-top: 1px solid var(--border-color); padding: 40px 5%; margin-top: auto; width: 100%; }
+        .newsletter-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 40px; }
+        .newsletter-left { flex: 1; min-width: 300px; }
+        .newsletter-left h2 { color: #fff; font-size: 1.4rem; margin-bottom: 8px; font-weight: normal;}
+        .gradient-line { height: 2px; width: 100%; max-width: 250px; background: linear-gradient(90deg, var(--primary-hover), var(--primary)); margin-bottom: 20px; }
+        .subscribe-form { display: flex; gap: 15px; flex-wrap: wrap; }
+        .subscribe-form input { background: transparent; border: 1px solid #8b949e; border-radius: 25px; padding: 10px 20px; color: #fff; min-width: 280px; outline: none; }
+        .subscribe-form button { background: var(--primary); color: #fff; border: none; border-radius: 25px; padding: 10px 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .subscribe-form button:hover { background: var(--primary-hover); }
+        .newsletter-right { display: flex; align-items: center; gap: 20px; }
+        .social-icons { display: flex; gap: 12px; }
+        .social-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary); color: #fff; border-radius: 50%; transition: 0.3s; }
+        .social-icons a:hover { transform: translateY(-3px); background: var(--primary-hover); }
+        .social-icons svg { width: 18px; height: 18px; fill: currentColor; }
+
+        /* Global Footer */
+        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; font-size: 0.85rem; color: #8b949e; z-index: 10;}
+        .footer-links a { color: #8b949e; text-decoration: none; transition: 0.3s; margin: 0 4px; }
+        .footer-links a:hover { color: #fff; text-decoration: underline; }
+        .footer-links span { margin: 0 4px; }
+        @media (max-width: 768px) { .footer-links { line-height: 2; } }
+
+        /* Help Icon System CSS */
+        .cw-help-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .cw-help-trigger { width: 60px; height: 60px; border-radius: 50%; background-color: var(--secondary-bg); border: 2px solid var(--primary); box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0; outline: none; overflow: hidden; }
+        .cw-help-trigger svg { stroke: var(--primary); transition: stroke 0.3s ease; }
+        .cw-help-trigger:hover { transform: translateY(-5px); background-color: var(--primary); box-shadow: 0 12px 28px rgba(31, 111, 235, 0.4); border-color: var(--primary); }
+        .cw-help-trigger:hover svg { stroke: #ffffff; }
+        .cw-help-menu { display: none; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; width: 250px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 20px; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; visibility: hidden; }
+        .cw-help-menu.active { display: block; opacity: 1; transform: translateY(0); visibility: visible; }
+        .cw-help-menu-header { padding: 15px 20px; background: #1c2128; border-bottom: 1px solid var(--border-color); color: #ffffff; font-weight: bold; font-size: 0.95rem; }
+        .cw-help-menu-list { list-style: none; padding: 0; margin: 0; }
+        .cw-help-menu-item { border-bottom: 1px solid var(--border-color); }
+        .cw-help-menu-item:last-child { border-bottom: none; }
+        .cw-help-menu-link { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #c9d1d9; text-decoration: none; transition: background 0.2s; font-size: 0.9rem; }
+        .cw-help-menu-link:hover { background: #30363d; color: #ffffff; }
+        .cw-help-menu-link-icon { color: var(--primary); font-size: 1.1rem; }
+        @media (max-width: 768px) { .cw-help-wrapper { bottom: 20px; right: 20px; } .cw-help-trigger { width: 50px; height: 50px; } .cw-help-trigger svg { width: 24px; height: 24px; } }
+
+        body.lang-en .he { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+        html[dir="rtl"] .subscribe-form input { text-align: right; direction: rtl; }
+    </style>
+</head>
+<body class="lang-en">
+
+    <img src="your-logo-file.png" alt="" class="bg-logo-watermark">
+    <div id="particles-js"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">CiviWatch <span>Guardian AI</span></a>
+        <div class="mobile-toggle" id="mobile-toggle">☰</div>
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#" data-en="Solutions ▾" data-he="פתרונות ▾">Solutions ▾</a>
+                <div class="dropdown-content">
+                    <a href="social-networks.html" data-en="Social Networks" data-he="רשתות חברתיות">Social Networks</a>
+                    <a href="generative-ai.html" data-en="Generative AI" data-he="בינה מלאכותית יוצרת">Generative AI</a>
+                    <a href="virtual-reality.html" data-en="Virtual Reality" data-he="מציאות מדומה">Virtual Reality</a>
+                    <a href="governments.html" data-en="Governments" data-he="ממשלות">Governments</a>
+                    <a href="ngos.html" data-en="NGOs" data-he="עמותות">NGOs</a>
+                </div>
+            </li>
+            <li><a href="company.html" data-en="Company" data-he="החברה">Company</a></li>
+            <li><a href="partners.html" data-en="Partners" data-he="שותפים" style="color:#fff;">Partners</a></li>
+            <li><a href="market-strategy.html" data-en="Strategy" data-he="אסטרטגיה">Strategy</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" id="lang-toggle-btn" class="lang-toggle">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+                <span id="lang-text">EN</span>
+            </a>
+            <a href="AnonymousRepotScreen.html" class="btn-secondary" data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</a>
+            <a href="partners.html" class="btn-primary" data-en="Platform Login" data-he="כניסה למערכת">Platform Login</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <span class="iso-badge" data-en="2026 Funding & Partnership Round" data-he="סבב גיוס ושותפויות 2026">
+                    2026 Funding & Partnership Round
+                </span>
+                <h1><span data-en="Restoring Trust to the" data-he="מחזירים את הביטחון">Restoring Trust to the</span><br><span data-en="Digital Space." data-he="למרחב הדיגיטלי.">Digital Space.</span></h1>
+                <p data-en="Advanced AI technology for autonomous monitoring and creating a Digital Safety Standard. We are raising capital and resources to make the public space hate-free." data-he="טכנולוגיית AI מתקדמת לניטור אוטונומי ויצירת תו תקן לבטיחות דיגיטלית. אנו מגייסים כעת הון ומשאבים כדי להפוך את המרחב הציבורי לנקי משנאה.">
+                    Advanced AI technology for autonomous monitoring and creating a Digital Safety Standard. We are raising capital and resources to make the public space hate-free.
+                </p>
+                <div style="display: flex; gap: 15px;">
+                    <a href="#investment-form" class="btn-primary" data-en="Schedule Investment Meeting" data-he="תיאום פגישת השקעה">Schedule Investment Meeting</a>
+                </div>
+            </div>
+            
+            <div class="hero-video">
+                <iframe src="https://drive.google.com/file/d/1y8nJz7XUP7WXkl0AwS197KkrOGbMW6gS/preview" allow="autoplay; fullscreen"></iframe>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title" data-en="Our Core Technology Architecture" data-he="ארכיטקטורת הליבה הטכנולוגית שלנו">Our Core Technology Architecture</h2>
+        <div class="grid" style="margin-top: 40px;">
+            <div class="card" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">👁️</h2>
+                <h3 data-en="Visual AI" data-he="AI חזותי">Visual AI</h3>
+                <p data-en="Computer Vision Analysis for images and video." data-he="ניתוח תמונות ווידאו (Computer Vision).">Computer Vision Analysis for images and video.</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">📝</h2>
+                <h3 data-en="Textual AI" data-he="AI טקסטואלי">Textual AI</h3>
+                <p data-en="Natural Language Processing (NLP) and contextual analysis." data-he="הבנת שפה טבעית (NLP) והקשרים.">Natural Language Processing (NLP) and contextual analysis.</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">⚡</h2>
+                <h3 data-en="Cloud Infra" data-he="תשתית ענן">Cloud Infra</h3>
+                <p data-en="AWS & Serverless Architecture." data-he="ארכיטקטורת AWS & Serverless.">AWS & Serverless Architecture.</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">🧠</h2>
+                <h3 data-en="Machine Learning" data-he="Machine Learning">Machine Learning</h3>
+                <p data-en="TensorFlow / OpenAI Models." data-he="מודלים מבוססי TensorFlow / OpenAI.">TensorFlow / OpenAI Models.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-en="The Core Goal: A Digital Safety Standard" data-he="היעד המרכזי: תו תקן לבטיחות דיגיטלית">The Core Goal: A Digital Safety Standard</h2>
+        <p class="section-subtitle" data-en="A critical part of our solution is introducing an Official Safety Standard. This mark will serve as a quality stamp for platforms, indicating active monitoring and a protected environment. This initiative was established with the clear goal of raising the capital and resources needed to implement this standard globally." data-he="החלק הקריטי בפתרון של CiviWatch Guardian AI הוא הוספת תו תקן רשמי ומוכר. תקן זה יהווה חותמת איכות עבור פלטפורמות ורשתות, המעידה על ניטור אקטיבי וסביבה מוגנת למשתמשים. האתר והמיזם הוקמו במטרה מובהקת לגייס את המשאבים וההון הדרושים להטמעת התקן הזה בשוק הגלובלי.">
+            A critical part of our solution is introducing an Official Safety Standard. This mark will serve as a quality stamp for platforms, indicating active monitoring and a protected environment. This initiative was established with the clear goal of raising the capital and resources needed to implement this standard globally.
+        </p>
+
+        <div class="grid" style="max-width: 1000px; margin: 0 auto;">
+            <div class="card" style="border-top: 4px solid #ff4757;">
+                <h3>⚠️ <span data-en="The Problem" data-he="הבעיה">The Problem</span></h3>
+                <ul style="margin-left: 20px; color: #8b949e; line-height: 1.8;">
+                    <li data-en="Massive operational costs and slow response times." data-he="עלויות תפעול אדירות ואיטיות בתגובה מול כמות התוכן.">Massive operational costs and slow response times.</li>
+                    <li data-en="Flood of hate speech and antisemitism damaging brands." data-he="הצפת שיח שנאה ואנטישמיות הפוגעת במוניטין מותגים.">Flood of hate speech and antisemitism damaging brands.</li>
+                </ul>
+            </div>
+            <div class="card" style="border-top: 4px solid #2ed573;">
+                <h3>🛡️ <span data-en="The Solution" data-he="הפתרון">The Solution</span></h3>
+                <ul style="margin-left: 20px; color: #8b949e; line-height: 1.8;">
+                    <li data-en="Real-time threat detection using combined AI engines (Text & Visual)." data-he="זיהוי ונטרול איומים בזמן אמת באמצעות שילוב מנועי AI (טקסט וחזותי).">Real-time threat detection using combined AI engines (Text & Visual).</li>
+                    <li data-en="Applying a digital safety standard ensuring a protected space." data-he="החלת תו תקן בטיחות דיגיטלית המבטיח למשתמשים מרחב מוגן.">Applying a digital safety standard ensuring a protected space.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="stat-block">
+            <h2>50%</h2>
+            <p data-en="of consumers will limit social media activity due to toxic content (Gartner, 2026)" data-he="מהצרכנים יצמצמו פעילות ברשתות עקב חשיפה לתוכן רעיל (תחזית Gartner, 2026)">
+                of consumers will limit social media activity due to toxic content (Gartner, 2026)
+            </p>
+        </div>
+
+        <h2 class="section-title" data-en="2026 Market Research: Validating the Need" data-he="גיבוי מחקרי 2026: הצורך השוקי בפתרון">2026 Market Research: Validating the Need</h2>
+        
+        <div style="max-width: 900px; margin: 30px auto 0 auto; overflow-x: auto;">
+            <table class="civi-table">
+                <thead>
+                    <tr>
+                        <th data-en="Research Body" data-he="גוף מחקר">Research Body</th>
+                        <th data-en="Key Finding Validating the Need" data-he="ממצא מרכזי שמבסס את הצורך בתו תקן">Key Finding Validating the Need</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold;">Edelman Trust Barometer</td>
+                        <td data-en="70% of users avoid interaction due to a lack of trust and safety on platforms." data-he="70% מהמשתמשים נמנעים מאינטראקציה עקב חוסר אמון ובטיחות בפלטפורמות.">70% of users avoid interaction due to a lack of trust and safety on platforms.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">WEF Global Risks Report</td>
+                        <td data-en="AI-based fake news ranked as the leading short-term risk to global stability." data-he="פייק ניוז ותוכן פוגעני מבוסס AI דורג כסיכון המוביל ליציבות העולם בטווח הקצר.">AI-based fake news ranked as the leading short-term risk to global stability.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-en="Strategic Overview" data-he="סקירה אסטרטגית">Strategic Overview</h2>
+        <p class="section-subtitle" data-en="Watch our elevator pitch to understand the growing complexities of digital moderation and how CiviWatch delivers a comprehensive, proactive solution." data-he="צפו בפיץ' שלנו כדי להבין את המורכבות הגוברת בניטור דיגיטלי וכיצד CiviWatch מספקת פתרון מקיף ופרואקטיבי.">Watch our elevator pitch to understand the growing complexities of digital moderation and how CiviWatch delivers a comprehensive, proactive solution.</p>
+        <div class="media-container">
+            <iframe src="https://drive.google.com/file/d/1r6ciRUC3dSEN51g-7bSACCkyj7DruMVd/preview" allow="autoplay; fullscreen"></iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-en="Investor Pitch Deck" data-he="מצגת משקיעים">Investor Pitch Deck</h2>
+        <div class="media-container" style="height: 600px;">
+             <iframe src="https://drive.google.com/file/d/1YcPoHyCsAcPVLTFZMyrjv3hH2tUXMj1B/preview" style="border:none;"></iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-en="Leadership Team" data-he="צוות הנהלה">Leadership Team</h2>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="benjamin.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Benjamin+Michaeli&background=141e3c&color=00a8ff&size=150'" alt="Benjamin Michaeli">
+                <h3 data-en="Benjamin Michaeli" data-he="בנימין מיכאלי">Benjamin Michaeli</h3>
+                <p class="role" data-en="Chief Executive Officer" data-he="מנכ״ל">Chief Executive Officer</p>
+                <p data-en="Driving the strategic vision and capital realization of CiviWatch." data-he="מוביל את החזון האסטרטגי וההון למימוש החזון של CiviWatch.">Driving the strategic vision and capital realization of CiviWatch.</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="daniel.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Daniel+Siman+Tov&background=141e3c&color=00a8ff&size=150'" alt="Daniel Siman Tov">
+                <h3 data-en="Daniel Siman Tov" data-he="דניאל סימן טוב">Daniel Siman Tov</h3>
+                <p class="role" data-en="Chief Product Officer" data-he="CPO">Chief Product Officer</p>
+                <p data-en="Leads the product vision, ensuring perfect market fit. Brings extensive experience in taking projects from ideation to launch." data-he="מוביל את חזון המוצר ומבטיח שהפלטפורמה תענה במדויק על צרכי השוק. בעל ניסיון עשיר בהובלת פרויקטים משלב הרעיון ועד ל-Market Fit.">Leads the product vision, ensuring perfect market fit. Brings extensive experience in taking projects from ideation to launch.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="evgeny.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Evgeny+Hahammer&background=141e3c&color=00a8ff&size=150'" alt="Evgeny Hahammer">
+                <h3 data-en="Evgeny Hahammer" data-he="יבגני חמרמר">Evgeny Hahammer</h3>
+                <p class="role" data-en="Chief Technology Officer" data-he="CTO">Chief Technology Officer</p>
+                <p data-en="The technological mind and chief architect. An expert in AI and Machine Learning development." data-he="המוח הטכנולוגי והארכיטקט הראשי של המערכת. מומחה בפיתוח מודלים של בינה מלאכותית ולמידת מכונה.">The technological mind and chief architect. An expert in AI and Machine Learning development.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="investment-form" class="section">
+        <div style="max-width: 650px; margin: 0 auto; background: var(--secondary-bg); padding: 50px 40px; border-radius: 16px; position: relative; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="font-size: 2.2rem; margin-bottom: 10px; color: #fff;" data-en="Contact for Partnership & Investment" data-he="יצירת קשר לשותפות והשקעה">Contact for Partnership & Investment</h2>
+                <p style="color: #8b949e; font-size: 1.05rem;" data-en="We are open to dialogue with funds and strategic partners. Leave details to schedule a meeting." data-he="אנו פתוחים לדיאלוג עם קרנות ושותפים אסטרטגיים. השאירו פרטים לתיאום פגישה.">We are open to dialogue with funds and strategic partners. Leave details to schedule a meeting.</p>
+            </div>
+
+            <form id="contact-form" class="investment-form" action="https://formspree.io/f/xgopojny" method="POST">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="שם מלא / Full Name" required dir="auto">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="company" class="form-control" placeholder="חברה / Company" dir="auto">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="אימייל עסקי / Business Email" required dir="auto">
+                </div>
+
+                <div class="form-group">
+                    <select name="type" class="form-control" dir="auto" style="appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\"white\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\"/></svg>'); background-repeat: no-repeat; background-position: right 15px center;">
+                        <option value="" disabled selected>סוג פנייה / Inquiry Type</option>
+                        <option value="investor">משקיע / Investor</option>
+                        <option value="partnership">שותפות אסטרטגית / Strategic Partnership</option>
+                        <option value="join">הצטרפות לצוות / Join the team</option>
+                        <option value="client">לקוח יעד / Target Client</option>
+                        <option value="other">אחר / Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea name="message" class="form-control" rows="4" placeholder="הודעה קצרה (אופציונלי) / Message" dir="auto"></textarea>
+                </div>
+
+                <button type="submit" class="form-submit-btn" data-en="Submit & Schedule Meeting" data-he="שליחה ותיאום פגישה">Submit & Schedule Meeting</button>
+            </form>
+            <p id="contact-status" style="margin-top:15px; font-size:0.95rem; text-align:center;"></p>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-left">
+                <h2 data-en="Sign up for news & updates" data-he="הרשמו לחדשות ועדכונים">Sign up for news & updates</h2>
+                <div class="gradient-line"></div>
+                <form id="newsletter-form" class="subscribe-form" action="https://formspree.io/f/xgopojny" method="POST">
+                    <input type="email" name="email" placeholder="yourmail@domain.com" required>
+                    <button type="submit" data-en="Subscribe" data-he="הרשמה">Subscribe</button>
+                </form>
+                <p id="newsletter-status" style="margin-top:10px; font-size:0.9rem; color:#8b949e;"></p>
+            </div>
+            <div class="newsletter-right">
+                <span data-en="Connect with us" data-he="התחברו אלינו" style="color:var(--primary); font-weight:bold;">Connect with us</span>
+                <div class="social-icons">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z M2 9h4v12H2z M4 2a2 2 0 110 4 2 2 0 010-4z"></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="ccpa-policy.html">CCPA Policy</a> |
+            <a href="security-policy.html">Security Policy</a> |
+            <a href="data-policy.html">Data Policy</a> |
+            <a href="terms-of-use.html">Terms of Use</a> |
+            <a href="sla.html">Service Level Agreement</a> |
+            <span>Copyright CiviWatch Guardian AI 2026. All Right Reserved.</span> |
+            <span>By Benjamin Michaeli</span>
+        </div>
+    </footer>
+
+    <div class="cw-help-wrapper" id="cwHelpWrapper">
+        <div class="cw-help-menu" id="cwHelpMenu">
+            <div class="cw-help-menu-header" data-en="Help & Support" data-he="תמיכה ועזרה">Help & Support</div>
+            <ul class="cw-help-menu-list">
+                <li class="cw-help-menu-item">
+                    <a href="partners.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">🤝</span>
+                        <span data-en="Contact Partnerships" data-he="יצירת קשר לשותפות">Contact Partnerships</span>
+                    </a>
+                </li>
+                <li class="cw-help-menu-item">
+                    <a href="AnonymousRepotScreen.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">🛡️</span>
+                        <span data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</span>
+                    </a>
+                </li>
+                <li class="cw-help-menu-item">
+                    <a href="company.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">ℹ️</span>
+                        <span data-en="CiviWatch FAQ" data-he="שאלות נפוצות (FAQ)">CiviWatch FAQ</span>
+                    </a>
+                </li>
+                 <li class="cw-help-menu-item">
+                    <a href="#" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">🔧</span>
+                        <span data-en="API Documentation" data-he="תיעוד API">API Documentation</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="cw-help-trigger" id="cwHelpTrigger" aria-label="Open Help Menu" aria-haspopup="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <circle cx="12" cy="17" r="0.5" stroke="none" fill="currentColor"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const langText = document.getElementById('lang-text');
+        const root = document.getElementById('html-root');
+        const langBtn = document.getElementById('lang-toggle-btn');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbar = document.getElementById('navbar');
+
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        function applyLanguage(lang) {
+            localStorage.setItem('civi_lang', lang);
+            langText.innerText = lang;
+            
+            const isEn = lang === 'EN';
+            root.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+            if (isEn) {
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+            }
+            
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
+                if (translation) { el.innerText = translation; }
+            });
+            
+            const selectEl = document.querySelector('select');
+            if(selectEl) {
+                selectEl.style.backgroundPosition = isEn ? 'right 15px center' : 'left 15px center';
+            }
+            const emailInput = document.querySelector('.subscribe-form input');
+            if(emailInput) emailInput.placeholder = isEn ? 'yourmail@domain.com' : 'דוא"ל@domain.com';
+        }
+
+        let currentLang = localStorage.getItem('civi_lang') || 'EN';
+        applyLanguage(currentLang);
+
+        langBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentLang = currentLang === 'EN' ? 'HE' : 'EN';
+            applyLanguage(currentLang);
+        });
+
+        // Contact Form AJAX
+        var contactForm = document.getElementById("contact-form");
+        async function handleContactSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("contact-status");
+            var data = new FormData(event.target);
+            var isEn = document.body.classList.contains('lang-en');
+            status.innerHTML = isEn ? "Processing..." : "מעבד...";
+            
+            fetch(event.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+            .then(response => {
+                if (response.ok) {
+                    status.innerHTML = isEn ? "Inquiry Received. We will be in touch shortly." : "פנייתך התקבלה. ניצור קשר בהקדם.";
+                    status.style.color = "#3fb950";
+                    contactForm.reset();
+                } else {
+                    status.innerHTML = isEn ? "Oops! There was a problem." : "אופס! אירעה שגיאה.";
+                    status.style.color = "#ff7b72";
+                }
+            }).catch(error => {
+                status.innerHTML = isEn ? "Connection error." : "שגיאת חיבור.";
+                status.style.color = "#ff7b72";
+            });
+        }
+        if(contactForm) contactForm.addEventListener("submit", handleContactSubmit);
+
+        // Newsletter Form AJAX
+        var newsletterForm = document.getElementById("newsletter-form");
+        async function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("newsletter-status");
+            var data = new FormData(event.target);
+            var isEn = document.body.classList.contains('lang-en');
+            status.innerHTML = isEn ? "Processing..." : "מעבד...";
+            fetch(event.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+            .then(response => {
+                if (response.ok) {
+                    status.innerHTML = isEn ? "Thank you for subscribing!" : "תודה על הרשמתך!";
+                    status.style.color = "#3fb950";
+                    newsletterForm.reset();
+                } else {
+                    status.innerHTML = isEn ? "Oops! Problem occurred." : "אופס! אירעה שגיאה.";
+                    status.style.color = "#ff7b72";
+                }
+            }).catch(error => {
+                status.innerHTML = isEn ? "Connection error." : "שגיאת חיבור.";
+                status.style.color = "#ff7b72";
+            });
+        }
+        if(newsletterForm) newsletterForm.addEventListener("submit", handleNewsletterSubmit);
+
+        // Particles JS Init
+        particlesJS("particles-js", {
+            "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } },
+            "retina_detect": true
+        });
+
+        // Help Icon System Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const trigger = document.getElementById('cwHelpTrigger');
+            const menu = document.getElementById('cwHelpMenu');
+            const wrapper = document.getElementById('cwHelpWrapper');
+
+            function toggleMenu(e) {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+                trigger.setAttribute('aria-expanded', menu.classList.contains('active'));
+            }
+
+            function closeMenu() {
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    trigger.setAttribute('aria-expanded', 'false');
+                }
+            }
+
+            trigger.addEventListener('click', toggleMenu);
+            document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) closeMenu(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+        });
+    </script>
+</body>
+</html>
