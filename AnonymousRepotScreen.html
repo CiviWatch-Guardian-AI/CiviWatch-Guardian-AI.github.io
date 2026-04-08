@@ -3,116 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partners & Ecosystem | CiviWatch Guardian AI</title>
+    <title>Report Content | CiviWatch Guardian AI</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <style>
-        :root { --bg-color: #0d1117; --text-color: #c9d1d9; --primary: #1f6feb; --primary-hover: #388bfd; --secondary-bg: #161b22; --border-color: #30363d; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: var(--bg-color); color: var(--text-color); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
-        a { text-decoration: none; color: inherit; }
-
-        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none;}
-        .bg-logo-watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05; width: 50vw; max-width: 500px; z-index: -1; pointer-events: none; }
-
-        /* Navbar */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(13,17,23,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; z-index: 1000; flex-wrap: wrap; box-sizing: border-box;}
-        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; }
-        .logo span { color: var(--primary); }
+        :root { --primary: #1f6feb; --primary-hover: #388bfd; --secondary-bg: #161b22; --border-color: #30363d; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+        
+        /* Navbar Styles */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(13,17,23,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; z-index: 1000; flex-wrap: wrap; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-decoration: none;}
+        .logo span { color: var(--primary); }
         .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin:0; padding:0;}
         .nav-links li { position: relative; }
-        .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; }
+        .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; text-decoration: none;}
         .nav-links a:hover { color: #fff; }
-        
-        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 180px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
-        [dir="rtl"] .dropdown-content { left: auto; right: 0; }
+        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 150px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+        html[dir="rtl"] .dropdown-content { left: auto; right: 0; }
         .dropdown:hover .dropdown-content { display: flex; }
         .dropdown-content a { padding: 10px 15px; border-bottom: 1px solid var(--border-color); }
         .dropdown-content a:hover { background: #30363d; color: #fff; }
-
         .nav-actions { display: flex; gap: 15px; align-items: center; }
-        .lang-toggle { display: flex; align-items: center; gap: 5px; color: #8b949e; font-weight: bold; cursor: pointer; }
+        .lang-toggle { display: flex; align-items: center; gap: 5px; color: #8b949e; font-weight: bold; cursor: pointer; text-decoration: none; }
         .lang-toggle svg { width: 20px; height: 20px; fill: currentColor; }
-        .btn-secondary { border: 1px solid #8b949e; padding: 8px 15px; border-radius: 6px; transition: 0.3s; text-align: center; }
-        .btn-secondary:hover { border-color: #fff; color: #fff; }
-        .btn-primary { background: var(--primary); padding: 8px 15px; border-radius: 6px; color: #fff; font-weight: bold; transition: 0.3s; text-align: center; border: none; cursor: pointer;}
+        .btn-primary { background: var(--primary); padding: 8px 15px; border-radius: 6px; color: #fff; font-weight: bold; transition: 0.3s; text-align: center; text-decoration: none; cursor:pointer;}
         .btn-primary:hover { background: var(--primary-hover); }
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
 
-        .mobile-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
-        
         @media (max-width: 992px) {
             .mobile-toggle { display: block; order: 2; }
             .logo { order: 1; }
-            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; order: 3; padding-top: 15px; }
+            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; padding: 10px 0; order: 3; }
             nav.active .nav-links, nav.active .nav-actions { display: flex; gap: 15px; }
-            .dropdown-content { position: static; display: none; background: transparent; box-shadow: none; }
-            .dropdown:hover .dropdown-content { display: flex; flex-direction: column; align-items: center;}
+            .dropdown-content { position: static; box-shadow: none; border: none; background: transparent; display: none; }
+            .dropdown:hover .dropdown-content { display: flex; flex-direction: column; align-items: center; }
         }
 
-        /* Hero */
-        .hero { padding: 140px 5% 60px; text-align: center; max-width: 900px; margin: 0 auto;}
-        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: #fff; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 1.2rem; color: #8b949e; margin-bottom: 30px; line-height: 1.6; }
-
-        /* Sections */
-        .section { padding: 40px 5%; max-width: 1200px; margin: 0 auto; flex: 1; width: 100%; }
-        .section-title { font-size: 2.2rem; color: #fff; margin-bottom: 10px; text-align: center; }
-        .section-subtitle { color: #8b949e; margin-bottom: 40px; font-size: 1.1rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;}
-        .media-container { width: 100%; aspect-ratio: 16/9; max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; margin-bottom: 40px;}
-        .media-container iframe { width: 100%; height: 100%; border: none; }
-
-        /* Partner Tiers - Custom Layout */
-        .partner-tiers { display: flex; flex-direction: column; gap: 30px; margin-bottom: 60px; }
-        .tier-card { background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; display: flex; gap: 30px; align-items: flex-start; transition: transform 0.3s ease, border-color 0.3s ease; }
-        .tier-card:hover { transform: translateX(10px); border-color: var(--primary); }
-        [dir="rtl"] .tier-card:hover { transform: translateX(-10px); }
+        /* Form Specific Styles */
+        .glass-panel { background: #161b22; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         
-        .tier-icon { font-size: 3.5rem; background: rgba(31, 111, 235, 0.1); width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 20px; border: 1px solid rgba(31, 111, 235, 0.3); flex-shrink: 0;}
-        .tier-content h3 { color: #fff; font-size: 1.8rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px;}
-        .tier-priority { font-size: 0.8rem; background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;}
-        .tier-priority.secondary { background: #30363d; color: #8b949e; border: 1px solid #8b949e; }
-        .tier-content p { color: #8b949e; font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px;}
+        body.lang-en .he { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+        body.lang-en input, body.lang-en textarea, body.lang-en select { text-align: left; direction: ltr; }
+        body:not(.lang-en) input, body:not(.lang-en) textarea, body:not(.lang-en) select { text-align: right; direction: rtl; }
+        .force-ltr { direction: ltr !important; text-align: left !important; }
         
-        @media (max-width: 768px) {
-            .tier-card { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px;}
-            .tier-content h3 { flex-direction: column; gap: 10px; justify-content: center;}
-            .tier-card:hover { transform: translateY(-5px); }
-            [dir="rtl"] .tier-card:hover { transform: translateY(-5px); }
-        }
+        input[type="radio"]:checked + div { border-color: #1f6feb; background-color: rgba(31, 111, 235, 0.1); }
+        .toggle-checkbox:checked { right: 0; border-color: #ef4444; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #ef4444; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        .error-shake { animation: shake 0.3s ease-in-out 2; }
 
-        /* Form */
-        .form-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;}
-        .form-group { flex: 1; min-width: 250px; margin-bottom: 20px;}
-        .form-control { width: 100%; padding: 15px; background: rgba(13,17,23,0.8); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; transition: border-color 0.3s; font-family: inherit;}
-        .form-control:focus { border-color: var(--primary); }
-        .form-submit-btn { width: 100%; padding: 15px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
-        .form-submit-btn:hover { background: var(--primary-hover); }
-
-        /* Newsletter */
-        .newsletter-section { background: rgba(22, 27, 34, 0.85); border-top: 1px solid var(--border-color); padding: 40px 5%; margin-top: auto; width: 100%; }
-        .newsletter-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 40px; }
-        .newsletter-left { flex: 1; min-width: 300px; }
-        .newsletter-left h2 { color: #fff; font-size: 1.4rem; margin-bottom: 8px; font-weight: normal;}
-        .gradient-line { height: 2px; width: 100%; max-width: 250px; background: linear-gradient(90deg, var(--primary-hover), var(--primary)); margin-bottom: 20px; }
-        .subscribe-form { display: flex; gap: 15px; flex-wrap: wrap; }
-        .subscribe-form input { background: transparent; border: 1px solid #8b949e; border-radius: 25px; padding: 10px 20px; color: #fff; min-width: 280px; outline: none; }
-        .subscribe-form button { background: var(--primary); color: #fff; border: none; border-radius: 25px; padding: 10px 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .subscribe-form button:hover { background: var(--primary-hover); }
-        .newsletter-right { display: flex; align-items: center; gap: 20px; }
-        .social-icons { display: flex; gap: 12px; }
-        .social-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary); color: #fff; border-radius: 50%; transition: 0.3s; }
-        .social-icons a:hover { transform: translateY(-3px); background: var(--primary-hover); }
-        .social-icons svg { width: 18px; height: 18px; fill: currentColor; }
-
-        /* Global Footer */
-        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; font-size: 0.85rem; color: #8b949e; z-index: 10;}
+        /* Global Footer Styles */
+        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; margin-top: auto; font-size: 0.85rem; color: #8b949e; z-index: 10; }
         .footer-links a { color: #8b949e; text-decoration: none; transition: 0.3s; margin: 0 4px; }
         .footer-links a:hover { color: #fff; text-decoration: underline; }
         .footer-links span { margin: 0 4px; }
         @media (max-width: 768px) { .footer-links { line-height: 2; } }
 
-        /* Help Icon System CSS */
+        /* Help Icon System CSS with RTL Fix */
         .cw-help-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         .cw-help-trigger { width: 60px; height: 60px; border-radius: 50%; background-color: var(--secondary-bg); border: 2px solid var(--primary); box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0; outline: none; overflow: hidden; }
         .cw-help-trigger svg { stroke: var(--primary); transition: stroke 0.3s ease; }
@@ -137,15 +90,10 @@
             .cw-help-trigger svg { width: 24px; height: 24px; } 
             html[dir="rtl"] .cw-help-wrapper { right: auto; left: 20px; }
         }
-
-        body.lang-en .he { display: none !important; }
-        body:not(.lang-en) .en { display: none !important; }
-        html[dir="rtl"] .subscribe-form input, html[dir="rtl"] .investment-form input, html[dir="rtl"] .investment-form textarea, html[dir="rtl"] .investment-form select { text-align: right; direction: rtl; }
     </style>
 </head>
 <body class="lang-en">
 
-    <img src="your-logo-file.png" alt="" class="bg-logo-watermark">
     <div id="particles-js"></div>
 
     <nav id="navbar">
@@ -163,143 +111,201 @@
                 </div>
             </li>
             <li><a href="company.html" data-en="Company" data-he="החברה">Company</a></li>
-            <li><a href="partners.html" data-en="Partners" data-he="שותפים" style="color:#fff;">Partners</a></li>
-            <li><a href="market-strategy.html" data-en="Strategy" data-he="אסטרטגיה">Strategy</a></li>
+            <li><a href="partners.html" data-en="Partners" data-he="שותפים">Partners</a></li>
         </ul>
         <div class="nav-actions">
             <a href="#" id="lang-toggle-btn" class="lang-toggle">
                 <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
                 <span id="lang-text">EN</span>
             </a>
-            <a href="AnonymousRepotScreen.html" class="btn-secondary" data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</a>
-            <a href="#investment-form" class="btn-primary" data-en="Partner With Us" data-he="יצירת קשר לשותפות">Partner With Us</a>
+            <a href="partners.html" class="btn-primary" data-en="Platform Login" data-he="כניסה למערכת">Platform Login</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1 data-en="Join the CiviWatch Ecosystem" data-he="הצטרפו לאקוסיסטם של CiviWatch">Join the CiviWatch <br><span>Ecosystem</span></h1>
-        <p data-en="We don't just build technology; we build the standard. Partner with us to deploy, distribute, or integrate the definitive global benchmark for digital safety." data-he="אנחנו לא רק בונים טכנולוגיה, אנחנו בונים את תו התקן. שתפו איתנו פעולה כדי להטמיע, להפיץ או להשתלב בבנצ'מרק העולמי המוחלט לבטיחות דיגיטלית.">
-            We don't just build technology; we build the standard. Partner with us to deploy, distribute, or integrate the definitive global benchmark for digital safety.
-        </p>
-    </header>
+    <div class="flex-1 flex justify-center items-start pt-32 pb-16 px-4 sm:px-6">
+        <div class="max-w-2xl w-full glass-panel p-8 sm:p-10 rounded-3xl relative z-10">
+            <div>
+                <h2 class="text-3xl font-bold text-white mb-3 flex items-center gap-3">
+                    <span class="he">דיווח על תוכן פוגעני</span>
+                    <span class="en">Report Abusive Content</span>
+                </h2>
+                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                    <span class="he">עזרתכם קריטית. המידע יועבר לניתוח אוטומטי או לבדיקת מנהל כדי להגן על הקהילה ולשמור על מרחב נקי משנאה.</span>
+                    <span class="en">Your help is critical. Information will be routed to AI analysis or human review to protect the community.</span>
+                </p>
 
-    <section class="section">
-        <div class="partner-tiers">
-            
-            <div class="tier-card" style="border-left: 4px solid var(--primary);">
-                <div class="tier-icon">🕊️</div>
-                <div class="tier-content">
-                    <h3 data-en="NGOs & Civil Society <span class='tier-priority'>Vanguard Partners</span>" data-he="עמותות וחברה אזרחית <span class='tier-priority'>שותפי עוגן</span>">NGOs & Civil Society <span class="tier-priority">Vanguard Partners</span></h3>
-                    <p data-en="Our vital 'Foot in the Door' partners. We equip advocacy groups, human rights organizations, and civic institutions with enterprise-grade moderation tech. Use our platform to track systemic hate speech, protect vulnerable communities, and generate undeniable reports to push for local standard adoption." data-he="שותפי העוגן (Foot in the Door) החיוניים שלנו. אנו מציידים קבוצות הסברה, ארגוני זכויות אדם ומוסדות אזרחיים בטכנולוגיית ניטור ברמת אנטרפרייז. השתמשו בפלטפורמה שלנו כדי לעקוב אחר שפת שטנה מערכתית, להגן על קהילות פגיעות ולייצר דוחות חותכים לקידום אימוץ תקן הבטיחות ברמה המקומית.">
-                        Our vital 'Foot in the Door' partners. We equip advocacy groups, human rights organizations, and civic institutions with enterprise-grade moderation tech. Use our platform to track systemic hate speech, protect vulnerable communities, and generate undeniable reports to push for local standard adoption.
-                    </p>
-                    <a href="#investment-form" style="color: var(--primary); font-weight: bold; text-decoration: underline;" data-en="Discuss NGO Subsidized Access →" data-he="לפרטים על גישה מסובסדת לעמותות ←">Discuss NGO Subsidized Access →</a>
-                </div>
-            </div>
-
-            <div class="tier-card" style="border-left: 4px solid #2ed573;">
-                <div class="tier-icon" style="background: rgba(46, 213, 115, 0.1); border-color: rgba(46, 213, 115, 0.3);">📈</div>
-                <div class="tier-content">
-                    <h3 data-en="Channel & Distribution Partners <span class='tier-priority' style='background:#2ed573;'>Revenue-Share Model</span>" data-he="שותפי הפצה וערוצי מכירה <span class='tier-priority' style='background:#2ed573;'>מודל חלוקת הכנסות</span>">Channel & Distribution Partners <span class="tier-priority" style="background:#2ed573;">Revenue-Share Model</span></h3>
-                    <p data-en="Unlock lucrative new revenue streams by offering the CiviWatch Guardian AI platform to your existing client base. Ideal for cyber-security firms, risk management consultancies, and enterprise software providers looking to offer their government and corporate clients an immediate, out-of-the-box solution for brand safety and regulatory compliance." data-he="פתחו אפיקי הכנסה חדשים ורווחיים על ידי הצעת פלטפורמת CiviWatch Guardian AI לבסיס הלקוחות הקיים שלכם. אידיאלי לחברות אבטחת מידע, חברות ייעוץ סיכונים וספקי תוכנה ארגונית המחפשים להציע ללקוחותיהם הממשלתיים והתאגידיים פתרון מיידי ומוכן מראש לבטיחות המותג ולעמידה ברגולציה.">
-                        Unlock lucrative new revenue streams by offering the CiviWatch Guardian AI platform to your existing client base. Ideal for cyber-security firms, risk management consultancies, and enterprise software providers looking to offer their government and corporate clients an immediate, out-of-the-box solution for brand safety and regulatory compliance.
-                    </p>
-                    <a href="#investment-form" style="color: #2ed573; font-weight: bold; text-decoration: underline;" data-en="Explore the Reseller Program →" data-he="גלו את תוכנית המפיצים שלנו ←">Explore the Reseller Program →</a>
-                </div>
-            </div>
-
-            <div class="tier-card" style="border-left: 4px solid #8b949e;">
-                <div class="tier-icon" style="background: rgba(139, 148, 158, 0.1); border-color: rgba(139, 148, 158, 0.3);">🔌</div>
-                <div class="tier-content">
-                    <h3 data-en="AI Technology Suppliers <span class='tier-priority secondary'>Marketplace Integrations</span>" data-he="ספקי טכנולוגיות AI <span class='tier-priority secondary'>אינטגרציה למרכז הטכנולוגי</span>">AI Technology Suppliers <span class="tier-priority secondary">Marketplace Integrations</span></h3>
-                    <p data-en="Have a world-class specialized AI model for NLP, deepfake detection, or spatial audio analysis? Plug your technology directly into our marketplace. CiviWatch provides the high-level orchestration and the essential Human-in-the-Loop validation, turning your raw technical capabilities into a certified component of the global safety standard." data-he="פיתחתם מודל AI ייעודי ברמה עולמית עבור NLP, זיהוי דיפ-פייק או ניתוח שמע מרחבי? חברו את הטכנולוגיה שלכם ישירות למרכז שלנו. CiviWatch מספקת את האורקסטרציה הכוללת ואת אימות ה-Human-in-the-Loop ההכרחי, והופכת את היכולות הטכניות הגולמיות שלכם לרכיב מוסמך בתקן הבטיחות העולמי.">
-                        Have a world-class specialized AI model for NLP, deepfake detection, or spatial audio analysis? Plug your technology directly into our marketplace. CiviWatch provides the high-level orchestration and the essential Human-in-the-Loop validation, turning your raw technical capabilities into a certified component of the global safety standard.
-                    </p>
-                    <a href="#investment-form" style="color: #8b949e; font-weight: bold; text-decoration: underline;" data-en="Submit API Specs for Review →" data-he="הגשת מפרט טכני (API) לבחינה ←">Submit API Specs for Review →</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="section" style="padding-top: 0;">
-        <div style="text-align: center; margin-bottom: 30px;">
-            <a href="market-strategy.html" class="btn-primary" style="display: inline-block; padding: 12px 30px; font-size: 1.1rem; background: transparent; border: 2px solid var(--primary); color: #fff;" data-en="View Full Go-To-Market Strategy Document" data-he="לצפייה במסמך אסטרטגיית החדירה המלא">View Full Go-To-Market Strategy Document</a>
-        </div>
-        
-        <h2 class="section-title" data-en="Investor Pitch Deck" data-he="מצגת משקיעים">Investor Pitch Deck</h2>
-        <div class="media-container" style="height: 600px;">
-             <iframe src="https://drive.google.com/file/d/1YcPoHyCsAcPVLTFZMyrjv3hH2tUXMj1B/preview" style="border:none;"></iframe>
-        </div>
-    </section>
-
-    <section id="investment-form" class="section">
-        <div style="max-width: 650px; margin: 0 auto; background: var(--secondary-bg); padding: 50px 40px; border-radius: 16px; position: relative; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="font-size: 2.2rem; margin-bottom: 10px; color: #fff;" data-en="Contact for Partnership & Investment" data-he="יצירת קשר לשותפות והשקעה">Contact for Partnership & Investment</h2>
-                <p style="color: #8b949e; font-size: 1.05rem;" data-en="We are open to dialogue with funds, NGOs, distributors, and strategic partners." data-he="אנו פתוחים לדיאלוג עם קרנות, עמותות, מפיצים ושותפים אסטרטגיים.">We are open to dialogue with funds, NGOs, distributors, and strategic partners.</p>
-            </div>
-
-            <form id="contact-form" class="investment-form" action="https://formspree.io/f/xgopojny" method="POST">
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="שם מלא / Full Name" required dir="auto">
+                <form id="report-form" class="space-y-6" novalidate>
+                    <div id="routing-container" class="rounded-xl border border-transparent transition-colors p-1 -m-1">
+                        <label class="block text-sm font-semibold text-slate-300 mb-3 px-1">
+                            <span class="he">ניתוב הדיווח (חובה)</span><span class="en">Report Routing (Required)</span>
+                        </label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="cursor-pointer relative">
+                                <input type="radio" name="routing" value="ai" class="sr-only" onchange="clearRoutingError()">
+                                <div class="border border-slate-700 bg-slate-800 rounded-xl p-4 hover:border-blue-500 transition-all h-full">
+                                    <div class="text-blue-400 text-xl mb-2">⚡</div>
+                                    <h3 class="text-white font-bold text-sm mb-1">
+                                        <span class="he">ניתוח AI אוטומטי</span><span class="en">Automatic AI Analysis</span>
+                                    </h3>
+                                    <p class="text-xs text-slate-400">
+                                        <span class="he">סריקה מיידית וסיווג. מומלץ למקרי שנאה ופייק ניוז.</span>
+                                        <span class="en">Instant scanning. Recommended for hate speech.</span>
+                                    </p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer relative">
+                                <input type="radio" name="routing" value="human" class="sr-only" onchange="clearRoutingError()">
+                                <div class="border border-slate-700 bg-slate-800 rounded-xl p-4 hover:border-blue-500 transition-all h-full">
+                                    <div class="text-green-400 text-xl mb-2">🧑‍💻</div>
+                                    <h3 class="text-white font-bold text-sm mb-1">
+                                        <span class="he">בדיקת מנהל קהילה</span><span class="en">Human Manager Review</span>
+                                    </h3>
+                                    <p class="text-xs text-slate-400">
+                                        <span class="he">העברה לבדיקה אנושית. מומלץ למקרים מורכבים.</span>
+                                        <span class="en">Routing to human review. For complex cases.</span>
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <p id="routing-error" class="hidden text-red-500 text-xs font-bold mt-2 px-1"></p>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="company" class="form-control" placeholder="ארגון או חברה / Organization or Company" dir="auto">
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                        <div class="md:col-span-1">
+                            <label class="block text-sm font-semibold text-slate-300 mb-2">
+                                <span class="he">פלטפורמה</span><span class="en">Platform</span>
+                            </label>
+                            <select required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-slate-300">
+                                <option value="x">X (Twitter)</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="tiktok">TikTok</option>
+                                <option value="telegram">Telegram</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold text-slate-300 mb-2">
+                                <span class="he">קישור (אופציונלי)</span><span class="en">Link (Optional)</span>
+                            </label>
+                            <input type="url" placeholder="https://..." class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-white force-ltr">
+                        </div>
+                        <div class="md:col-span-1">
+                            <label class="block text-sm font-semibold text-slate-300 mb-2">
+                                <span class="he">שפת התוכן</span><span class="en">Language</span>
+                            </label>
+                            <select required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-slate-300">
+                                <option value="he" class="he">עברית</option>
+                                <option value="he" class="en">Hebrew</option>
+                                <option value="en" class="he">אנגלית</option>
+                                <option value="en" class="en">English</option>
+                                <option value="ar" class="he">ערבית</option>
+                                <option value="ar" class="en">Arabic</option>
+                                <option value="ru" class="he">רוסית</option>
+                                <option value="ru" class="en">Russian</option>
+                                <option value="other" class="he">אחר</option>
+                                <option value="other" class="en">Other</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="אימייל / Email" required dir="auto">
-                </div>
+                    <div class="flex items-center p-4 bg-red-900/10 border border-red-500/20 rounded-xl">
+                        <div class="relative inline-block w-10 mr-4 align-middle select-none transition duration-200 ease-in ml-4">
+                            <input type="checkbox" name="urgent" id="urgent-toggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out"/>
+                            <label for="urgent-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-600 cursor-pointer"></label>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-red-400">
+                                <span class="he">סכנה מיידית / דחיפות גבוהה</span><span class="en">Immediate Threat / High Priority</span>
+                            </h4>
+                            <p class="text-xs text-slate-400">
+                                <span class="he">סמן רק במקרה של קריאה מפורשת לאלימות פיזית או סכנת חיים.</span>
+                                <span class="en">Check only in cases of explicit calls for physical violence.</span>
+                            </p>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <select name="type" class="form-control" required dir="auto" style="appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\"white\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\"/></svg>'); background-repeat: no-repeat; background-position: right 15px center;">
-                        <option value="" disabled selected>סוג פנייה / Inquiry Type</option>
-                        <option value="ngo">עמותה / NGO Access</option>
-                        <option value="channel">שותפות הפצה / Channel Distribution</option>
-                        <option value="tech">ספק טכנולוגיה / Tech Integrator</option>
-                        <option value="investor">משקיע / Investor</option>
-                        <option value="join">הצטרפות לצוות / Join the team</option>
-                        <option value="other">אחר / Other</option>
-                    </select>
-                </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">
+                            <span class="he">סיווג הבעיה (תגיות)</span><span class="en">Issue Category (Tags)</span>
+                        </label>
+                        <div id="hashtag-wrapper" class="flex flex-wrap items-center gap-2 w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl focus-within:border-blue-500 transition-colors cursor-text" onclick="document.getElementById('hashtag-input').focus()">
+                            <span id="hashtag-pills" class="flex flex-wrap gap-2 empty:hidden"></span>
+                            <input type="text" id="hashtag-input" class="bg-transparent border-none outline-none text-white flex-1 min-w-[150px]" placeholder="הקלד והקש Enter">
+                            <input type="hidden" name="hashtags" id="hidden-hashtags">
+                        </div>
+                        
+                        <div class="mt-3 flex flex-wrap items-center gap-2">
+                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Antisemitism' : 'אנטישמיות')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
+                                <span class="he">+ אנטישמיות</span><span class="en">+ Antisemitism</span>
+                            </button>
+                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'HateSpeech' : 'שנאה')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
+                                <span class="he">+ שנאה</span><span class="en">+ Hate Speech</span>
+                            </button>
+                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Harassment' : 'הטרדה')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
+                                <span class="he">+ הטרדה</span><span class="en">+ Harassment</span>
+                            </button>
+                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Troll' : 'טרול')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
+                                <span class="he">+ טרול</span><span class="en">+ Troll</span>
+                            </button>
+                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'FakeNews' : 'פייק_ניוז')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
+                                <span class="he">+ פייק_ניוז</span><span class="en">+ Fake News</span>
+                            </button>
+                            <button type="button" onclick="addTag(document.body.classList.contains('lang-en') ? 'Other' : 'אחר')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 hover:border-blue-400 transition-colors">
+                                <span class="he">+ אחר</span><span class="en">+ Other</span>
+                            </button>
+                            <button type="button" onclick="document.getElementById('hashtag-input').focus()" class="text-xs bg-slate-900 hover:bg-slate-800 text-blue-400 px-3 py-1.5 rounded-full border border-slate-600 border-dashed hover:border-blue-400 transition-colors">
+                                <span class="he">+ תגית אישית...</span><span class="en">+ Custom Tag...</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <textarea rows="3" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-blue-500 text-white resize-none" 
+                            placeholder="פרטים נוספים או הקשר (אופציונלי)" id="context-text"></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <textarea name="message" class="form-control" rows="4" placeholder="הודעה קצרה (אופציונלי) / Message" dir="auto"></textarea>
-                </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2 flex justify-between items-end">
+                            <span><span class="he">צילום מסך (חובה)</span><span class="en">Screenshot (Required)</span></span>
+                            <span class="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded">Ctrl+V</span>
+                        </label>
+                        
+                        <div id="drop-zone" class="border-2 border-dashed border-slate-600 rounded-xl bg-slate-900 p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-800 transition-all relative h-48">
+                            <input type="file" id="file-input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
+                            
+                            <div id="upload-prompt" class="flex flex-col items-center z-10 pointer-events-none">
+                                <span class="text-4xl mb-3 text-slate-400">📸</span>
+                                <span class="text-sm text-slate-300 font-medium mb-1 text-center">
+                                    <span class="he">לחץ, גרור תמונה, או הדבק לכאן</span>
+                                    <span class="en">Click, drag, or paste image here</span>
+                                </span>
+                            </div>
 
-                <button type="submit" class="form-submit-btn" data-en="Submit Inquiry" data-he="שליחת פנייה">Submit Inquiry</button>
-            </form>
-            <p id="contact-status" style="margin-top:15px; font-size:0.95rem; text-align:center;"></p>
-        </div>
-    </section>
+                            <div id="preview-container" class="hidden absolute inset-0 z-10 w-full h-full bg-slate-900 flex items-center justify-center rounded-xl overflow-hidden">
+                                <img id="image-preview" class="max-h-full max-w-full object-contain p-2" src="">
+                                <button type="button" class="absolute top-3 right-3 bg-slate-800/90 hover:bg-red-500 text-white text-xs px-3 py-1.5 rounded-lg z-30 transition-colors" onclick="removeImage(event)">
+                                    <span class="he">הסר תמונה</span><span class="en">Remove</span>
+                                </button>
+                            </div>
+                        </div>
+                        <p id="image-error" class="hidden text-red-500 text-xs font-bold mt-2"></p>
+                    </div>
 
-    <section class="newsletter-section">
-        <div class="newsletter-container">
-            <div class="newsletter-left">
-                <h2 data-en="Sign up for news & updates" data-he="הרשמו לחדשות ועדכונים">Sign up for news & updates</h2>
-                <div class="gradient-line"></div>
-                <form id="newsletter-form" class="subscribe-form" action="https://formspree.io/f/xgopojny" method="POST">
-                    <input type="email" name="email" placeholder="yourmail@domain.com" required>
-                    <button type="submit" data-en="Subscribe" data-he="הרשמה">Subscribe</button>
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-[#1f6feb] hover:bg-[#388bfd] text-white font-bold py-4 rounded-xl shadow-lg transition-all text-lg mb-4 cursor-pointer border-none">
+                            <span class="he">שליחת דיווח</span><span class="en">Submit Report</span>
+                        </button>
+                        <p class="text-center text-xs text-slate-500 flex items-center justify-center gap-1.5">
+                            <span>🔒</span>
+                            <span class="he">הדיווח מאובטח ואנונימי לחלוטין. פרטיך האישיים לא יישמרו.</span>
+                            <span class="en">Report is secure and fully anonymous. No personal data is saved.</span>
+                        </p>
+                    </div>
                 </form>
-                <p id="newsletter-status" style="margin-top:10px; font-size:0.9rem; color:#8b949e;"></p>
-            </div>
-            <div class="newsletter-right">
-                <span data-en="Connect with us" data-he="התחברו אלינו" style="color:var(--primary); font-weight:bold;">Connect with us</span>
-                <div class="social-icons">
-                    <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z M2 9h4v12H2z M4 2a2 2 0 110 4 2 2 0 010-4z"></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
-                </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <footer class="site-footer">
         <div class="footer-links">
@@ -328,12 +334,6 @@
                     <a href="partners.html" class="cw-help-menu-link">
                         <span class="cw-help-menu-link-icon">🤝</span>
                         <span data-en="Contact Partnerships" data-he="יצירת קשר לשותפות">Contact Partnerships</span>
-                    </a>
-                </li>
-                <li class="cw-help-menu-item">
-                    <a href="AnonymousRepotScreen.html" class="cw-help-menu-link">
-                        <span class="cw-help-menu-link-icon">🛡️</span>
-                        <span data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</span>
                     </a>
                 </li>
                 <li class="cw-help-menu-item">
@@ -378,16 +378,20 @@
             
             document.querySelectorAll('[data-en]').forEach(el => {
                 const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
-                // FIX: Used innerHTML instead of innerText to parse HTML tags inside attributes
-                if (translation) { el.innerHTML = translation; }
+                if (translation) { el.innerHTML = translation; } // FIXED TO innerHTML for Spans to work
             });
             
-            const selectEl = document.querySelector('select');
-            if(selectEl) {
-                selectEl.style.backgroundPosition = isEn ? 'right 15px center' : 'left 15px center';
+            const contextText = document.getElementById('context-text');
+            if(contextText.value === '') {
+                contextText.placeholder = isEn ? 'Additional context (Optional)' : 'פרטים נוספים או הקשר (אופציונלי)';
             }
-            const emailInput = document.querySelector('.subscribe-form input');
-            if(emailInput) emailInput.placeholder = isEn ? 'yourmail@domain.com' : 'דוא"ל@domain.com';
+            document.getElementById('hashtag-input').placeholder = isEn ? 'Type and press Enter' : 'הקלד והקש Enter';
+            if (!document.getElementById('image-error').classList.contains('hidden')) {
+                document.getElementById('image-error').textContent = isEn ? 'Screenshot is required.' : 'חובה לצרף צילום מסך להוכחה.';
+            }
+            if (!document.getElementById('routing-error').classList.contains('hidden')) {
+                document.getElementById('routing-error').textContent = isEn ? 'Please select a routing option.' : 'חובה לבחור את יעד הדיווח (AI או מנהל קהילה).';
+            }
         }
 
         let currentLang = localStorage.getItem('civi_lang') || 'EN';
@@ -399,63 +403,185 @@
             applyLanguage(currentLang);
         });
 
-        // Contact Form AJAX
-        var contactForm = document.getElementById("contact-form");
-        async function handleContactSubmit(event) {
-            event.preventDefault();
-            var status = document.getElementById("contact-status");
-            var data = new FormData(event.target);
-            var isEn = document.body.classList.contains('lang-en');
-            status.innerHTML = isEn ? "Processing..." : "מעבד...";
-            
-            fetch(event.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-            .then(response => {
-                if (response.ok) {
-                    status.innerHTML = isEn ? "Inquiry Received. We will be in touch shortly." : "פנייתך התקבלה. ניצור קשר בהקדם.";
-                    status.style.color = "#3fb950";
-                    contactForm.reset();
-                } else {
-                    status.innerHTML = isEn ? "Oops! There was a problem." : "אופס! אירעה שגיאה.";
-                    status.style.color = "#ff7b72";
-                }
-            }).catch(error => {
-                status.innerHTML = isEn ? "Connection error." : "שגיאת חיבור.";
-                status.style.color = "#ff7b72";
-            });
-        }
-        if(contactForm) contactForm.addEventListener("submit", handleContactSubmit);
+        // Form Logic
+        const hashtagInput = document.getElementById('hashtag-input');
+        const hashtagPills = document.getElementById('hashtag-pills');
+        const hiddenHashtags = document.getElementById('hidden-hashtags');
+        let tags = [];
 
-        // Newsletter Form AJAX
-        var newsletterForm = document.getElementById("newsletter-form");
-        async function handleNewsletterSubmit(event) {
-            event.preventDefault();
-            var status = document.getElementById("newsletter-status");
-            var data = new FormData(event.target);
-            var isEn = document.body.classList.contains('lang-en');
-            status.innerHTML = isEn ? "Processing..." : "מעבד...";
-            fetch(event.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-            .then(response => {
-                if (response.ok) {
-                    status.innerHTML = isEn ? "Thank you for subscribing!" : "תודה על הרשמתך!";
-                    status.style.color = "#3fb950";
-                    newsletterForm.reset();
-                } else {
-                    status.innerHTML = isEn ? "Oops! Problem occurred." : "אופס! אירעה שגיאה.";
-                    status.style.color = "#ff7b72";
-                }
-            }).catch(error => {
-                status.innerHTML = isEn ? "Connection error." : "שגיאת חיבור.";
-                status.style.color = "#ff7b72";
+        function renderTags() {
+            hashtagPills.innerHTML = '';
+            tags.forEach((tag, index) => {
+                const pill = document.createElement('span');
+                pill.className = 'flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2.5 py-1 rounded-md text-sm font-medium';
+                pill.innerHTML = `
+                    <span>#${tag}</span> 
+                    <button type="button" class="text-blue-400 hover:text-white cursor-pointer border-none bg-transparent" onclick="removeTag(${index})">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                `;
+                hashtagPills.appendChild(pill);
             });
+            hiddenHashtags.value = tags.join(', ');
         }
-        if(newsletterForm) newsletterForm.addEventListener("submit", handleNewsletterSubmit);
 
-        // Particles JS Init
-        particlesJS("particles-js", {
-            "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } },
-            "retina_detect": true
+        function addTag(value) {
+            const cleanValue = value.trim().replace(/^#/, '');
+            if (cleanValue && !tags.includes(cleanValue)) {
+                tags.push(cleanValue);
+                renderTags();
+            }
+        }
+
+        function removeTag(index) {
+            tags.splice(index, 1);
+            renderTags();
+        }
+
+        hashtagInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === ',') {
+                e.preventDefault();
+                addTag(this.value);
+                this.value = '';
+            }
         });
+
+        document.getElementById('report-form').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+
+        const fileInput = document.getElementById('file-input');
+        const uploadPrompt = document.getElementById('upload-prompt');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const dropZone = document.getElementById('drop-zone');
+        const imageError = document.getElementById('image-error');
+
+        function clearImageError() {
+            dropZone.classList.remove('border-red-500');
+            dropZone.classList.add('border-slate-600');
+            imageError.classList.add('hidden');
+        }
+
+        function clearRoutingError() {
+            const routingContainer = document.getElementById('routing-container');
+            routingContainer.classList.remove('border-red-500', 'bg-red-900/10');
+            routingContainer.classList.add('border-transparent');
+            document.getElementById('routing-error').classList.add('hidden');
+        }
+
+        function displayImage(file) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagePreview.src = event.target.result;
+                    uploadPrompt.classList.add('hidden');
+                    previewContainer.classList.remove('hidden');
+                    clearImageError();
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        fileInput.addEventListener('change', function(e) {
+            displayImage(e.target.files[0]);
+        });
+
+        document.addEventListener('paste', function(e) {
+            const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+            for (let index in items) {
+                const item = items[index];
+                if (item.kind === 'file' && item.type.startsWith('image/')) {
+                    const file = item.getAsFile();
+                    displayImage(file);
+                    
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    fileInput.files = dataTransfer.files;
+                }
+            }
+        });
+
+        function removeImage(e) {
+            e.preventDefault();
+            e.stopPropagation(); 
+            fileInput.value = '';
+            imagePreview.src = '';
+            previewContainer.classList.add('hidden');
+            uploadPrompt.classList.remove('hidden');
+        }
+
+        document.getElementById('report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            const isEn = document.body.classList.contains('lang-en');
+            
+            const routingOptions = document.getElementsByName('routing');
+            let routingSelected = false;
+            let selectedValue = "";
+            for (const option of routingOptions) {
+                if (option.checked) {
+                    routingSelected = true;
+                    selectedValue = option.value;
+                    break;
+                }
+            }
+            
+            if (!routingSelected) {
+                isValid = false;
+                const routingContainer = document.getElementById('routing-container');
+                const routingError = document.getElementById('routing-error');
+                routingContainer.classList.add('border-red-500', 'bg-red-900/10');
+                routingContainer.classList.remove('border-transparent');
+                routingContainer.classList.remove('error-shake');
+                void routingContainer.offsetWidth; 
+                routingContainer.classList.add('error-shake');
+                routingError.textContent = isEn ? 'Please select a routing option.' : 'חובה לבחור את יעד הדיווח (AI או מנהל קהילה).';
+                routingError.classList.remove('hidden');
+            }
+
+            if (fileInput.files.length === 0) {
+                isValid = false;
+                dropZone.classList.add('border-red-500');
+                dropZone.classList.remove('border-slate-600');
+                dropZone.classList.remove('error-shake');
+                void dropZone.offsetWidth;
+                dropZone.classList.add('error-shake');
+                
+                imageError.textContent = isEn ? 'Screenshot is required.' : 'חובה לצרף צילום מסך להוכחה.';
+                imageError.classList.remove('hidden');
+            }
+            
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                return;
+            }
+
+            if (!isValid) return;
+
+            let targetMsg = selectedValue === 'ai' 
+                ? (isEn ? 'Routed to AI Engine.' : 'הועבר למנוע ה-AI.') 
+                : (isEn ? 'Routed to Human Manager Queue.' : 'הועבר לתור מנהל הקהילה.');
+            
+            const msg = isEn 
+                ? `Report successfully submitted.\n${targetMsg}\nThank you!` 
+                : `הדיווח נקלט בהצלחה.\n${targetMsg}\nתודה!`;
+                
+            alert(msg);
+            
+            this.reset();
+            tags = [];
+            renderTags();
+            removeImage(e);
+            
+            for (const option of routingOptions) {
+                option.checked = false;
+            }
+        });
+
+        particlesJS("particles-js", { "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } }, "retina_detect": true });
 
         // Help Icon System Logic
         document.addEventListener('DOMContentLoaded', () => {
