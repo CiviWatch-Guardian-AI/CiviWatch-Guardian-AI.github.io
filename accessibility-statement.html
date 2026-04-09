@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Statement | CiviWatch Guardian AI</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        :root { --primary: #1f6feb; --primary-hover: #388bfd; --secondary-bg: #161b22; --border-color: #30363d; --access-color: #0d9488; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s;}
+        
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+        
+        /* Navbar Styles */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(13,17,23,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; z-index: 1000; flex-wrap: wrap; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-decoration: none;}
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin:0; padding:0;}
+        .nav-links li { position: relative; }
+        .nav-links a { color: #8b949e; transition: 0.3s; padding: 10px 0; display: block; text-decoration: none;}
+        .nav-links a:hover { color: #fff; }
+        .dropdown-content { position: absolute; top: 100%; left: 0; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; min-width: 150px; display: none; flex-direction: column; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+        html[dir="rtl"] .dropdown-content { left: auto; right: 0; }
+        .dropdown:hover .dropdown-content { display: flex; }
+        .dropdown-content a { padding: 10px 15px; border-bottom: 1px solid var(--border-color); }
+        .dropdown-content a:hover { background: #30363d; color: #fff; }
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .lang-toggle { display: flex; align-items: center; gap: 5px; color: #8b949e; font-weight: bold; cursor: pointer; text-decoration: none; }
+        .lang-toggle svg { width: 20px; height: 20px; fill: currentColor; }
+        .btn-primary { background: var(--primary); padding: 8px 15px; border-radius: 6px; color: #fff; font-weight: bold; transition: 0.3s; text-align: center; text-decoration: none; cursor:pointer;}
+        .btn-primary:hover { background: var(--primary-hover); }
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
+
+        @media (max-width: 992px) {
+            .mobile-toggle { display: block; order: 2; }
+            .logo { order: 1; }
+            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; padding: 10px 0; order: 3; }
+            nav.active .nav-links, nav.active .nav-actions { display: flex; gap: 15px; }
+            .dropdown-content { position: static; box-shadow: none; border: none; background: transparent; display: none; }
+            .dropdown:hover .dropdown-content { display: flex; flex-direction: column; align-items: center; }
+        }
+
+        /* Document Styles */
+        .glass-panel { background: #161b22; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .doc-content h2 { color: #fff; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;}
+        .doc-content p, .doc-content ul { color: #8b949e; line-height: 1.8; margin-bottom: 1rem; }
+        .doc-content ul { padding-left: 1.5rem; }
+        html[dir="rtl"] .doc-content ul { padding-left: 0; padding-right: 1.5rem; }
+        .doc-content li { margin-bottom: 0.5rem; }
+        .doc-content a { color: var(--primary); text-decoration: underline; }
+        
+        body.lang-en .he { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+
+        /* Global Footer Styles */
+        .site-footer { background: #0d1117; border-top: 1px solid var(--border-color); padding: 20px 5%; text-align: center; margin-top: auto; font-size: 0.85rem; color: #8b949e; z-index: 10; }
+        .footer-links a { color: #8b949e; text-decoration: none; transition: 0.3s; margin: 0 4px; }
+        .footer-links a:hover { color: #fff; text-decoration: underline; }
+        .footer-links span { margin: 0 4px; }
+        @media (max-width: 768px) { .footer-links { line-height: 2; } }
+
+        /* 1. HELP ICON */
+        .cw-help-wrapper { position: fixed; bottom: 30px; right: 30px; left: auto; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .cw-help-trigger { width: 60px; height: 60px; border-radius: 50%; background-color: var(--secondary-bg); border: 2px solid var(--primary); box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0; outline: none; overflow: hidden; }
+        .cw-help-trigger svg { stroke: var(--primary); transition: stroke 0.3s ease; }
+        .cw-help-trigger:hover { transform: translateY(-5px); background-color: var(--primary); box-shadow: 0 12px 28px rgba(31, 111, 235, 0.4); border-color: var(--primary); }
+        .cw-help-trigger:hover svg { stroke: #ffffff; }
+        .cw-help-menu { display: none; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; width: 250px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 20px; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; visibility: hidden; }
+        .cw-help-menu.active { display: block; opacity: 1; transform: translateY(0); visibility: visible; }
+        .cw-help-menu-header { padding: 15px 20px; background: #1c2128; border-bottom: 1px solid var(--border-color); color: #ffffff; font-weight: bold; font-size: 0.95rem; }
+        .cw-help-menu-list { list-style: none; padding: 0; margin: 0; }
+        .cw-help-menu-item { border-bottom: 1px solid var(--border-color); }
+        .cw-help-menu-item:last-child { border-bottom: none; }
+        .cw-help-menu-link { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #c9d1d9; text-decoration: none; transition: background 0.2s; font-size: 0.9rem; }
+        .cw-help-menu-link:hover { background: #30363d; color: #ffffff; }
+        .cw-help-menu-link-icon { color: var(--primary); font-size: 1.1rem; }
+
+        /* 2. ACCESSIBILITY ICON */
+        .cw-access-wrapper { position: fixed; bottom: 30px; left: 30px; right: auto; z-index: 2000; display: flex; flex-direction: column; align-items: flex-start; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .cw-access-trigger { width: 55px; height: 55px; border-radius: 50%; background-color: var(--access-color); border: none; box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0; outline: none; }
+        .cw-access-trigger svg { fill: #ffffff; width: 28px; height: 28px; transition: transform 0.3s; }
+        .cw-access-trigger:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(13, 148, 136, 0.4); }
+        .cw-access-menu { display: none; background: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 12px; width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 20px; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; visibility: hidden; max-height: 70vh; overflow-y: auto; }
+        .cw-access-menu.active { display: block; opacity: 1; transform: translateY(0); visibility: visible; }
+        .cw-access-header { padding: 15px 20px; background: var(--access-color); color: #ffffff; font-weight: bold; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10;}
+        .cw-access-close { background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; line-height: 1; }
+        .cw-access-body { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+        
+        .access-btn { background: #1c2128; border: 1px solid var(--border-color); color: #c9d1d9; padding: 12px 15px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; font-size: 0.95rem; text-align: left; }
+        .access-btn svg { fill: currentColor; width: 18px; height: 18px; flex-shrink: 0;}
+        .access-btn:hover { background: #30363d; color: #fff; }
+        .access-btn.active { border-color: var(--access-color); color: var(--access-color); font-weight: bold; background: rgba(13, 148, 136, 0.1); }
+        .access-btn.active svg { fill: var(--access-color); }
+        .access-controls { display: flex; gap: 10px; }
+        .access-controls button { flex: 1; justify-content: center; }
+
+        /* ACCESSIBILITY CLASSES */
+        body.high-contrast { background-color: #000 !important; color: #ffeb3b !important; }
+        body.high-contrast .glass-panel, body.high-contrast nav, body.high-contrast .site-footer { background-color: #000 !important; border: 1px solid #ffeb3b !important; }
+        body.high-contrast h1, body.high-contrast h2, body.high-contrast h3, body.high-contrast p, body.high-contrast a, body.high-contrast li { color: #ffeb3b !important; }
+        body.dyslexia-font * { font-family: 'Comic Sans MS', 'Arial', sans-serif !important; }
+        body.stop-animations * { animation: none !important; transition: none !important; }
+        body.stop-animations #particles-js { display: none !important; }
+        body.highlight-links a, body.highlight-links button { text-decoration: underline !important; text-decoration-color: var(--access-color) !important; text-decoration-thickness: 3px !important; }
+        body.text-spacing * { line-height: 1.6 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; }
+
+        /* RTL Swap Logic */
+        html[dir="rtl"] .cw-help-wrapper { right: auto; left: 30px; align-items: flex-start; }
+        html[dir="rtl"] .cw-access-wrapper { left: auto; right: 30px; align-items: flex-end; }
+        html[dir="rtl"] .access-btn { text-align: right; flex-direction: row-reverse; justify-content: flex-end;}
+        
+        @media (max-width: 768px) { 
+            .cw-help-wrapper { bottom: 20px; right: 20px; left: auto; } 
+            .cw-access-wrapper { bottom: 20px; left: 20px; right: auto; } 
+            .cw-help-trigger { width: 50px; height: 50px; } 
+            .cw-help-trigger svg { width: 24px; height: 24px; } 
+            html[dir="rtl"] .cw-help-wrapper { right: auto; left: 20px; }
+            html[dir="rtl"] .cw-access-wrapper { left: auto; right: 20px; }
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <div id="particles-js"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">CiviWatch <span>Guardian AI</span></a>
+        <div class="mobile-toggle" id="mobile-toggle">☰</div>
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#" data-en="Solutions ▾" data-he="פתרונות ▾">Solutions ▾</a>
+                <div class="dropdown-content">
+                    <a href="social-networks.html" data-en="Social Networks" data-he="רשתות חברתיות">Social Networks</a>
+                    <a href="generative-ai.html" data-en="Generative AI" data-he="בינה מלאכותית יוצרת">Generative AI</a>
+                    <a href="virtual-reality.html" data-en="Virtual Reality" data-he="מציאות מדומה">Virtual Reality</a>
+                    <a href="governments.html" data-en="Governments" data-he="ממשלות">Governments</a>
+                    <a href="ngos.html" data-en="NGOs" data-he="עמותות">NGOs</a>
+                </div>
+            </li>
+            <li><a href="company.html" data-en="Company" data-he="החברה">Company</a></li>
+            <li><a href="partners.html" data-en="Partners" data-he="שותפים">Partners</a></li>
+            <li><a href="market-strategy.html" data-en="Strategy" data-he="אסטרטגיה">Strategy</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" id="lang-toggle-btn" class="lang-toggle">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+                <span id="lang-text">EN</span>
+            </a>
+            <a href="index.html" class="btn-primary" data-en="Return to Home" data-he="חזרה לדף הבית">Return to Home</a>
+        </div>
+    </nav>
+
+    <div class="flex-1 flex justify-center items-start pt-32 pb-16 px-4 sm:px-6">
+        <div class="max-w-4xl w-full glass-panel p-8 sm:p-10 rounded-3xl relative z-10 doc-content">
+            
+            <div class="en">
+                <h1 class="text-4xl font-bold text-white mb-2">Accessibility Statement</h1>
+                <p class="text-sm text-slate-500 mb-8 border-b border-slate-700 pb-4">Last Updated: April 2026</p>
+
+                <h2>Our Commitment</h2>
+                <p>CiviWatch Guardian AI is committed to ensuring digital accessibility for people with disabilities. As a company defining the global standard for digital safety, we believe that an inclusive, safe, and accessible web is a fundamental right. We are continually improving the user experience for everyone and applying the relevant accessibility standards.</p>
+
+                <h2>Conformance Status</h2>
+                <p>We strive to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> and the <strong>Israeli Standard IS 5568 (תקן ישראלי 5568)</strong> for web accessibility. These guidelines explain how to make web content more accessible for people with disabilities and more user-friendly for everyone.</p>
+
+                <h2>Accessibility Features</h2>
+                <p>To assist our users, we have implemented an Accessibility Menu (located in the bottom corner of the screen) which provides the following controls:</p>
+                <ul>
+                    <li><strong>Text Sizing:</strong> Ability to safely increase or decrease the font size of the entire website.</li>
+                    <li><strong>High Contrast Mode:</strong> Inverts colors and borders to highly distinct black and yellow for users with visual impairments.</li>
+                    <li><strong>Dyslexia-Friendly Font:</strong> Swaps the site's font to highly legible, asymmetrical typefaces to assist with reading flow.</li>
+                    <li><strong>Stop Animations:</strong> Immediately pauses all background animations (such as the node network) to prevent motion sickness and assist users with vestibular disorders.</li>
+                    <li><strong>Highlight Links:</strong> Clearly underlines and recolors all clickable elements.</li>
+                    <li><strong>Text Spacing:</strong> Increases line height and letter spacing to improve readability.</li>
+                </ul>
+
+                <h2>Known Limitations</h2>
+                <p>While we strive for complete accessibility, some embedded third-party content may not be fully accessible:</p>
+                <ul>
+                    <li><strong>Google Drive Iframes:</strong> The embedded Investor Pitch Deck relies on Google Drive's native iframe viewer, which may have its own keyboard navigation limitations outside of our control. Users who cannot navigate the iframe can request a direct PDF copy of the deck via our contact form.</li>
+                </ul>
+
+                <h2>Feedback and Contact Information</h2>
+                <p>We welcome your feedback on the accessibility of the CiviWatch Guardian AI website. If you encounter any accessibility barriers, or require assistance, please contact our designated Accessibility Coordinator:</p>
+                
+                <div class="bg-slate-800/50 p-6 rounded-xl mt-6 border border-slate-700">
+                    <h3 class="text-white font-bold mb-3">Accessibility Coordinator (רכז נגישות)</h3>
+                    <p class="mb-1"><strong>Name:</strong> Benjamin Michaeli</p>
+                    <p class="mb-1"><strong>Email:</strong> <a href="mailto:[Your Email]">michaeli.benjamin@gmail.com</a></p>
+                    <p class="mb-1"><strong>Phone:</strong> 972-547673227</p>
+                    <p class="mt-4 text-sm">We aim to respond to accessibility feedback within 2 business days.</p>
+                </div>
+            </div>
+
+            <div class="he" dir="rtl" style="text-align: right;">
+                <h1 class="text-4xl font-bold text-white mb-2">הצהרת נגישות</h1>
+                <p class="text-sm text-slate-500 mb-8 border-b border-slate-700 pb-4">עודכן לאחרונה: אפריל 2026</p>
+
+                <h2>המחויבות שלנו</h2>
+                <p>חברת CiviWatch Guardian AI מחויבת לספק חווית גלישה נגישה לכלל המשתמשים, לרבות אנשים עם מוגבלויות. כחברה המובילה את תו התקן העולמי לבטיחות דיגיטלית, אנו מאמינים כי רשת בטוחה ונגישה היא זכות יסוד. אנו פועלים באופן שוטף לשיפור חווית המשתמש והחלת תקני הנגישות הרלוונטיים.</p>
+
+                <h2>סטטוס עמידה בתקנים</h2>
+                <p>אנו פועלים להנגשת האתר בהתאם להנחיות הנגישות לתכני אינטרנט <strong>WCAG 2.1 ברמת AA</strong> ובהתאם ל<strong>תקן הישראלי ת"י 5568</strong> ("קווים מנחים לנגישות תכנים באינטרנט").</p>
+
+                <h2>אמצעי הנגישות באתר</h2>
+                <p>באתר מוצב תפריט נגישות (בפינת המסך) המאפשר למשתמשים להתאים את התצוגה לצרכיהם:</p>
+                <ul>
+                    <li><strong>שינוי גודל טקסט:</strong> הגדלה והקטנה של הגופן באתר.</li>
+                    <li><strong>ניגודיות גבוהה:</strong> הפיכת הצבעים לשחור וצהוב בולטים עבור לקויי ראייה.</li>
+                    <li><strong>פונט קריא:</strong> החלפת הגופן באתר לפונט המסייע למתמודדים עם דיסלקציה.</li>
+                    <li><strong>עצירת הנפשות:</strong> עצירה מיידית של רקעים זזים (כגון חלקיקי הרקע) כדי למנוע סחרחורות ולהקל על משתמשים עם הפרעות וסטיבולריות.</li>
+                    <li><strong>הדגשת קישורים:</strong> סימון ברור של כל האלמנטים הלחיצים באתר.</li>
+                    <li><strong>מרווח טקסט:</strong> הגדלת המרווחים בין שורות ואותיות לקריאה נוחה יותר.</li>
+                </ul>
+
+                <h2>מגבלות ידועות</h2>
+                <p>למרות מאמצינו להנגיש את כלל התכנים, ייתכנו רכיבי צד-שלישי שאינם נגישים במלואם:</p>
+                <ul>
+                    <li><strong>מצגות מוטמעות (Google Drive):</strong> מצגת המשקיעים המוטמעת באתר מבוססת על רכיב חיצוני של גוגל, אשר עשויות להיות בו מגבלות ניווט מקלדת שאינן בשליטתנו. משתמשים המתקשים בניווט יכולים לבקש את המצגת בקובץ PDF ישירות דרך טופס צור הקשר שלנו.</li>
+                </ul>
+
+                <h2>פניות בנושא נגישות ופרטי רכז נגישות</h2>
+                <p>אנו מקבלים בברכה משוב על נגישות האתר. אם נתקלתם בבעיית נגישות כלשהי או שאתם זקוקים לעזרה, אנא פנו לרכז הנגישות של החברה:</p>
+                
+                <div class="bg-slate-800/50 p-6 rounded-xl mt-6 border border-slate-700">
+                    <h3 class="text-white font-bold mb-3">פרטי רכז הנגישות</h3>
+                    <p class="mb-1"><strong>שם:</strong> [שם מלא / בנימין מיכאלי]</p>
+                    <p class="mb-1"><strong>דוא"ל:</strong> <a href="mailto:[Your Email]" dir="ltr" class="inline-block">[Your Email]</a></p>
+                    <p class="mb-1"><strong>טלפון:</strong> <span dir="ltr">[מספר טלפון]</span></p>
+                    <p class="mt-4 text-sm">אנו מתחייבים לטפל בפניות בנושא נגישות בתוך 2 ימי עסקים.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="ccpa-policy.html">CCPA Policy</a> |
+            <a href="security-policy.html">Security Policy</a> |
+            <a href="data-policy.html">Data Policy</a> |
+            <a href="terms-of-use.html">Terms of Use</a> |
+            <a href="sla.html">Service Level Agreement</a> |
+            <span>Copyright CiviWatch Guardian AI 2026. All Right Reserved.</span> |
+            <span>By Benjamin Michaeli</span>
+        </div>
+    </footer>
+
+    <div class="cw-access-wrapper" id="cwAccessWrapper">
+        <div class="cw-access-menu" id="cwAccessMenu">
+            <div class="cw-access-header">
+                <span data-en="Accessibility" data-he="נגישות">Accessibility</span>
+                <button class="cw-access-close" id="cwAccessClose">×</button>
+            </div>
+            <div class="cw-access-body">
+                <div class="access-controls">
+                    <button class="access-btn" onclick="changeFontSize(10)" title="Increase Font Size">
+                        <svg viewBox="0 0 24 24"><path d="M2.5 19h2.1l1.6-4.5h5.6l1.6 4.5h2.2L10.3 5h-2.6L2.5 19zm6.8-6.3L11 7.2l1.7 5.5H9.3zm12.2.3h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z"/></svg>
+                    </button>
+                    <button class="access-btn" onclick="changeFontSize(-10)" title="Decrease Font Size">
+                        <svg viewBox="0 0 24 24"><path d="M2.5 19h2.1l1.6-4.5h5.6l1.6 4.5h2.2L10.3 5h-2.6L2.5 19zm6.8-6.3L11 7.2l1.7 5.5H9.3zm12.2.3h-8v-2h8v2z"/></svg>
+                    </button>
+                </div>
+                <button class="access-btn" id="btn-contrast" onclick="toggleHighContrast()">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z"/></svg>
+                    <span data-en="High Contrast" data-he="ניגודיות גבוהה">High Contrast</span>
+                </button>
+                <button class="access-btn" id="btn-dyslexia" onclick="toggleDyslexiaFont()">
+                    <svg viewBox="0 0 24 24"><path d="M9.93 13.5h4.14L12 7.98zM20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4.05 16.5l-1.14-3H9.17l-1.12 3H5.96l5.11-13h1.86l5.11 13h-2.09z"/></svg>
+                    <span data-en="Legible Font" data-he="פונט קריא">Legible Font</span>
+                </button>
+                <button class="access-btn" id="btn-animations" onclick="toggleAnimations()">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                    <span data-en="Stop Animations" data-he="עצירת הנפשות">Stop Animations</span>
+                </button>
+                <button class="access-btn" id="btn-links" onclick="toggleHighlightLinks()">
+                    <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+                    <span data-en="Highlight Links" data-he="הדגשת קישורים">Highlight Links</span>
+                </button>
+                <button class="access-btn" id="btn-spacing" onclick="toggleTextSpacing()">
+                    <svg viewBox="0 0 24 24"><path d="M4 9h16v2H4zm0 4h16v2H4z"/></svg>
+                    <span data-en="Text Spacing" data-he="מרווח בין שורות">Text Spacing</span>
+                </button>
+                <button class="access-btn" onclick="resetAccessibility()" style="margin-top: 10px; justify-content: center; border-color: #ef4444; color: #ef4444;">
+                    <span data-en="Reset Settings" data-he="איפוס הגדרות">Reset Settings</span>
+                </button>
+            </div>
+        </div>
+        <button class="cw-access-trigger" id="cwAccessTrigger" aria-label="Accessibility Menu">
+            <svg viewBox="0 0 24 24"><path d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2zM12 6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+        </button>
+    </div>
+
+    <div class="cw-help-wrapper" id="cwHelpWrapper">
+        <div class="cw-help-menu" id="cwHelpMenu">
+            <div class="cw-help-menu-header" data-en="Help & Support" data-he="תמיכה ועזרה">Help & Support</div>
+            <ul class="cw-help-menu-list">
+                <li class="cw-help-menu-item">
+                    <a href="partners.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">🤝</span>
+                        <span data-en="Contact Partnerships" data-he="יצירת קשר לשותפות">Contact Partnerships</span>
+                    </a>
+                </li>
+                <li class="cw-help-menu-item">
+                    <a href="AnonymousRepotScreen.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">🛡️</span>
+                        <span data-en="Submit Anonymous Report" data-he="דיווח אנונימי">Submit Anonymous Report</span>
+                    </a>
+                </li>
+                <li class="cw-help-menu-item">
+                    <a href="company.html" class="cw-help-menu-link">
+                        <span class="cw-help-menu-link-icon">ℹ️</span>
+                        <span data-en="CiviWatch FAQ" data-he="שאלות נפוצות (FAQ)">CiviWatch FAQ</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="cw-help-trigger" id="cwHelpTrigger" aria-label="Open Help Menu" aria-haspopup="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <circle cx="12" cy="17" r="0.5" stroke="none" fill="currentColor"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const langText = document.getElementById('lang-text');
+        const root = document.getElementById('html-root');
+        const langBtn = document.getElementById('lang-toggle-btn');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbar = document.getElementById('navbar');
+
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        function applyLanguage(lang) {
+            localStorage.setItem('civi_lang', lang);
+            langText.innerText = lang;
+            const isEn = lang === 'EN';
+            root.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+            if (isEn) { document.body.classList.add('lang-en'); } else { document.body.classList.remove('lang-en'); }
+            
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
+                if (translation) { el.innerHTML = translation; } 
+            });
+        }
+
+        let currentLang = localStorage.getItem('civi_lang') || 'EN';
+        applyLanguage(currentLang);
+
+        langBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentLang = currentLang === 'EN' ? 'HE' : 'EN';
+            applyLanguage(currentLang);
+        });
+
+        // Particles JS Init
+        particlesJS("particles-js", {
+            "particles": { "number": { "value": 80 }, "color": { "value": "#00a8ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#00a8ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } },
+            "retina_detect": true
+        });
+
+        // Floating Widgets Logic (Help & Access)
+        document.addEventListener('DOMContentLoaded', () => {
+            const helpTrigger = document.getElementById('cwHelpTrigger');
+            const helpMenu = document.getElementById('cwHelpMenu');
+            const helpWrapper = document.getElementById('cwHelpWrapper');
+            const accessTrigger = document.getElementById('cwAccessTrigger');
+            const accessMenu = document.getElementById('cwAccessMenu');
+            const accessWrapper = document.getElementById('cwAccessWrapper');
+            const accessClose = document.getElementById('cwAccessClose');
+
+            function closeAllMenus() {
+                helpMenu.classList.remove('active');
+                accessMenu.classList.remove('active');
+            }
+
+            helpTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isActive = helpMenu.classList.contains('active');
+                closeAllMenus();
+                if (!isActive) helpMenu.classList.add('active');
+            });
+
+            accessTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isActive = accessMenu.classList.contains('active');
+                closeAllMenus();
+                if (!isActive) accessMenu.classList.add('active');
+            });
+
+            accessClose.addEventListener('click', closeAllMenus);
+
+            document.addEventListener('click', (e) => { 
+                if (!helpWrapper.contains(e.target) && !accessWrapper.contains(e.target)) {
+                    closeAllMenus(); 
+                }
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllMenus(); });
+        });
+
+        // Accessibility Functions
+        let currentFontSize = 100;
+        function changeFontSize(step) {
+            currentFontSize += step;
+            if (currentFontSize < 80) currentFontSize = 80;
+            if (currentFontSize > 150) currentFontSize = 150;
+            document.documentElement.style.fontSize = currentFontSize + '%';
+        }
+        function toggleHighContrast() { document.body.classList.toggle('high-contrast'); document.getElementById('btn-contrast').classList.toggle('active'); }
+        function toggleDyslexiaFont() { document.body.classList.toggle('dyslexia-font'); document.getElementById('btn-dyslexia').classList.toggle('active'); }
+        function toggleAnimations() { document.body.classList.toggle('stop-animations'); document.getElementById('btn-animations').classList.toggle('active'); }
+        function toggleHighlightLinks() { document.body.classList.toggle('highlight-links'); document.getElementById('btn-links').classList.toggle('active'); }
+        function toggleTextSpacing() { document.body.classList.toggle('text-spacing'); document.getElementById('btn-spacing').classList.toggle('active'); }
+        function resetAccessibility() {
+            currentFontSize = 100;
+            document.documentElement.style.fontSize = '100%';
+            document.body.classList.remove('high-contrast', 'dyslexia-font', 'stop-animations', 'highlight-links', 'text-spacing');
+            document.querySelectorAll('.access-btn').forEach(btn => btn.classList.remove('active'));
+        }
+    </script>
+</body>
+</html>
